@@ -1,2 +1,7 @@
+# Folders
 /bin/
 wz/
+settings/
+# Files
+*.classpath
+*.project
