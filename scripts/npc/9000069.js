@@ -77,10 +77,10 @@ function action(mode, type, selection) {
         if (cm.haveItem(4310027, itemsArray[select][0]) && cm.canHold(itemsArray[select][1])) {
             cm.gainItem(4310027, -itemsArray[select][0]);
             cm.gainItem(itemsArray[select][1], itemsArray[select][2]);
-            cm.sendOk("교환완료! 인벤토리를 확인해봐!");
+            cm.sendOk("There you go! Please check your inventory");
             cm.dispose();
         } else {
-            cm.sendOk("인벤토리가 가득 찼거나 레전드 코인이 부족한것 같네요.");
+            cm.sendOk("It looks like your inventory is full, or you are lacking legend coins.");
             cm.dispose();
             return;
         }

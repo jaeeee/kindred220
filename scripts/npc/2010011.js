@@ -12,6 +12,7 @@
 	엔피시가 있는 맵 : 마을전역
 
 	엔피시 설명 : 길드본부로 이동
+	Translated by Yuno
 
 
 */
@@ -34,10 +35,10 @@ function action(mode, type, selection) {
     }
     
     if (status == 0) {
-        cm.sendYesNo("길드관련 업무가 필요하신가요? 지금 #b오르비스 영웅의 전당#k으로 이동해보시겠어요?");
+        cm.sendYesNo("Would you like to work on guild tasks?");
     } else if (status == 1) {
 	if (cm.getPlayerStat("LVL") < 10) {
-	    cm.sendOk("죄송하지만 레벨 10 이상의 분들만 이용하실 수 있습니다.");
+	    cm.sendOk("You need to be at least level 10 to work on guild tasks.");
             cm.dispose();
             return;
         }
