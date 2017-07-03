@@ -2,6 +2,7 @@
 /bin/
 wz/
 settings/
+.settings/
 # Files
 *.classpath
 *.project
