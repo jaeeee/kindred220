@@ -6,3 +6,4 @@ settings/
 # Files
 *.classpath
 *.project
+ServerSettings.properties
