@@ -3,7 +3,7 @@
 Kindred's Boss Teleporter/Dimensional Mirror
 **/
 var status = 0;
-var mapid = Array(280030100,240060200,271040100,230040420,270050100,262031300,401060200,280030001,240060201,211070102,272020200,262031300,270051100,910700300,105200310);
+var mapid = Array(280030100,240060200,271040100,230040420,270050100,262031300,401060200,280030001,240060201,211070102,272020200,262031300,270051100,910700300,105200310, 302090300);
 var bosscheck = false;
 var bossname = "";
 
@@ -40,14 +40,15 @@ chat += "#L4##fn³ª´®°íµñ Extrabold##fs13#Normal Pink Bean#l\r\n";
 //chat += "#L5##fn³ª´®°íµñ Extrabold##fs13#Èú¶ó#l\r\n";
 chat += "#L6##fn³ª´®°íµñ Extrabold##fs13#HELL Magnus#l\r\n";
 chat += "#L10##fn³ª´®°íµñ Extrabold##fs13#HELL Arkarium#l\r\n";
+chat += "#L15##fn³ª´®°íµñ Extrabold##fs13#Lotus#l\r\n";
 //chat += "#L11##fn³ª´®°íµñ Extrabold##fs13#Arkarium#l\r\n";
 chat += "\r\n\r\n#k#eDIMENSIONAL MIRROR#n\r\n#b";
 chat += "#L12##fn³ª´®°íµñ Extrabold##fs13##rUse Mirror#n#l";
 cm.sendSimple(chat); 
 } else if (status == 1) {
 if(selection == 12) {
-cm.askMapSelection("#33# Dimensional Invasion#43# Tower of Oz");
-} else if (selection != 15) {
+cm.askMapSelection("#33# Dimension Invasion#43# Tower of Oz");
+} else if (selection != 16) {
 if (cm.getPlayer().getParty() == null) {
   cm.sendOk("You must be in a party.");
   cm.dispose();
@@ -69,6 +70,11 @@ cm.gainItem(4001017,1);
 }
 }
 cm.resetMap(mapid[selection]);
+if(mapid[selection] == mapid[15]) {
+cm.warpParty(mapid[selection]);
+cm.dispose();
+return;
+}
 cm.PartyTimeMove(100050001,mapid[selection], 60 * 60);
 if(mapid[selection] == 271040100) {
 cm.spawnNpc(1033228,92,115);
@@ -89,10 +95,6 @@ if(mapid[selection] == mapid[14]) {
 cm.spawnNpc(1033228,48,135);
 }
 cm.dispose();
-}
-if(selection == 15) {
-cm.dispose();
-cm.openNpc(9010032);
 }
 } else if (status == 2) {
 	switch(selection) {

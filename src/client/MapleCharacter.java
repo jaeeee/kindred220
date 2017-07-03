@@ -3428,7 +3428,7 @@ public class MapleCharacter extends AnimatedHinaMapObjectExtend implements Inven
 		map.broadcastMessage(this, MainPacketCreator.showForeignEffect(getId(), 12), false);
 		silentPartyUpdate();
 		guildUpdate();
-		checkForceShield();
+//		checkForceShield();
 		if (ServerConstants.UnlockMaxDamage) {
 			unlockMaxDamage();
 		}
