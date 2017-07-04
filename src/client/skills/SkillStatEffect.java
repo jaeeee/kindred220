@@ -2264,25 +2264,25 @@ public class SkillStatEffect {
 						false));
 				ret.effects.setStats("time", Integer.MAX_VALUE);
 				break;
-			/* ·é ½ºÅ³ * start of runes/
+			// ·é ½ºÅ³ * start of runes/
 			case 80001427: // ½Å¼ÓÀÇ ·é ¹öÇÁ
 				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.STACK_JUMP,
 						ret.effects.getStats("indieJump"), true));
 				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.STACK_SPEED,
 						ret.effects.getStats("indieSpeed"), true));
-//				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.RUNE_EXPRATE,
-//						ret.effects.getStats("indieExp"), true));
-				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.HOLY_SYMBOL, ret.effects.getStats("x"),
-						false));
+				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.RUNE_EXPRATE,
+						ret.effects.getStats("indieExp"), true));
+//				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.HOLY_SYMBOL, ret.effects.getStats("x"),
+//						false));
 				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.BOOSTER_R,
 						ret.effects.getStats("indieBooster"), true));
 				break;
 			case 80001428: // Àç»ýÀÇ ·é ¹öÇÁ
 				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.HP_RECOVERY, 1, false));
-//				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.RUNE_EXPRATE,
-//						ret.effects.getStats("indieExp"), true));
-				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.HOLY_SYMBOL, ret.effects.getStats("x"),
-						false));
+				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.RUNE_EXPRATE,
+						ret.effects.getStats("indieExp"), true));
+//				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.HOLY_SYMBOL, ret.effects.getStats("x"),
+//						false));
 				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.STATUS_RESIST2,
 						ret.effects.getStats("indieAsrR"), true));
 				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.DISEASE_TOLERANCE,
@@ -2290,10 +2290,10 @@ public class SkillStatEffect {
 				break;
 			case 80001430: // ºØ±«ÀÇ ·é ¹öÇÁ
 			case 80001432: // ÆÄ¸êÀÇ ·é ¹öÇÁ
-//				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.RUNE_EXPRATE,
-//						ret.effects.getStats("indieExp"), true));
-				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.HOLY_SYMBOL, ret.effects.getStats("x"),
-						false));
+				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.RUNE_EXPRATE,
+						ret.effects.getStats("indieExp"), true));
+//				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.HOLY_SYMBOL, ret.effects.getStats("x"),
+//						false));
 				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.BOOSTER_R,
 						ret.effects.getStats("indieBooster"), true));
 				statups.add(new Triple<BuffStats, Integer, Boolean>(BuffStats.PERCENT_DAMAGE_BUFF,

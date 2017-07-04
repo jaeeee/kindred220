@@ -25,6 +25,7 @@ public class MonsterStatusEffect {
     private final boolean monsterSkill;
     private int poisonDamage = 10000;
     private int ownerid;
+    private Integer x;
     private ScheduledFuture<?> cancelTask;
     private ScheduledFuture<?> poisonSchedule;
 
@@ -34,8 +35,8 @@ public class MonsterStatusEffect {
 	this.monsterSkill = monsterSkill;
 	this.mobskill = mobskill;
     }
-
-    public final Map<MonsterStatus, Integer> getStati() {
+    
+	public final Map<MonsterStatus, Integer> getStati() {
 	return stati;
     }
 

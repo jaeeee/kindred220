@@ -85,7 +85,13 @@ function action(mode, type, selection) {
 		}
 		cm.getPlayer().changeJob(jobs[selection]);
         cm.getPlayer().setKeyValue("AutoJob", keys[selection]);
-		switch (cm.getPlayer().getJob()) {
+		if (keys[selection] == 410) { //trying to fix assassin's mark (learn all 3)
+			cm.teachSkill(4100011, 1, 1);
+			cm.teachSkill(4100012, 1, 1);
+			cm.teachSkill(4101011, 1, 1);
+		    cm.changeKeyBinding(4101011, 1, 73);
+		}
+		switch (cm.getPlayer().getJob()) { //getting skills
 			case 2300:
 			cm.teachSkill(20020109, 1, 0); //엘프의 회복
                 cm.teachSkill(20021110, 1, 0); //엘프의 축복
@@ -93,6 +99,10 @@ function action(mode, type, selection) {
                 cm.teachSkill(20020112, 1, 0); //왕의 자격
 			break;
 			case 2400:
+			cm.teachSkill(14000027, 1, 1); //shadow bats
+					cm.teachSkill(4100011, 1, 1);
+			cm.teachSkill(4100012, 1, 1);
+			cm.teachSkill(4101011, 1, 1);
 			 cm.teachSkill(20031203, 1, 0); //리턴 오브 팬텀
                 cm.teachSkill(20030204, 1, 0); //데들리 인스팅트
                 cm.teachSkill(20031205, 1, 0); //팬텀 슈라우드
@@ -127,6 +137,7 @@ function action(mode, type, selection) {
                 cm.teachSkill(25000105, 30, 30);
                 cm.teachSkill(20050286, 2, 2);
                 cm.teachSkill(20050285, 1, 1);
+				cm.teachSkill(20051284, 1, 1); //fox trot
                 cm.teachSkill(20051287, 1, 1);
 			break;
 			case 1100:
