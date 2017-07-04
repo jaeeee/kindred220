@@ -1,3 +1,8 @@
+1. Clara, Monster Life Coin Exchange	9072200
+2. Jimmy-Jack, Monster Life Coin Shop	9072201
+3. Eileen, Maple Chat Helper			9000185
+4. Scarrs, Mushroom Researcher			1300007
+5. Windy, Winter Limited coin shop		9000189
 todo: 
 change scripts:
 dimensional mirror	9010022
