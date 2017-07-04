@@ -7,7 +7,7 @@
  * ±èÁøÈ« designer@inerve.kr
  */
 
-package handler.channel;
+package handler.skill;
 
 import constants.GameConstants;
 import client.MapleClient;

@@ -1,6 +1,6 @@
 
 
-package handler.channel;
+package handler.skill;
 /*
  * YorkDEV Project
  * цжаж©Ь sch2307@nate.com
@@ -14,6 +14,8 @@ import client.items.IEquip;
 import client.items.MapleInventoryType;
 import client.stats.ClothesStats;
 import constants.GameConstants;
+import handler.channel.InventoryHandler;
+
 import java.awt.Point;
 import packet.creators.MainPacketCreator;
 import packet.skills.ZeroSkill;

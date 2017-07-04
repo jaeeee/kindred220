@@ -226,6 +226,10 @@ public class GameConstants {
 	public static final boolean isNightWalker(final int job) {
 		return job == 1400 || (job >= 1400 && job <= 1412);
 	}
+	
+	public static final boolean isNightLord(final int job) {
+		return job == 410 || (job >= 410 && job <= 412);
+	}
 
 	public static final boolean isReturnCygNus(final int job) {
 		return job == 1000 || (job >= 1500 && job <= 1512);

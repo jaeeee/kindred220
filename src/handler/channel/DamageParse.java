@@ -23,6 +23,8 @@ import client.stats.PlayerStat;
 import community.MaplePartyCharacter;
 import constants.GameConstants;
 import constants.ServerConstants;
+import handler.skill.CygnusHandler;
+
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -135,8 +137,9 @@ public class DamageParse {
 		if (GameConstants.isAran(player.getJob()) && attack.skill != 0) {
 			player.useComboSkill(attack.skill);
 		}
-		
-		if (player.getSkillLevel(4100011) > 0) { // assassin's mark
+
+		if (GameConstants.isNightLord(player.getJob()) && player.getSkillLevel(4100011) > 0) { // assassin's
+																								// mark
 			SkillStatEffect eff = SkillFactory.getSkill(4100011).getEffect(player.getSkillLevel(4100011));
 
 			int bulletCount = eff.getBulletCount();
@@ -145,8 +148,8 @@ public class DamageParse {
 				// final MonsterStatusEffect check =
 				// source.getBuff(MonsterStatus.POISON);
 
-				final List<MapleMapObject> objs = player.getMap().getMapObjectsInRange(player.getPosition(),
-						250000, Arrays.asList(MapleMapObjectType.MONSTER));
+				final List<MapleMapObject> objs = player.getMap().getMapObjectsInRange(player.getPosition(), 250000,
+						Arrays.asList(MapleMapObjectType.MONSTER));
 				final List<MapleMonster> monsters = new ArrayList<>();
 				for (int i = 0; i < 2; i++) {
 					int rand = Randomizer.rand(0, objs.size() - 1);
@@ -159,23 +162,21 @@ public class DamageParse {
 						objs.remove(rand);
 					}
 				}
-//				if (monsters.size() <= 0) {
-//					MainPacketCreator.resetActions();
-//					return;
-//				}
+				// if (monsters.size() <= 0) {
+				// MainPacketCreator.resetActions();
+				// return;
+				// }
 				final List<Point> points = new ArrayList<>();
 				for (MapleMonster mob : monsters) {
 					points.add(mob.getPosition());
 				}
-				player.getMap()
-						.broadcastMessage(MainPacketCreator.giveMarkOfTheif(player.getId(),
-								source.getObjectId(), 4100012, monsters, player.getPosition(),
-								monsters.get(0).getPosition(), 2070006));
-				player.send(MainPacketCreator.giveMarkOfTheif(player.getId(), source.getObjectId(), 4100012,
-						monsters, player.getPosition(), monsters.get(0).getPosition(), 2070006));
+				player.getMap().broadcastMessage(MainPacketCreator.giveMarkOfTheif(player.getId(), source.getObjectId(),
+						4100012, monsters, player.getPosition(), monsters.get(0).getPosition(), 2070006));
+				player.send(MainPacketCreator.giveMarkOfTheif(player.getId(), source.getObjectId(), 4100012, monsters,
+						player.getPosition(), monsters.get(0).getPosition(), 2070006));
 			}
 		}
-		
+
 		if (attack.skill == 4211006) { // meso explosion
 			for (AttackPair oned : attack.allDamage) {
 				if (oned.attack != null) {
@@ -367,7 +368,10 @@ public class DamageParse {
 						break;
 					}
 				}
-
+				if (GameConstants.isKOC(player.getJob())) {
+					CygnusHandler.CygnusAttack(player, monster, attack);
+					// System.out.println("boom handle");
+				}
 				if (player.getSkillLevel(3210013) > 0) {
 					SkillStatEffect sse = SkillFactory.getSkill(3210013).getEffect(player.getSkillLevel(3210013));
 					sse.applyTo(player);
@@ -808,8 +812,7 @@ public class DamageParse {
 					}
 				}
 
-				
-				if (totDamageToOneMonster > 0) { 					
+				if (totDamageToOneMonster > 0) {
 					// 트라이플링 윔 trifling wind
 					if (GameConstants.isWindBreaker(player.getJob()) && attack.skill != 13120003
 							&& attack.skill != 13120010 && attack.skill != 13110022 && attack.skill != 13110027
@@ -1618,7 +1621,7 @@ public class DamageParse {
 								}
 							}
 						}
-						
+
 					} catch (Exception e) {
 						if (!ServerConstants.realese) {
 							e.printStackTrace();
@@ -1789,7 +1792,6 @@ public class DamageParse {
 		if (attack.skill != 2301002) {
 			effect.applyTo(player);
 		}
-		
 
 		if (player.getMapId() == 100000000) {
 			if (attack.skill != 0) {

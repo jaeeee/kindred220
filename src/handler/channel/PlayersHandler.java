@@ -29,6 +29,7 @@ import client.items.Item;
 import client.skills.SkillFactory;
 import client.skills.SkillStatEffect;
 import community.MaplePartyCharacter;
+
 import java.util.List;
 import packet.creators.RunePacket;
 import packet.creators.UIPacket;

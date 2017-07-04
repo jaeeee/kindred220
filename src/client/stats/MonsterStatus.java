@@ -45,7 +45,7 @@ public enum MonsterStatus implements GlobalBuffStat {
     WEAPON_DAMAGE_REFLECT(0x2000000000000000L),
     MAGIC_DAMAGE_REFLECT(0x4000000000000000L),
     SUMMON(0x8000000000000000L), 
-    ;
+    BLODTO(0x8000000L);
 
     private final long i;
     private final byte index;

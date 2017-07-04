@@ -9,10 +9,11 @@
 
 package packet.skills;
 
-import handler.channel.MapleMechDoor;
 import client.MapleCharacter;
 import client.skills.SkillStatEffect;
 import client.stats.BuffStats;
+import handler.channel.MapleMechDoor;
+
 import java.awt.Point;
 import java.util.Collections;
 import java.util.List;

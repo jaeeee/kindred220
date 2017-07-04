@@ -7038,8 +7038,36 @@ public class MainPacketCreator {
 		pw.writeInt(javelin);
 		// System.out.println(pw.toString());
 
-//		 pw.writeZeroBytes(69); //We might need this =p
+		// pw.writeZeroBytes(69); //We might need this =p
 		return pw.getPacket();
+	}
+
+	public static Packet ShwadowBat(int cid, int oid, Point pos) {
+		WritingPacket packet = new WritingPacket();
+		packet.writeShort(SendPacketOpcode.ABSORB_DF.getValue());
+		packet.write(0);
+		packet.writeInt(cid);
+		packet.writeInt(15);
+		packet.write(1);
+		packet.writeInt(oid);
+		packet.writeInt(14000028);
+		int i = 1;
+		packet.write(i);
+		packet.writeInt(i + 1);
+		packet.writeInt(1);
+		packet.writeInt(1);
+		packet.writeInt(5);
+		packet.writeInt(46);
+		packet.writeInt(500);
+		packet.writeLong(0);
+		packet.write(HexTool.getByteArrayFromHexString("1D F5 7B 22"));
+		packet.writeInt(0);
+		packet.write(0);
+		packet.writeInt((int) pos.getX());
+		packet.writeInt((int) pos.getY());
+		packet.writeInt((int) pos.getX());
+		packet.writeInt((int) pos.getY());
+		return packet.getPacket();
 	}
 
 	public static Packet FinalJudgement() {
@@ -7508,4 +7536,5 @@ public class MainPacketCreator {
 		}
 		return packet.getPacket();
 	}
+
 }

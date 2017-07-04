@@ -100,6 +100,9 @@ function action(mode, type, selection) {
 			break;
 			case 2400:
 			cm.teachSkill(14000027, 1, 1); //shadow bats
+				cm.teachSkill(14000028, 1, 1); //shadow bats
+					cm.teachSkill(14000029, 1, 1); //shadow bats
+			cm.teachSkill(14000127, 1, 1); //shadow bats
 					cm.teachSkill(4100011, 1, 1);
 			cm.teachSkill(4100012, 1, 1);
 			cm.teachSkill(4101011, 1, 1);

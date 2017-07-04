@@ -3,6 +3,7 @@ var status = 0;
 function start() { 
 	if (cm.getPlayer().getMap().getId() == 925020001) {
 		cm.sendOk("insert dojo rankings here");
+		cm.dispose();
 		return;
 	} else {
     cm.sendSimple(" Did you want to go somewhere? \r\n #L0##bEnter Mu Lung Dojo #k#l"

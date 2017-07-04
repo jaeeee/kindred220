@@ -46,10 +46,12 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import handler.channel.MapleMechDoor;
+
 import client.skills.Skill;
 import client.stats.PlayerStat;
 import handler.channel.InventoryHandler;
+import handler.channel.MapleMechDoor;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.logging.Level;
@@ -4123,4 +4125,5 @@ if (target.getSoulName() != 0) { // 소울웨폰 게이지
       public byte getChannel() {
     	  return channel;
       }
+      
 }
