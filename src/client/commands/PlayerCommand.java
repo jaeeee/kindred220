@@ -268,7 +268,19 @@ public class PlayerCommand implements Command {
 		case "@commands":
 		case "@help":
 			c.getPlayer().dropMessage(6,
-					"Commands: @home/@fm, @str, @dex, @int, @luk, @hp, @style/styler, @go/npc, @unstuck/dispose, @clearinv [all/equip/use/etc/setup], @maxskills, @upgrade, @exchange, @shop, @unlock/@uncap, @learn/@skill, @commands/@help");
+					"Commands: @home/@fm, @str, @dex, @int, @luk, @hp, @style/styler, "
+					+ "@go/npc, @unstuck/dispose, @clearinv [all/equip/use/etc/setup], "
+					+ "@maxskills, @upgrade, @exchange, @shop, @unlock/@uncap, @learn/@skill, "
+					+ "@commands/@help, @reloadstats, @auction");
+			break;
+		case "@reloadstats":
+			MapleCharacter player = c.getPlayer();
+			player.getStat().recalcLocalStats();
+			c.getPlayer().dropMessage(6, "Your stats have been recalculated.");
+			break;
+		case "@auction":
+			NPCScriptManager.getInstance().start(c, KindredConstants.AUCTION_NPC);
+			c.getPlayer().ea();
 			break;
 		default:
 			break;
@@ -936,11 +948,12 @@ public class PlayerCommand implements Command {
 				new CommandDefinition("go", "", "", 0), new CommandDefinition("unstuck", "", "", 0),
 				new CommandDefinition("dispose", "", "", 0), new CommandDefinition("maxskills", "", "", 0),
 				new CommandDefinition("clearinv", "", "", 0), new CommandDefinition("upgrade", "", "", 0),
-				new CommandDefinition("exchange", "", "", 0), new CommandDefinition("commands", "xxx", "", 0),
-				new CommandDefinition("help", "x", "xx", 0), new CommandDefinition("shop", "", "", 0),
+				new CommandDefinition("exchange", "", "", 0), new CommandDefinition("commands", "", "", 0),
+				new CommandDefinition("help", "", "", 0), new CommandDefinition("shop", "", "", 0),
 				new CommandDefinition("uncap", "", "", 0), new CommandDefinition("unlock", "", "", 0),
 				new CommandDefinition("learn", "", "", 0), new CommandDefinition("skill", "", "", 0),
-				new CommandDefinition("fm", "a", "z", 0), new CommandDefinition("home", "a", "z", 0) };
+				new CommandDefinition("fm", "a", "z", 0), new CommandDefinition("home", "a", "z", 0),
+				new CommandDefinition("reloadstats", "", "", 0), new CommandDefinition("auction", "", "", 0)};
 	}
 
 	private static class RepairEquip {

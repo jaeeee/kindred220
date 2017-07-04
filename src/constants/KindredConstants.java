@@ -14,6 +14,8 @@ public class KindredConstants {
 	
 	public static int SKILL_VENDOR = 9072200;
 	
+	public static int AUCTION_NPC = 9030300;
+	
 	public static int KINDRED_HOME = 910000000;
 	
 

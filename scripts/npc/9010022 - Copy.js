@@ -1,9 +1,6 @@
-/**
-@author Jae
-Kindred's Boss Teleporter/Dimensional Mirror
-**/
+
 var status = 0;
-var mapid = Array(280030100,240060200,271040100,230040420,270050100,262031300,401060200,280030001,240060201,211070102,272020200,262031300,270051100,910700300,105200310, 302090300);
+var mapid = Array(280030100,240060200,271040100,230040420,270050100,262031300,401060200,280030001,240060201,211070102,272020200,262031300,270051100,910700300,105200310);
 var bosscheck = false;
 var bossname = "";
 
@@ -26,41 +23,40 @@ function action(mode, type, selection) {
         else
             status--;
 	if (status == 0) {
-		var chat = "#eHello. I am Kindred's Boss teleporter.#n\r\n";
-		chat += "\r\n#e#rREGULAR BOSSES#n#n";
-chat += "\r\n#b#L0##fn나눔고딕 Extrabold##fs13#Normal Zakum#l\r\n";
-chat += "#L1##fn나눔고딕 Extrabold##fs13#Normal Horntail#l\r\n";
-chat += "#L7##fn나눔고딕 Extrabold##fs13#Chaos Zakum#l\r\n";
-chat += "#L8##fn나눔고딕 Extrabold##fs13#Chaos Horntail#l\r\n";
-chat += "#L9##fn나눔고딕 Extrabold##fs13#Von Leon#l\r\n\r\n\r\n";
-chat += "#k#e#fn나눔고딕 Extrabold##fs13##rHARDER BOSSES#n#n\r\n#b";
-chat += "#L2##fn나눔고딕 Extrabold##fs13#HELL Cygnus#l\r\n";
-//chat += "#L3##fn나눔고딕 Extrabold##fs13#피아누스#l\r\n";
-chat += "#L4##fn나눔고딕 Extrabold##fs13#Normal Pink Bean#l\r\n";
-//chat += "#L5##fn나눔고딕 Extrabold##fs13#힐라#l\r\n";
-chat += "#L6##fn나눔고딕 Extrabold##fs13#HELL Magnus#l\r\n";
-chat += "#L10##fn나눔고딕 Extrabold##fs13#HELL Arkarium#l\r\n";
-chat += "#L15##fn나눔고딕 Extrabold##fs13#Lotus#l\r\n";
-//chat += "#L11##fn나눔고딕 Extrabold##fs13#Arkarium#l\r\n";
-chat += "\r\n\r\n#k#eDIMENSIONAL MIRROR#n\r\n#b";
-chat += "#L12##fn나눔고딕 Extrabold##fs13##rUse Mirror#n#l";
+		var chat = "#e현재 사냥 가능한 던전들은 이렇습니다.#n\r\n";
+		chat += "\r\n#e#r<노말 보스 원정대>#n#n";
+chat += "\r\n#b#L0##fn나눔고딕 Extrabold##fs13#자쿰#l\r\n";
+chat += "#L1##fn나눔고딕 Extrabold##fs13#혼테일#l\r\n";
+chat += "#L2##fn나눔고딕 Extrabold##fs13#시그너스#l\r\n";
+chat += "#L3##fn나눔고딕 Extrabold##fs13#피아누스#l\r\n";
+chat += "#L4##fn나눔고딕 Extrabold##fs13#핑크빈#l\r\n";
+chat += "#L5##fn나눔고딕 Extrabold##fs13#힐라#l\r\n";
+chat += "#L6##fn나눔고딕 Extrabold##fs13#매그너스#l\r\n\r\n\r\n";
+chat += "#k#e#fn나눔고딕 Extrabold##fs13##r<카오스 보스 원정대>#n#n\r\n#b";
+chat += "#L7##fn나눔고딕 Extrabold##fs13#심연속 폐광의 군주 자쿰#l\r\n";
+chat += "#L8##fn나눔고딕 Extrabold##fs13#용의 군주라 불리는 혼테일#l\r\n";
+chat += "#L9##fn나눔고딕 Extrabold##fs13#검은마법사의 수문장 반 레온#l\r\n";
+chat += "#L10##fn나눔고딕 Extrabold##fs13#시간을 탈취한자 아카이럼#l\r\n";
+chat += "#L11##fn나눔고딕 Extrabold##fs13#아스완의 망령을 다스리는 힐라#l\r\n";
+chat += "\r\n\r\n#k#e<차원의 문>#n\r\n#b";
+chat += "#L12##fn나눔고딕 Extrabold##fs13##r차원의 문 이용하기#n#l";
 cm.sendSimple(chat); 
 } else if (status == 1) {
 if(selection == 12) {
-cm.askMapSelection("#33# Dimension Invasion#43# Tower of Oz");
-} else if (selection != 16) {
+cm.askMapSelection("#33# 디멘션 인베이드#43# 더 시드");
+} else if (selection != 15) {
 if (cm.getPlayer().getParty() == null) {
-  cm.sendOk("You must be in a party.");
+  cm.sendOk("파티가 없으면 입장이 불가능합니다.");
   cm.dispose();
   return;
 }
 if (cm.getClient().getChannelServer().getMapFactory().getMap(mapid[selection]).getCharactersSize() > 0) {
-     cm.sendOk("Someone is inside already.");
+     cm.sendOk("이미 다른 유저가 입장하였습니다. 다른채널을 이용해주시거나 잠시후에 도전해주십시오.");
      cm.dispose();
      return;
 }
 if (!cm.isLeader()) {
-cm.sendOk("Please have the party leader speak to me.");
+cm.sendOk("파티장을 통해서 입장해주시기 바랍니다.");
 cm.dispose();
 return;
 }
@@ -70,11 +66,6 @@ cm.gainItem(4001017,1);
 }
 }
 cm.resetMap(mapid[selection]);
-if(mapid[selection] == mapid[15]) {
-cm.warpParty(mapid[selection]);
-cm.dispose();
-return;
-}
 cm.PartyTimeMove(100050001,mapid[selection], 60 * 60);
 if(mapid[selection] == 271040100) {
 cm.spawnNpc(1033228,92,115);
@@ -95,6 +86,10 @@ if(mapid[selection] == mapid[14]) {
 cm.spawnNpc(1033228,48,135);
 }
 cm.dispose();
+}
+if(selection == 15) {
+cm.dispose();
+cm.openNpc(9010032);
 }
 } else if (status == 2) {
 	switch(selection) {

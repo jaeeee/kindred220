@@ -593,6 +593,9 @@ public class AbstractPlayerInteraction {
 	return c.getChannelServer().getMapFactory().getMap(mapid).getAllMonster().size();
     }
 
+//    public final void teachSkill(final int id) {
+//    	getPlayer().changeSkillLevel(SkillFactory.getSkill(id), SkillFactory.getSkill(id).getMaxLevel(), SkillFactory.getSkill(id).getMaxLevel());
+//    }
     public final void teachSkill(final int id, final byte level, final byte masterlevel) {
 	getPlayer().changeSkillLevel(SkillFactory.getSkill(id), level, masterlevel);
     }

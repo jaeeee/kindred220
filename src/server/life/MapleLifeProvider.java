@@ -75,8 +75,8 @@ public class MapleLifeProvider {
 				stats.setHp((long) 63000000000L);
 			} else if (mid == 8880010) { //mag
 				stats.setHp((long) 50000000000L);
-			} else if (mid == 8240099) { //lotus
-				stats.setHp((long) 10000000000000L);
+//			} else if (mid == 8240099) { //lotus
+//				stats.setHp((long) 10000000000000L);
 			} else {
 				stats.setHp(MapleDataTool.getIntConvert("maxHP", monsterInfoData));
 			}

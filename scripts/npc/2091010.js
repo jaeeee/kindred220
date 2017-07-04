@@ -1,157 +1,23 @@
+var status = 0; 
 
-
-
-/*
-
-
-	엔피시 이름 : 무릉 순위표
-
-	엔피시가 있는 맵 : 헤네시스 : 헤네시스 (100000000)
-
-	엔피시 설명 : MISSINGNO
-
-
-	순위기록 초기화는 ?
-
-    	Rank += "\r\n============================#g"
-    	Rank += "\r\n01　　　　　　　　　　00:00:00"
-    	Rank += "\r\n#k============================#b"
-    	Rank += "\r\n02　　　　　　　　　　00:00:00"
-    	Rank += "\r\n03　　　　　　　　　　00:00:00"
-    	Rank += "\r\n04　　　　　　　　　　00:00:00"
-    	Rank += "\r\n05　　　　　　　　　　00:00:00#d"
-    	Rank += "\r\n06　　　　　　　　　　00:00:00"
-    	Rank += "\r\n07　　　　　　　　　　00:00:00"
-    	Rank += "\r\n08　　　　　　　　　　00:00:00"
-    	Rank += "\r\n09　　　　　　　　　　00:00:00"
-    	Rank += "\r\n10　　　　　　　　　　00:00:00"
-    	Rank += "\r\n11　　　　　　　　　　00:00:00"
-    	Rank += "\r\n12　　　　　　　　　　00:00:00"
-    	Rank += "\r\n13　　　　　　　　　　00:00:00" 
-    	Rank += "\r\n14　　　　　　　　　　00:00:00" 
-    	Rank += "\r\n15　　　　　　　　　　00:00:00" 
-    	Rank += "\r\n16　　　　　　　　　　00:00:00" 
-    	Rank += "\r\n17　　　　　　　　　　00:00:00" 
-    	Rank += "\r\n18　　　　　　　　　　00:00:00" 
-    	Rank += "\r\n19　　　　　　　　　　00:00:00" 
-    	Rank += "\r\n20　　　　　　　　　　00:00:00" 
-
-붙여넣기하셈
-
-무릉장갑은
-
-서버 별로 랭킹 매겨서 지급하던가 하세요
-
-수고!
-
-
-- 장갑 지급 예제 (서버공지) -
-
- 무릉도장 보상이 지급되었습니다. 루시아 에게 보상을 받으세요. 유효기간은 7일이며 그 이상 갖고 있을 시 로그 추적해서 벤처리 됩니다.
-
-
-천외천서버기준 기록
-
-    	Rank += "\r\n============================#g"
-    	Rank += "\r\n01　화음곡　　　　　　00:07:02"
-    	Rank += "\r\n#k============================#b"
-    	Rank += "\r\n02　천지창조주　　　　00:08:03"
-    	Rank += "\r\n03　검은달여신　　　　00:08:14"
-    	Rank += "\r\n04　은밀한작업자　　　00:09:16"
-    	Rank += "\r\n05　해녀징징　　　　　00:09:23#d"
-    	Rank += "\r\n06　서른꿈　　　　　　00:09:41"
-    	Rank += "\r\n07　기교술사　　　　　00:10:07"
-    	Rank += "\r\n08　징징　　　　　　　00:10:13" 
-    	Rank += "\r\n09　짱구서연　　　　　00:10:25"
-    	Rank += "\r\n10　듀블백강호　　　　00:11:32" 
-    	Rank += "\r\n11　악랄한소녀　　　　00:11:54"
-    	Rank += "\r\n12　카넬리안의꿈　　　00:11:57" 
-    	Rank += "\r\n13　미하일백강호　　　00:12:25"
-    	Rank += "\r\n14　Blue제시카s 　　　00:12:31" 
-    	Rank += "\r\n15　용병주세미　　　　00:12:44" 
-    	Rank += "\r\n16　멘붕　　　　　　　00:13:11"
-    	Rank += "\r\n17　서른꽃　　　　　　00:13:52" 
-    	Rank += "\r\n18　용병수세미　　　　00:18:34" 
-    	Rank += "\r\n19　가군의사도　　　　00:21:14"
-    	Rank += "\r\n20　리파인　　　　　　00:31:15"
-
-
-*/
-
-importPackage(java.util);
-importPackage(java.lang);
-
-var status = -1;
-
-function start() {
-    status = -1;
-    action (1, 0, 0);
-}
-
-function action(mode, type, selection) {
-    if (mode == -1) {
-        cm.dispose();
-        return;
-    }
-    if (mode == 0) {
-        status --;
-    }
-    if (mode == 1) {
-        status++;
-    }
-    if (status == 0) {
-   	var dojo = "무릉도장의 공고문이다. 무릉도장에 도전한 자들을 보거나 서버의 운영진, 스탭을 볼 수 있다. 무엇을 하겠는가?";
-    	dojo += "#b\r\n#L1#무릉 도장 랭킹모드 기록자들을 보고 싶다.";
-	cm.sendSimple(dojo);
-    } else if (status == 1) {
-	if (selection == 0) {
-        cm.sendOk("                천외천스토리 운영진 명단입니다.\r\n\r\n#k     GM (운영진) : 천외천온라인, GM천외천, 천외천짐꾼\r\n#b         천외천스토리 1기 홍보대사 : 날라리법사\r\n#g         천외천스토리 2기 홍보대사 : 거침없는마녀\r\n#r         천외천스토리 3기 홍보대사 : 리파인\r\n#d         천외천스토리 4기 홍보대사 : 화음곡\r\n\r\n천외천팩 제작자인 가군님(qor6101@naver.com)의 약력은?\r\n\r\n#r             옐카섭 레벨 200아란 막장아란가군\r\n#b             옐카섭 올드길드 '천외천' 소속\r\n#d             아프리카 옐카섭 최초 아란 BJ#k\r\n#g       블로그 : http:blog.naver.com/qor6101");
-        cm.dispose();
-        return;
-	} else if (selection == 1) {
-	var Rank = "　　무릉도장 랭킹모드 순위표";
-    	Rank += "\r\n랭킹모드 기록은 #b20명의 기록자#k가 있는 상태에서."
-    	Rank += "\r\n#b그 기준으로 1주일에 1번씩 초기화#k 되며."
-    	Rank += "\r\n보상은 매일 #b자정 이후 서버 종료시각#k에 지급이 됩니다."
-    	Rank += "\r\n"
-    	Rank += "#g녹색 = 1위 = #i1082392# #r#z1082392##g 지급\r\n"
-    	Rank += "#b파랑색 = 2위 ~ 5위 = #i1082393# #r#z1082393##b 지급\r\n"
-    	Rank += "#d감색 = 6위 ~ 20위 = #i1082394# #r#z1082394##d 지급"
-    	Rank += "\r\n"
-
-
-
-
-    	Rank += "\r\n============================#g"
-    	Rank += "\r\n01　화음곡　　　　　　00:07:30"
-    	Rank += "\r\n#k============================#b"
-    	Rank += "\r\n02　천지창조주　　　　00:08:30"
-    	Rank += "\r\n03　검은달여신　　　　00:08:35"
-    	Rank += "\r\n04　은밀한작업자　　　00:08:44"
-    	Rank += "\r\n05　해녀징징　　　　　00:08:55#d"
-    	Rank += "\r\n06　듀블백강호　　　　00:09:01"
-    	Rank += "\r\n07　서른꽃　　　　　　00:09:15"
-    	Rank += "\r\n08　기교술사　　　　　00:10:11"
-    	Rank += "\r\n09　서른꿈　　　　　　00:10:15"
-    	Rank += "\r\n10　짱구서연　　　　　00:10:24"
-    	Rank += "\r\n11　용병주세미　　　　00:11:04"
-    	Rank += "\r\n12　징징　　　　　　　00:11:29"
-    	Rank += "\r\n13　악랄한소녀　　　　00:11:32"
-    	Rank += "\r\n14　카넬리안의꿈　　　00:12:05"
-    	Rank += "\r\n15　미하일백강호　　　00:12:06"  
-    	Rank += "\r\n16　멘붕　　　　　　　00:13:14"
-    	Rank += "\r\n17　　　　　　　　　　00:00:00" 
-    	Rank += "\r\n18　　　　　　　　　　00:00:00" 
-    	Rank += "\r\n19　　　　　　　　　　00:00:00" 
-    	Rank += "\r\n20　　　　　　　　　　00:00:00" 
-
-
-
-
-	cm.sendNext(Rank);
-        cm.dispose();
-	}
+function start() { 
+	if (cm.getPlayer().getMap().getId() == 925020001) {
+		cm.sendOk("insert dojo rankings here");
+		return;
 	} else {
-	cm.dispose();
-	}
-}
+    cm.sendSimple(" Did you want to go somewhere? \r\n #L0##bEnter Mu Lung Dojo #k#l"
+    		);
+	}			
+} 
+
+function action(mode, type, selection) { 
+    if (mode < 1) { 
+        cm.sendOk("Ok, see you next time!"); 
+        cm.dispose(); 
+        return; 
+    } else { 
+        status++; 
+    } 
+    		cm.warp(925020001);
+            cm.dispose(); 
+    }
