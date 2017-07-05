@@ -13,7 +13,6 @@ import client.MapleCharacter;
 import client.MapleCharacterStat;
 import client.MapleClient;
 import client.items.*;
-import client.skills.Skill;
 import client.skills.SkillFactory;
 import client.skills.SkillStatEffect;
 import client.stats.BuffStats;
@@ -24,16 +23,14 @@ import community.MaplePartyCharacter;
 import constants.GameConstants;
 import constants.ServerConstants;
 import handler.skill.CygnusHandler;
+import handler.skill.ExplorerHandler;
 
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Random;
 import packet.creators.MainPacketCreator;
 import packet.creators.MobPacket;
 import packet.creators.TheSidPacket;
@@ -43,16 +40,11 @@ import packet.skills.KaiserSkill;
 import packet.transfer.read.ReadingMaple;
 import server.items.ItemInformation;
 import server.life.Element;
-import server.life.MapleLifeProvider;
 import server.life.MapleMonster;
 import server.life.MapleMonsterStats;
-import server.life.SummonAttackEntry;
 import server.maps.MapleMap;
 import server.maps.MapleMapObject;
 import server.maps.MapleMapObjectType;
-import server.maps.MapleMist;
-import server.maps.MaplePortal;
-import server.maps.MapleSummon;
 import server.maps.MapleWorldMapItem;
 import tools.ArrayMap;
 import tools.AttackPair;
@@ -138,20 +130,62 @@ public class DamageParse {
 			player.useComboSkill(attack.skill);
 		}
 
-		if (GameConstants.isNightLord(player.getJob()) && player.getSkillLevel(4100011) > 0) { // assassin's
-																								// mark
+//		if (player.getSkillLevel(4100011) > 0) {
+//			SkillStatEffect eff = SkillFactory.getSkill(4100011).getEffect(player.getSkillLevel(4100011));
+//			if (eff.makeChanceResult()) {
+//				for (Map.Entry z : effect.getMonsterStati().entrySet()) {
+//					for (AttackPair ap : attack.allDamage) {
+//						final MapleMonster monster = player.getMap().getMonsterByOid(ap.objectid);
+//						monster.applyStatus(player, new MonsterStatusEffect(Collections.singletonMap(MonsterStatus.MARKOF, 1), SkillFactory.getSkill(4120018), null, false), false, 5000, false);
+//					}
+//				}
+//			}
+//
+//			int bulletCount = eff.getBulletCount();
+//			for (AttackPair ap : attack.allDamage) {
+//				final MapleMonster source = player.getMap().getMonsterByOid(ap.objectid);
+//
+//				final MonsterStatusEffect check = source.getBuff(MonsterStatus.MARKOF);
+//
+//				if (check != null && check.getSkill().getId() == 4100011 && check.getOwnerId() == player.getId()) { // :3
+//					final List<MapleMapObject> objs = player.getMap().getMapObjectsInRange(player.getPosition(), 500000,
+//							Arrays.asList(MapleMapObjectType.MONSTER));
+//					final List<MapleMonster> monsters = new ArrayList<>();
+//					for (int i = 0; i < bulletCount; i++) {
+//						int rand = Randomizer.rand(0, objs.size() - 1);
+//						if (objs.size() < bulletCount) {
+//							if (i < objs.size()) {
+//								monsters.add((MapleMonster) objs.get(i));
+//							}
+//						} else {
+//							monsters.add((MapleMonster) objs.get(rand));
+//							objs.remove(rand);
+//						}
+//					}
+//					final List<Point> points = new ArrayList<>();
+//					for (MapleMonster mob : monsters) {
+//						points.add(mob.getPosition());
+//					}
+//					player.getMap().broadcastMessage(MainPacketCreator.giveMarkOfTheif(player.getId(), source.getObjectId(),
+//							4100012, monsters, player.getPosition(), monsters.get(0).getPosition(), 2070005));
+//				}
+//			}
+//		}
+		if (GameConstants.isNightLord(player.getJob()) && player.getSkillLevel(4100011) > 0
+				&& attack.skill != 4100012) { // assassin's
+			// mark
 			SkillStatEffect eff = SkillFactory.getSkill(4100011).getEffect(player.getSkillLevel(4100011));
-
 			int bulletCount = eff.getBulletCount();
 			for (AttackPair ap : attack.allDamage) {
 				final MapleMonster source = player.getMap().getMonsterByOid(ap.objectid);
-				// final MonsterStatusEffect check =
-				// source.getBuff(MonsterStatus.POISON);
-
-				final List<MapleMapObject> objs = player.getMap().getMapObjectsInRange(player.getPosition(), 250000,
+				 final MonsterStatusEffect check =
+				 source.getBuff(MonsterStatus.MARKOF);
+				 if (check != null) {
+//					 System.out.println("yes");
+				final List<MapleMapObject> objs = player.getMap().getMapObjectsInRange(player.getPosition(), 500000,
 						Arrays.asList(MapleMapObjectType.MONSTER));
 				final List<MapleMonster> monsters = new ArrayList<>();
-				for (int i = 0; i < 2; i++) {
+				for (int i = 0; i < bulletCount; i++) {
 					int rand = Randomizer.rand(0, objs.size() - 1);
 					if (objs.size() < bulletCount) {
 						if (i < objs.size()) {
@@ -174,8 +208,13 @@ public class DamageParse {
 						4100012, monsters, player.getPosition(), monsters.get(0).getPosition(), 2070006));
 				player.send(MainPacketCreator.giveMarkOfTheif(player.getId(), source.getObjectId(), 4100012, monsters,
 						player.getPosition(), monsters.get(0).getPosition(), 2070006));
+				 } else {
+//					 System.out.println("nah dude");
+				 }
 			}
 		}
+		
+
 
 		if (attack.skill == 4211006) { // meso explosion
 			for (AttackPair oned : attack.allDamage) {
@@ -368,6 +407,9 @@ public class DamageParse {
 						break;
 					}
 				}
+				if (GameConstants.isAdventureJob(player.getJob())) {
+                   ExplorerHandler.AdventureAttack(player, monster, attack, 2070006);
+                } 
 				if (GameConstants.isKOC(player.getJob())) {
 					CygnusHandler.CygnusAttack(player, monster, attack);
 					// System.out.println("boom handle");

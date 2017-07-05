@@ -57,6 +57,7 @@ public class MapleCharacterStat {
     private boolean jc = false;
     private MapleSubSummon ss = null;
     private int 누적데미지 = 0;
+    public byte slimecount = 0;
   
     public MapleCharacterStat(final MapleCharacter chr) {
 	// TODO, move str/dex/int etc here -_-

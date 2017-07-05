@@ -226,9 +226,165 @@ public class GameConstants {
 	public static final boolean isNightWalker(final int job) {
 		return job == 1400 || (job >= 1400 && job <= 1412);
 	}
-	
+
 	public static final boolean isNightLord(final int job) {
 		return job == 410 || (job >= 410 && job <= 412);
+	}
+
+	public static final boolean isWarrior(final int job) {
+		switch (job) {
+		case 100:
+		case 110:
+		case 111:
+		case 112:
+
+		case 120:
+		case 121:
+		case 122:
+
+		case 130:
+		case 131:
+		case 132:
+			return true;
+		}
+		return false;
+	}
+
+	public static final boolean isMagic(final int job) {
+		switch (job) {
+		case 200:
+		case 210:
+		case 211:
+		case 212:
+
+		case 220:
+		case 221:
+		case 222:
+
+		case 230:
+		case 231:
+		case 232:
+			return true;
+		}
+		return false;
+	}
+
+	public static final boolean isBow(final int job) {
+		switch (job) {
+		case 300:
+		case 310:
+		case 311:
+		case 312:
+
+		case 320:
+		case 321:
+		case 322:
+			return true;
+		}
+		return false;
+	}
+
+	public static final boolean isThief(final int job) {
+		switch (job) {
+		case 400:
+		case 410:
+		case 411:
+		case 412:
+
+		case 420:
+		case 421:
+		case 422:
+
+		case 430:
+		case 431:
+		case 432:
+		case 433:
+		case 434:
+			return true;
+		}
+		return false;
+	}
+
+	public static final boolean isCanonMaster(final int job) {
+		switch (job) {
+		case 501:
+		case 530:
+		case 531:
+		case 532:
+			return true;
+		}
+		return false;
+	}
+
+	public static final boolean isAdventureJob(final int job) {
+		switch (job) {
+		case 0:
+		case 100:
+		case 110:
+		case 111:
+		case 112:
+
+		case 120:
+		case 121:
+		case 122:
+
+		case 130:
+		case 131:
+		case 132:
+
+		case 200:
+		case 210:
+		case 211:
+		case 212:
+
+		case 220:
+		case 221:
+		case 222:
+
+		case 230:
+		case 231:
+		case 232:
+
+		case 300:
+		case 310:
+		case 311:
+		case 312:
+
+		case 320:
+		case 321:
+		case 322:
+
+		case 400:
+		case 410:
+		case 411:
+		case 412:
+
+		case 420:
+		case 421:
+		case 422:
+
+		case 430:
+		case 431:
+		case 432:
+		case 433:
+		case 434:
+
+		case 500:
+		case 510:
+		case 511:
+		case 512:
+
+		case 520:
+		case 521:
+		case 522:
+
+		case 501:
+		case 530:
+		case 531:
+		case 532:
+			return true;
+		}
+		return false;
 	}
 
 	public static final boolean isReturnCygNus(final int job) {

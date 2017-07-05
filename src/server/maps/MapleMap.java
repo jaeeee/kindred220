@@ -4125,5 +4125,148 @@ if (target.getSoulName() != 0) { // 소울웨폰 게이지
       public byte getChannel() {
     	  return channel;
       }
+
+      public final void spawnMist(final MapleMist mist, final int duration, boolean poison, boolean fake, boolean rv, boolean burningregion, boolean timecapsule, boolean spped, boolean freeze, boolean zero) {
+          spawnAndAddRangedMapObject(mist, new DelayedPacketCreation() {
+              @Override
+              public void sendPackets(MapleClient c) {
+                  broadcastMessage(MainPacketCreator.spawnMist(mist));
+              }
+          }, null);
+
+          final MapTimer tMan = MapTimer.getInstance();
+          final ScheduledFuture<?> poisonSchedule;
+
+          if (poison) {
+              poisonSchedule = tMan.register(new Runnable() {
+                  @Override
+                  public void run() {
+                      for (final MapleMapObject mo : getMapObjectsInRect(mist.getBox(), Collections.singletonList(MapleMapObjectType.MONSTER))) {
+                          if (mist.makeChanceResult()) {
+                              ((MapleMonster) mo).applyStatus(mist.getOwner(), new MonsterStatusEffect(Collections.singletonMap(MonsterStatus.BLODTO, 1), mist.getSourceSkill(), null, false), false, duration, false);
+                          }
+                      }
+                  }
+              }, 2000, 2500);
+          } else if (rv) {
+              poisonSchedule = tMan.register(new Runnable() {
+                  @Override
+                  public void run() {
+                      for (final MapleMapObject mo : getMapObjectsInRect(mist.getBox(), Collections.singletonList(MapleMapObjectType.PLAYER))) {
+                          if (mist.makeChanceResult()) {
+                              final MapleCharacter chr = ((MapleCharacter) mo);
+                              chr.addMP((int) (mist.getSource().getX() * (chr.getStat().getMaxMp() / 100.0)));
+                          }
+                      }
+                  }
+              }, 2000, 2500);
+          } else if (spped) {
+              poisonSchedule = tMan.register(new Runnable() {
+                  @Override
+                  public void run() {
+                      for (final MapleMapObject mo : getMapObjectsInRect(mist.getBox(), Collections.singletonList(MapleMapObjectType.MONSTER))) {
+                          if (mist.makeChanceResult()) {
+                              ((MapleMonster) mo).applyStatus(mist.getOwner(), new MonsterStatusEffect(Collections.singletonMap(MonsterStatus.SPEED, 1), mist.getSourceSkill(), null, false), false, duration, false);
+                              ((MapleMonster) mo).applyStatus(mist.getOwner(), new MonsterStatusEffect(Collections.singletonMap(MonsterStatus.WDEF, 1), mist.getSourceSkill(), null, false), false, duration, false);
+                              ((MapleMonster) mo).applyStatus(mist.getOwner(), new MonsterStatusEffect(Collections.singletonMap(MonsterStatus.WATK, 1), mist.getSourceSkill(), null, false), false, duration, false);
+                          }
+                      }
+                  }
+              }, 2000, 2500);
+          } else if (freeze) {
+              poisonSchedule = tMan.register(new Runnable() {
+                  @Override
+                  public void run() {
+                      for (final MapleMapObject mo : getMapObjectsInRect(mist.getBox(), Collections.singletonList(MapleMapObjectType.MONSTER))) {
+                          if (mist.makeChanceResult()) {
+                              ((MapleMonster) mo).applyStatus(mist.getOwner(), new MonsterStatusEffect(Collections.singletonMap(MonsterStatus.FREEZE, 1), mist.getSourceSkill(), null, false), false, duration, false);
+                          }
+                      }
+                  }
+              }, 2000, 2500);
+          } else if (burningregion) {
+              poisonSchedule = tMan.register(new Runnable() {
+                  @Override
+                  public void run() {
+                      for (final MapleMapObject mo : getAllPlayer()) {
+                          final MapleCharacter chr = ((MapleCharacter) mo);
+                          final ISkill skill = SkillFactory.getSkill(GameConstants.getLinkedAttackSkill(12121005));
+                          final SkillStatEffect effect = skill.getEffect(chr.getSkillLevel(mist.getOwner().getSkillLevel(skill)));
+                          boolean contain = getMapObjectsInRect(mist.getBox(), Collections.singletonList(MapleMapObjectType.PLAYER)).contains(mo);
+                          if (chr.getBuffedValue(BuffStats.BOOSTER_R, 12121005) != null) {
+                              if (!contain) {
+                                  chr.cancelEffect(skill.getEffect(1), false, -1);
+                              }
+                          } else {
+                              if (contain) {
+                                  effect.applyTo(chr);
+                              }
+                          }
+                      }
+                  }
+              }, 2000, 2500);
+          } else if (zero) {
+              poisonSchedule = tMan.register(new Runnable() {
+                  @Override
+                  public void run() {
+                      for (final MapleMapObject mo : getMapObjectsInRect(mist.getBox(), Collections.singletonList(MapleMapObjectType.MONSTER))) {
+                          if (mist.makeChanceResult()) {
+                              ((MapleMonster) mo).applyStatus(mist.getOwner(), new MonsterStatusEffect(Collections.singletonMap(MonsterStatus.IMPRINT, 20), mist.getSourceSkill(), null, false), false, duration, false);
+                          }
+                      }
+                      for (final MapleMapObject mo : getAllPlayer()) {
+                          final MapleCharacter chr = ((MapleCharacter) mo);
+                          final ISkill skill = SkillFactory.getSkill(GameConstants.getLinkedAttackSkill(12121005));
+                          final SkillStatEffect effect = skill.getEffect(chr.getSkillLevel(mist.getOwner().getSkillLevel(skill)));
+                          boolean contain = getMapObjectsInRect(mist.getBox(), Collections.singletonList(MapleMapObjectType.PLAYER)).contains(mo);
+                          if (chr.getBuffedValue(BuffStats.BOOSTER, 100001261) != null) {
+                              if (!contain) {
+                                  chr.cancelEffect(skill.getEffect(1), false, -1);
+                              }
+                          } else {
+                              if (contain) {
+                                  effect.applyTo(chr);
+                              }
+                          }
+                      }
+
+                  }
+              }, 2000, 2500);
+          } else if (timecapsule) {
+              poisonSchedule = tMan.register(new Runnable() {
+                  @Override
+                  public void run() {
+                      for (MapleMapObject mmo : getMapObjectsInRect(mist.getBox(), Collections.singletonList(MapleMapObjectType.PLAYER))) {
+                          MapleCharacter chr = (MapleCharacter) mmo;
+                          //캡슐 존재여부 체크
+                          for (final MapleMapObject mistoo : chr.getMap().getMapObjectsInRange(chr.getPosition(), Double.POSITIVE_INFINITY, Arrays.asList(MapleMapObjectType.MIST))) {
+                              final MapleMist check = (MapleMist) mistoo;
+                              if (mist.getOwner() == check.getOwner() && mist.isTimeCapsule()) {
+                                  for (MapleCoolDownValueHolder mcdvh : chr.getAllCooldowns()) {
+                                      if (mcdvh.skillId != 36121007) {
+                                          chr.changeCooldown(mcdvh.skillId, -15000);
+                                      }
+                                  }
+                              } else {
+                                  return;
+                              }
+                          }
+                      }
+                  }
+              }, 5000, 5000);
+          } else {
+              poisonSchedule = null;
+          }
+          tMan.schedule(new Runnable() {
+              @Override
+              public void run() {
+                  broadcastMessage(MainPacketCreator.removeMist(mist.getObjectId(), false));
+                  removeMapObject(mist);
+                  if (poisonSchedule != null) {
+                      poisonSchedule.cancel(false);
+                  }
+              }
+          }, duration);
+      }
       
 }

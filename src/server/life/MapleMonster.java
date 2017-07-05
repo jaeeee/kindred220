@@ -419,8 +419,6 @@ public class MapleMonster extends AbstractLoadedMapleLife {
 
 	private final void giveExpToCharacter(final MapleCharacter attacker, int exp, final boolean highestDamage,
 			final int numExpSharers, final byte pty, final byte Class_Bonus_EXP_PERCENT) {
-		// System.out.println("dies here?");
-		// long nx = hp;
 		if (highestDamage) {
 			if (eventInstance != null) {
 				eventInstance.monsterKilled(attacker, this);

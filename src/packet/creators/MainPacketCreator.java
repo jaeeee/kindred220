@@ -7537,4 +7537,18 @@ public class MainPacketCreator {
 		return packet.getPacket();
 	}
 
+	public static Packet PrimaCritical(int critical) {
+		WritingPacket packet = new WritingPacket();
+		packet.writeShort(SendPacketOpcode.GIVE_BUFF.getValue());
+		PacketProvider.writeLongSingleMask(packet, BuffStats.CRITICAL_GROWING);
+		packet.writeShort(critical);
+		packet.writeInt(4220015);
+		packet.write(HexTool.getByteArrayFromHexString("63 4A AF A6"));
+		packet.writeLong(0);
+		packet.writeLong(0);
+		packet.writeShort(0);
+
+		return packet.getPacket();
+	}
+
 }
