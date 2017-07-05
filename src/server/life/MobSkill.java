@@ -1,10 +1,10 @@
 /*
- * ArcStory Project
- * 최주원 sch2307@naver.com
- * 이준 junny_adm@naver.com
- * 우지훈 raccoonfox69@gmail.com
- * 강정규 ku3135@nate.com
- * 김진홍 designer@inerve.kr
+
+
+
+
+
+
  */
 /*
  Maple Team ProJect
@@ -25,6 +25,7 @@ package server.life;
 import client.MapleCharacter;
 import client.stats.DiseaseStats;
 import client.stats.MonsterStatus;
+import server.bosses.ObtacleAtom;
 import server.maps.MapleMapObject;
 import server.maps.MapleMapObjectType;
 import server.maps.MapleMist;
@@ -45,6 +46,7 @@ public class MobSkill {
     private short limit;
     private List<Integer> toSummon = new ArrayList<Integer>();
     private Point lt, rb;
+    private boolean once;
 
     public MobSkill(int skillId, int level) {
         this.skillId = skillId;
@@ -99,6 +101,14 @@ public class MobSkill {
         this.limit = limit;
     }
 
+    public void setOnce(boolean once) {
+        this.once = once;
+    }
+    
+    public boolean onlyOnce() {
+        return this.once;
+    }
+    
     public boolean checkCurrentBuff(MapleCharacter player, MapleMonster monster) {
         boolean stop = false;
         switch (skillId) {
@@ -214,7 +224,7 @@ public class MobSkill {
                 }
                 break;
             case 131: // Mist
-                monster.getMap().spawnMist(new MapleMist(calculateBoundingBox(monster.getPosition(), true), monster, this), x * 10, false, false, false, false, false);
+                monster.getMap().spawnMist(new MapleMist(calculateBoundingBox(monster.getPosition(), true), monster, this), x * 10, false, false, false, false, false, false, false ,false);
                 break;
             case 132:
                 disease = DiseaseStats.REVERSE_DIRECTION;//packet
@@ -282,6 +292,15 @@ public class MobSkill {
                 monster.getMap().spawnClockMist(clock);
                 monster.getMap().broadcastMessage(UIPacket.showInfo("시간의 틈새에 '균열'이 발생하였습니다."));
                 break;
+            case 192: // dd
+                Point posFrom3 = monster.getPosition();
+                Point mylt3 = new Point(lt.x + posFrom3.x, lt.y + posFrom3.y);
+                Point myrb3 = new Point(rb.x + posFrom3.x, rb.y + posFrom3.y);
+                Rectangle box3 = new Rectangle(posFrom3.x, posFrom3.y, myrb3.x - mylt3.x, myrb3.y - mylt3.y);
+                MapleMist clock3 = new MapleMist(box3, monster, this);
+                clock3.setClockType(Randomizer.rand(1, 2));
+                monster.getMap().spawnClockMist(clock3);
+                break;
             case 200:
                 for (Integer mobId : getSummons()) {
                     final MapleMonster toSpawn = MapleLifeProvider.getMonster(mobId);
@@ -326,9 +345,81 @@ public class MobSkill {
                     }
                     monster.getMap().spawnMonsterWithEffect(toSpawn, getSpawnEffect(), monster.getMap().calcPointMaple(new Point(xpos, ypos - 1)));
                 }
+            // Make Syon
+            case 223: // dd
+                if (skillLevel == 5) { // 안아픈 운석 랜덤
+                    int min_x = monster.getMap().getViewLeft();
+                    int min_y = monster.getMap().getViewBottom();
+                    int max_x = monster.getMap().getViewRight();
+                    int max_y = monster.getMap().getViewTop();
+                    // get Min,Max XY and spawn random to min~max
+                    int randomSpawn = (int) (1 + Math.ceil(Math.random() * 7));
+                    List<ObtacleAtom> Atoms = new ArrayList<>();
+                    for (int i2 = 0; i2 <= randomSpawn; i2++) {
+                        int x_randomspawn = (int) (min_x + Math.ceil(Math.random() * max_x));
+                        Atoms.add(new ObtacleAtom(48, x_randomspawn, max_y - 10, 1, 0, 25, -5, 10, 0, 0, 0));
+                        // type x y speed acceleration unk explospeed damageper spawndelay distance angle
+                    }
+                    monster.getMap().spawnObatcleAtom(Atoms);
+                }
+                break;
+            case 226: // dd 
+                if (skillLevel == 3 || skillLevel == 4) {
+                    int max_y_228 = monster.getMap().getViewTop();
+                    List<ObtacleAtom> Atoms = new ArrayList<>();
+                    Atoms.add(new ObtacleAtom(skillLevel == 3 ? 51 : 52, player.getPosition().x, max_y_228, 25, 10, 0, 111, skillLevel == 5 ? 10 : skillLevel == 6 ? 20 : 30, 1, 580, 0));
+                    monster.getMap().spawnObatcleAtom(Atoms);
+                }
+                break;
+            case 228: // dd 
+                if (skillLevel == 5 || skillLevel == 6 || skillLevel == 7) {
+                    int min_x_228 = monster.getMap().getViewLeft();
+                    int min_y_228 = monster.getMap().getViewBottom();
+                    int max_x_228 = monster.getMap().getViewRight();
+                    int max_y_228 = monster.getMap().getViewTop();
+                    // get Min,Max XY and spawn random to min~max
+                    // 49 = 중간 운석 랜덤, 50 = 큰 운석 랜덤
+                    int randomSpawn_228 = (int) (1 + Math.ceil(Math.random() * 1));
+                    List<ObtacleAtom> Atoms = new ArrayList<>();
+                    for (int i_228 = 0; i_228 <= randomSpawn_228; i_228++) {
+                        int x_randomspawn_228 = (int) (min_x_228 + Math.ceil(Math.random() * (max_x_228 * 2)));
+                        Atoms.add(new ObtacleAtom(skillLevel == 5 ? 48 : skillLevel == 6 ? 49 : 50, x_randomspawn_228, max_y_228, 25, 10, 0, 111, skillLevel == 5 ? 10 : skillLevel == 6 ? 20 : 30, 1, 580, 0));
+                     //   monster.getMap().spawnObatcleAtom(new ObtacleAtom(skillLevel == 6 ? 49 : 50, x_randomspawn_228, max_y_228, 30, 0, 0, 25, skillLevel == 6 ? 20 : 30, 0, 1, 0));
+                        // type x y speed acceleration unk explospeed damageper spawndelay distance angle
+                    }
+                    monster.getMap().spawnObatcleAtom(Atoms);
+                }
+                break;
+            case 201:
+                if (skillLevel == 139) {
+                    int[] spawnmobs = {8950103, 8950104, 8950105, 8950107};
+                    for (Integer mobId : spawnmobs) {
+                        int x = 0;
+                        int y = 0;
+                        final MapleMonster toSpawn = MapleLifeProvider.getMonster(mobId);
+                        switch (mobId) {
+                            case 8950103: //Suwo Mob 1
+                                x = 507;
+                                y = -248;
+                                break;
+                            case 8950104: //Suwo Mob 2
+                                x = -420;
+                                y = -421;
+                                break;
+                            case 8950105: //Suwo Mob 3
+                                x = -511;
+                                y = -250;
+                                break;
+                            case 8950107: //Suwo Mob 4
+                                x = 417;
+                                y = -423;                           
+                                break;
+                        }
+                        monster.getMap().spawnMonsterWithEffect(toSpawn, 0, new Point(x, y - 1));
+                    }
+                }
                 break;
         }
-
         if (stats.size() > 0) {
             if (lt != null && rb != null && skill) {
                 for (MapleMapObject mons : getObjectsInRange(monster, MapleMapObjectType.MONSTER)) {

@@ -25,5 +25,5 @@ public enum MapleMapObjectType {
     EXTRACTOR,
     MINI_GAME,
     ANDROID,
-    RUNE;
+    RUNE, Atom;
 }

@@ -306,7 +306,7 @@ public enum SendPacketOpcode {
     MAPLE_CHAT,
     SHOW_STAGE_CLEAR,
     SHOW_OBJECT_ANIMATION,
-    SHOW_FEVER_GAUGE;
+    SHOW_FEVER_GAUGE, SPAWN_OBTACLE_ATOM, REMOVE_OBTACLE_ATOM;
     
     private int value = -2;
     private static Boolean loaded = Boolean.FALSE;

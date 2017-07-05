@@ -30,6 +30,7 @@ import launch.world.WorldBroadcasting;
 import packet.creators.*;
 import packet.transfer.write.Packet;
 import scripting.EventInstanceManager;
+import server.bosses.ObtacleAtom;
 import server.items.InventoryManipulator;
 import server.items.ItemInformation;
 import server.life.*;
@@ -126,6 +127,39 @@ public class MapleMap {
     private int EliteMobCommonCount;
     private boolean elitebossmap;
     private boolean elitebossrewardmap;
+    private int viewtop, viewbottom, viewleft, viewright;
+    
+    public int getViewTop() {
+        return this.viewtop;
+    }
+
+    public void setViewTop(int a) {
+        this.viewtop = a;
+    }
+
+    public int getViewBottom() {
+        return this.viewbottom;
+    }
+
+    public void setViewBottom(int a) {
+        this.viewbottom = a;
+    }
+
+    public int getViewRight() {
+        return this.viewright;
+    }
+
+    public void setViewRight(int a) {
+        this.viewright = a;
+    }
+
+    public int getViewLeft() {
+        return this.viewleft;
+    }
+
+    public void setViewLeft(int a) {
+        this.viewleft = a;
+    }
     
     public MapleMap(final int mapid, final int channel, final int returnMapId, final float monsterRate) {
         this.mapid = mapid;
@@ -379,6 +413,23 @@ public class MapleMap {
 
     }
 
+   private void spawnMapObjectList(final List<ObtacleAtom> mapobjects, final DelayedPacketCreation packetbakery) {
+       for (MapleMapObject mapobject : mapobjects) {
+           addMapObject(mapobject);
+       }
+       // 맵오브젝트를 싹다 추가하여 objectid를 건져놓는다
+       final Iterator<MapleCharacter> ltr = characters.iterator();
+       MapleCharacter chr;
+       while (ltr.hasNext()) {
+//       for (MapleMapObject obj : this.mapobjects.get(MapleMapObjectType.PLAYER).values()) {
+    	   chr = ltr.next();
+           packetbakery.sendPackets(chr.getClient());
+           for (MapleMapObject mapobject2 : mapobjects) {
+               chr.addVisibleMapObject(mapobject2);
+           }
+       }
+//       }
+   }
     private void spawnAndAddRangedMapObject(final MapleMapObject mapobject, final DelayedPacketCreation packetbakery, final SpawnCondition condition) {
         mutex.lock();
         try {
@@ -1944,7 +1995,32 @@ public class MapleMap {
             }
         }, null);
     }
+    
+    public final void spawnObatcleAtom(final List<ObtacleAtom> atom) {
+        spawnMapObjectList(atom, new DelayedPacketCreation() {
+            @Override
+            public void sendPackets(MapleClient c) {
+                atom.iterator().next().sendSpawn(c, atom);
+            }
+        });
+        removeMapObjectList(atom);
+        /*  MapTimer.getInstance().schedule(new Runnable() {
+         @Override
+         public void run() {
+         for (ObtacleAtom dd : atom) {
+         broadcastMessage(BossPackets.removeObtacleAtomBomb(dd.getObjectId()));
+         }
+         removeMapObjectList(atom);
+         }
+         }, 22000);*/
+    }
 
+    private void removeMapObjectList(final List<ObtacleAtom> mapobjects) {
+        for (MapleMapObject mapobject : mapobjects) {
+            removeMapObject(mapobject);
+        }
+    }
+    
     public final void spawnClockMist(final MapleMist clock) {
         spawnAndAddRangedMapObject(clock, new DelayedPacketCreation() {
             @Override
