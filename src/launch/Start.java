@@ -79,7 +79,7 @@ public final class Start {
 		Start.startGC();
 		MapleMonsterProvider.getInstance().retrieveGlobal();
 		DatabaseGarbageCollector.main(args);
-		DatabaseBackup.getInstance().startTasking();
+//		DatabaseBackup.getInstance().startTasking();
 		AutoReboot.main(args);
 		ControlUnit.main(args);// ÀÚµ¿¸®º×
 		System.out.println("GlobalDrop Thread Start!!");

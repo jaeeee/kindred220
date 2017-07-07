@@ -170,7 +170,7 @@ class LoadSkillData extends Thread {
                 return null;
             }
             long END = System.currentTimeMillis();
-            System.out.println("[알림] 서버 오픈이 정상적으로 완료 되었으며, 소요된 시간은 : " + (END - START) / 1000.0 + "초 입니다."); 
+            System.out.println("[Kindred] Game took: " + (END - START) / 1000.0 + " seconds to launch."); 
             ServerConstants.hp_skillid_real = ServerConstants.hp_skillid_dummy.split(",");
             SkillFactory.cached = true;
         } else {
