@@ -430,7 +430,7 @@ public class MapleAuction {
         Timestamp time = new Timestamp(System.currentTimeMillis());
         time.setSeconds(0);
         time.setNanos(0);
-        time.setDate((time.getDate() + 2));
+        time.setDate((time.getDate() + 365));
         return time.getTime();
     }
     
