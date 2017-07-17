@@ -12,7 +12,7 @@ var keys= [110, 120, 130, 210, 220, 230, 310, 320, 410, 420, 430, 510, 520, 530,
 var status = 0; 
 
 function start() {
-	if (cm.getJob() == 10100 || cm.getJob() == 10112) {
+	if (cm.getJob() == 10100 || cm.getJob() == 10112 || cm.getLevel() > 9) {
 			cm.warp(100000000);
 			cm.dispose();
 	} else {
@@ -209,6 +209,7 @@ function action(mode, type, selection) {
 		}
 		cm.warp(910000000);
 		cm.gainMeso(1000000);
+		cm.gainItem(5044006, 1);
 		cm.sendOk("Please check your USE inventory for your first equipment box. \r\n Welcome to Kindred. Please use the @maxskills and @help commands to get started on your journey. You will receieve care packages full of equips and levels 10, 30, 50, and 60."); 
 		cm.getPlayer().dropMessage(5, "Please type @maxskills and @help to get started.");
 		cm.dispose();
