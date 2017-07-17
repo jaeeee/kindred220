@@ -6920,16 +6920,16 @@ public class MainPacketCreator {
 		return packet.getPacket();
 	}
 
-	// public static Packet multikill(int combo, long exp) {
-	// WritingPacket packet = new WritingPacket();
-	// packet.writeShort(SendPacketOpcode.SHOW_STATUS_INFO.getValue());
-	// packet.write(0x23);
-	// packet.write(0);
-	// packet.writeLong(exp);
-	// packet.writeInt(combo);
-	//
-	// return packet.getPacket();
-	// }
+	 public static Packet multikill(int combo, long exp) {
+	 WritingPacket packet = new WritingPacket();
+	 packet.writeShort(SendPacketOpcode.SHOW_STATUS_INFO.getValue());
+	 packet.write(0x23);
+	 packet.write(0);
+	 packet.writeLong(exp);
+	 packet.writeInt(combo);
+	
+	 return packet.getPacket();
+	 }
 
 	public static Packet combokill(int combo) {
 		WritingPacket packet = new WritingPacket();

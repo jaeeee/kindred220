@@ -1048,7 +1048,6 @@ public class MapleCharacter extends AnimatedHinaMapObjectExtend implements Inven
 			}
 			ps.setInt(1, level); // Level
 			ps.setInt(2, chr.fame); // Fame
-			stat.recalcLocalStats();
 			stat.hp = (stat.getCurrentMaxHp());
 			stat.mp = (stat.getCurrentMaxMp());
 			ps.setInt(3, stat.getStr()); // Str
@@ -1099,6 +1098,7 @@ public class MapleCharacter extends AnimatedHinaMapObjectExtend implements Inven
 			ps.setInt(48, 0); // BetaClothes
 			ps.executeUpdate();
 
+			stat.recalcLocalStats();
 			rs = ps.getGeneratedKeys();
 			if (rs.next()) {
 				chr.id = rs.getInt(1);

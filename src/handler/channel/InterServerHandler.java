@@ -327,7 +327,7 @@ public class InterServerHandler {
 //        	c.getPlayer().send(UIPacket.detailShowInfo("You are not in a buffed channel.", false));
             c.getSession().write(ZeroSkill.NPCTalk("You have entered a regular channel."));
         }
-        c.getPlayer().getStat().recalcLocalStats();
+//        c.getPlayer().getStat().recalcLocalStats();
       
         /* 서버 접속시 메세지 */
 //        c.getPlayer().send(UIPacket.detailShowInfo("즐거운 메이플 세상 ! " + ServerConstants.serverName + "에 오신걸 환영합니다.", false));

@@ -471,15 +471,15 @@ public class MapleMonster extends AbstractLoadedMapleLife {
 		double random2 = Math.random() * 6 + 1;
 		amount *= (int) random2 * getStats().getLevel() / 10;
 		if ((int) random == 2) {		
-			killer.modifyCSPoints(2, amount, true);
+			killer.modifyCSPoints(2, amount, false);
 			killer.send(UIPacket.detailShowInfo("Gained " + amount + " Maple Points", false));
 			if (map.getChannel() == 1 || map.getChannel() == 10 || map.getChannel() == 11 || map.getChannel() == 12
 					|| map.getChannel() == 13 || map.getChannel() == 14 || map.getChannel() == 15 || map.getChannel() == 16
 					|| map.getChannel() == 17 || map.getChannel() == 18 || map.getChannel() == 19) { // buffed
 					double randomB = Math.random() * getStats().getLevel() + 1;	// channel
 					int finale = (int) randomB;
-				killer.send(UIPacket.detailShowInfo("[Buffed channel bonus]: " + finale + " Maple Points", false));
-				killer.modifyCSPoints(2, finale, true);
+				killer.send(UIPacket.detailShowInfo("[Bonus]: +" + finale + " Maple Points", false));
+				killer.modifyCSPoints(2, finale, false);
 			}
 		}
 		/**
