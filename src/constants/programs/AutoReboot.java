@@ -28,7 +28,7 @@ public class AutoReboot {
             time = tools.Timer.WorldTimer.getInstance().register(new Runnable() {
                 public void run() {
                     if (timeo == 0) {
-                        System.out.println("15분 주기로 과부화를 검사 합니다.");
+//                        System.out.println("15분 주기로 과부화를 검사 합니다.");
                         //path = args[1];
                         timeo++;
                     } else if (timeo == -1) {
