@@ -434,6 +434,6 @@ public class DatabaseGarbageCollector {
         } catch (Throwable t) {
             t.printStackTrace();
         }
-        System.out.println("[O] 데이터베이스 정리 프로그램에서 "+ deletedrows +"개의 행을 제거.");
+//        System.out.println("[O] 데이터베이스 정리 프로그램에서 "+ deletedrows +"개의 행을 제거.");
     }
 }
