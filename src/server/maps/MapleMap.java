@@ -669,7 +669,12 @@ public class MapleMap {
         Collections.shuffle(globalEntry);
         final int cashz = (int) ((mob.getStats().isBoss() && mob.getStats().getHPDisplayType() == 0 ? 20 : 1) * caServerrate);
         final int cashModifier = (int) (mob.getMobExp() / 1000 + mob.getMobMaxHp() / 20000); //no rate
+//        int differenceXd = chr.getLevel() - mob.getStats().getLevel();
         for (final MonsterGlobalDropEntry de : globalEntry) {
+			if (getChannel() == 1 || getChannel() == 10 || getChannel() == 11 || getChannel() == 12
+					|| getChannel() == 13 || getChannel() == 14 || getChannel() == 15 || getChannel() == 16
+					|| getChannel() == 17 || getChannel() == 18 || getChannel() == 19) { // buffed
+//			System.out.println("buffed channel");
             if (Randomizer.nextInt(999999) < de.chance) {
                 if (de.itemId != 0) {
                     if (droptype == 3) {
@@ -700,6 +705,7 @@ public class MapleMap {
                 chr.modifyCSPoints(1, Randomizer.rand(50, 1000), true);
                 }
             }
+			}
         }
     }
 

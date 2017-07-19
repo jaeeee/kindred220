@@ -97,7 +97,7 @@ public class MapleAuction {
                     MapleCharacter chr = null;
                     chr = cs.getPlayerStorage().getCharacterByName(경매장아이템주인(invid));
                     if (chr != null) {
-                        chr.dropMessage(1, "Your " + ItemInformation.getInstance().getName(itemcode) + "has been sold. Please collect your earnings.");
+                        chr.dropMessage(1, "Your " + ItemInformation.getInstance().getName(itemcode) + " has been sold. Please collect your earnings.");
                     }
                 }
                 경매장아이템(c.getPlayer(),invid);

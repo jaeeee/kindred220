@@ -12,7 +12,7 @@ var keys= [110, 120, 130, 210, 220, 230, 310, 320, 410, 420, 430, 510, 520, 530,
 var status = 0; 
 
 function start() {
-	if (cm.getJob() == 10100 || cm.getJob() == 10112 || cm.getLevel() > 9) {
+	if (cm.getJob() == 10100 || cm.getJob() == 10112 || cm.getPlayer().getLevel() > 9) {
 			cm.warp(100000000);
 			cm.dispose();
 	} else {

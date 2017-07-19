@@ -329,7 +329,7 @@ public class InterServerHandler {
 				// channel
 				c.getPlayer().Message(7,
 						"You have a entered a buffed channel. Mobs will be stronger but will yield more experience.");
-				c.getSession().write(ZeroSkill.NPCTalk("You have entered a buffed channel."));
+				c.getSession().write(ZeroSkill.NPCTalk("You have entered a buffed channel; increased difficulty and exclusive drops unlocked."));
 				// c.getPlayer().send(UIPacket.detailShowInfo("You have entered
 				// a buffed channel.", false));
 			} else {
@@ -338,7 +338,7 @@ public class InterServerHandler {
 				// experience.");
 				// c.getPlayer().send(UIPacket.detailShowInfo("You are not in a
 				// buffed channel.", false));
-				c.getSession().write(ZeroSkill.NPCTalk("You have entered a regular channel."));
+				c.getSession().write(ZeroSkill.NPCTalk("You have entered a regular channel. Some item drops will not be available."));
 			}
 		}
 		// c.getPlayer().getStat().recalcLocalStats();
@@ -456,7 +456,7 @@ public class InterServerHandler {
 			player.send(MainPacketCreator.startMapEffect("아르미 : 우와~ 예쁜 폭죽이 터졌어요!", 5120009, true));
 		}
 		if (MapleAuction.경매장메소회수(player.getName()) > 0) {
-			player.dropMessage(1, "Auction house item(s) sold. Please collect your mesos.");
+			player.dropMessage(1, "Auction house item(s) sold. Please collect your mesos through Eggrich in FM.");
 		}
 		if (MapleAuction.마감(player.getName()) > 0) {
 			player.dropMessage(1,
