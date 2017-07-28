@@ -5,7 +5,7 @@ public class KindredConstants {
 	/**
 	 * General Server Settings
 	 * 
-	 * Setting USING_SETTINGS to true will bypass the rates defined in the
+	 * Setting USING_SETTINGS to false will bypass the rates defined in the
 	 * properties file.
 	 */
 
