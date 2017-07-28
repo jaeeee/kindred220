@@ -25,6 +25,7 @@ import client.stats.BuffStats;
 import client.stats.PlayerStat;
 import community.*;
 import constants.GameConstants;
+import constants.KindredConstants;
 import constants.ServerConstants;
 import constants.programs.ControlUnit;
 import constants.subclasses.setScriptableNPC;
@@ -318,28 +319,22 @@ public class InterServerHandler {
 		// c.getSession().write(MainPacketCreator.feverTime());
 		// }
 
-		// if (c.getPlayer().getClient().getChannel() == 1) { //buffed channel
 		if (c.getPlayer().getLevel() != 1) {
-			if (c.getPlayer().getClient().getChannel() == 1 || c.getPlayer().getClient().getChannel() == 10
-					|| c.getPlayer().getClient().getChannel() == 11 || c.getPlayer().getClient().getChannel() == 12
-					|| c.getPlayer().getClient().getChannel() == 13 || c.getPlayer().getClient().getChannel() == 14
-					|| c.getPlayer().getClient().getChannel() == 15 || c.getPlayer().getClient().getChannel() == 16
-					|| c.getPlayer().getClient().getChannel() == 17 || c.getPlayer().getClient().getChannel() == 18
-					|| c.getPlayer().getClient().getChannel() == 19) { // buffed
-				// channel
-				c.getPlayer().Message(7,
-						"You have a entered a buffed channel. Mobs will be stronger but will yield more experience.");
-				c.getSession().write(ZeroSkill.NPCTalk("You have entered a buffed channel; increased difficulty and exclusive drops unlocked."));
-				// c.getPlayer().send(UIPacket.detailShowInfo("You have entered
-				// a buffed channel.", false));
+			for (byte channel : KindredConstants.BUFFED_CHANNELS) {
+				if (c.getPlayer().getClient().getChannel() == channel) {
+					c.getPlayer().Message(7,
+							"You have a entered a buffed channel. Mobs will be stronger but will yield more experience.");
+					c.getSession().write(ZeroSkill.NPCTalk("You have entered a buffed channel; increased difficulty and exclusive drops unlocked."));
+//					return;
+					break;
 			} else {
-				// c.getPlayer().Message(7, "You have a entered a buffed
-				// channel. Mobs will be stronger but will yield more
-				// experience.");
-				// c.getPlayer().send(UIPacket.detailShowInfo("You are not in a
-				// buffed channel.", false));
-				c.getSession().write(ZeroSkill.NPCTalk("You have entered a regular channel. Some item drops will not be available."));
+				c.getPlayer().Message(7,
+						"You have entered a regular channel. Some item drops will not be available.");
+//				c.getSession().write(ZeroSkill.NPCTalk("You have entered a regular channel. Some item drops will not be available."));
+//				return;
+				break;
 			}
+		}
 		}
 		// c.getPlayer().getStat().recalcLocalStats();
 

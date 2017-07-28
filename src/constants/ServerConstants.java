@@ -104,9 +104,17 @@ public class ServerConstants {
             ChannelPort = Integer.parseInt(setting_.getProperty(toUni("채널포트")));
             cashShopPort = Integer.parseInt(setting_.getProperty(toUni("캐시샵포트")));
             
-            defaultExpRate = Integer.parseInt(setting_.getProperty(toUni("경험치배율")));
-            defaultDropRate = Integer.parseInt(setting_.getProperty(toUni("드롭배율")));
-            defaultMesoRate = Integer.parseInt(setting_.getProperty(toUni("메소배율")));
+            if (KindredConstants.USING_SETTINGS == false) {
+            	System.out.println("[System] Not using ServerSettings.properties rates.");
+            	defaultExpRate = KindredConstants.EXP_RATE;
+            	defaultDropRate = KindredConstants.DROP_RATE;
+            	defaultMesoRate = KindredConstants.MESO_RATE;
+            } else {
+            	System.out.println("[System] Using ServerSettings.properties rates.");
+                defaultExpRate = Integer.parseInt(setting_.getProperty(toUni("경험치배율")));
+                defaultDropRate = Integer.parseInt(setting_.getProperty(toUni("드롭배율")));
+                defaultMesoRate = Integer.parseInt(setting_.getProperty(toUni("메소배율")));
+            }
             defaultCashRate = Integer.parseInt(setting_.getProperty(toUni("캐시배율")));
             defaultBossCashRate = Integer.parseInt(setting_.getProperty(toUni("보스캐시배율")));
             
