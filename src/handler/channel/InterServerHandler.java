@@ -319,6 +319,8 @@ public class InterServerHandler {
 		// c.getSession().write(MainPacketCreator.feverTime());
 		// }
 
+		WorldBroadcasting.broadcastMessage(MainPacketCreator.getGMText(5,
+				"[System] <" + c.getPlayer().getName() + "" + "> has just logged onto Kindred."));
 		if (c.getPlayer().getLevel() != 1) {
 			for (byte channel : KindredConstants.BUFFED_CHANNELS) {
 				if (c.getPlayer().getClient().getChannel() == channel) {
