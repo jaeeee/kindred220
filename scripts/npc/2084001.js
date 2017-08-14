@@ -39,7 +39,7 @@ function action(mode, type, selection) {
     }
 
     if (status == 0) {
-        cm.sendOk("허허허 돈이좋아");
+		cm.sendOk("Hello");
         cm.dispose();
         return;
     }

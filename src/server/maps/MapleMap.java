@@ -974,14 +974,14 @@ public class MapleMap {
 				broadcastMessage(MainPacketCreator.showEffect("Gstar/ClearS"));
 			}
 		}
-		if (monster.getId() == 8920100) {
+		if (monster.getId() == 8920100) { //queen
 			spawnMonsterOnGroundBelow(MapleLifeProvider.getMonster(8920101), monster.getPosition());
 		} else if (monster.getId() == 8920101) {
 			spawnMonsterOnGroundBelow(MapleLifeProvider.getMonster(8920102), monster.getPosition());
 		} else if (monster.getId() == 8920102) {
 			spawnMonsterOnGroundBelow(MapleLifeProvider.getMonster(8920103), monster.getPosition());
 		}
-		if (monster.getId() == 8900100) {
+		if (monster.getId() == 8900100) { //pierre
 			spawnMonsterOnGroundBelow(MapleLifeProvider.getMonster(8900101), monster.getPosition());
 		} else if (monster.getId() == 8900101) {
 			spawnMonsterOnGroundBelow(MapleLifeProvider.getMonster(8900102), monster.getPosition());

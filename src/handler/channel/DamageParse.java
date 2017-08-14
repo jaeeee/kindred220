@@ -901,7 +901,7 @@ public class DamageParse {
 									&& ((mob.getPosition().getX() - 597) <= player.getPosition().getX())
 									&& ((mob.getPosition().getY() + 480) >= player.getPosition().getY())
 									&& ((mob.getPosition().getY() - 480) <= player.getPosition().getY())) {
-								if (Randomizer.nextInt(100) < percent) {
+								if (Randomizer.nextInt(1000) < percent) {
 									player.getMap().broadcastMessage(player, MainPacketCreator.TrifleWorm(
 											player.getId(), skillid, count, mob.getObjectId(), type), false);
 									player.send(MainPacketCreator.TrifleWorm(player.getId(), skillid, count,

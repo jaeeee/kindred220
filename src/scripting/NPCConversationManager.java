@@ -1393,10 +1393,10 @@ public class NPCConversationManager extends AbstractPlayerInteraction {
 		c.getPlayer().getInnerSkills().add(isvh);
 		c.getPlayer().changeSkillLevel(SkillFactory.getSkill(isvh.getSkillId()), isvh.getSkillLevel(),
 				isvh.getSkillLevel());
-		c.getPlayer().send(MainPacketCreator.getPlayerInfo(c.getPlayer()));
-		MapleMap currentMap = c.getPlayer().getMap();
-		currentMap.removePlayer(c.getPlayer());
-		currentMap.addPlayer(c.getPlayer());
+//		c.getPlayer().send(MainPacketCreator.getPlayerInfo(c.getPlayer()));
+//		MapleMap currentMap = c.getPlayer().getMap();
+//		currentMap.removePlayer(c.getPlayer());
+//		currentMap.addPlayer(c.getPlayer());
 	}
 
 	public void invitedRPS() {
