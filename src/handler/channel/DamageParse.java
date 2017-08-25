@@ -901,7 +901,7 @@ public class DamageParse {
 									&& ((mob.getPosition().getX() - 597) <= player.getPosition().getX())
 									&& ((mob.getPosition().getY() + 480) >= player.getPosition().getY())
 									&& ((mob.getPosition().getY() - 480) <= player.getPosition().getY())) {
-								if (Randomizer.nextInt(100) < percent) {
+								if (Randomizer.nextInt(1000) < percent) {
 									player.getMap().broadcastMessage(player, MainPacketCreator.TrifleWorm(
 											player.getId(), skillid, count, mob.getObjectId(), type), false);
 									player.send(MainPacketCreator.TrifleWorm(player.getId(), skillid, count,
@@ -1381,9 +1381,9 @@ public class DamageParse {
 
 				try {
 					if (mobs > 2) {
-						long comboexp = monster.getStats().getExp() / 6;
-						// player.send(MainPacketCreator.multikill(mobs,
-						// comboexp));
+						long comboexp = (monster.getStats().getExp() / 6) * ServerConstants.defaultExpRate;
+//						 player.send(MainPacketCreator.multikill(mobs,
+//						 comboexp));
 						player.gainExp(comboexp, false, false, false);
 					}
 					monster.damage(player, totDamageToOneMonster, true);
@@ -1682,9 +1682,9 @@ public class DamageParse {
 
 					try { // 몬스터 2마리 이상 겉뎀 수정 및 멀티킬 소스.
 						if (mobs > 2) {
-							long comboexp = monster.getStats().getExp() / 6;
-							// player.send(MainPacketCreator.multikill(mobs,
-							// comboexp));
+							long comboexp = monster.getStats().getExp() / 6 * ServerConstants.defaultExpRate;
+//							 player.send(MainPacketCreator.multikill(mobs,
+//							 comboexp));
 							player.gainExp(comboexp, false, false, false);
 						}
 						monster.damage(player, totDamageToOneMonster, true);

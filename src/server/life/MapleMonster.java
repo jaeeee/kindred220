@@ -29,6 +29,7 @@ import client.skills.SkillFactory;
 import client.stats.MonsterStatus;
 import client.stats.MonsterStatusEffect;
 import constants.GameConstants;
+import constants.KindredConstants;
 import constants.ServerConstants;
 import client.items.*;
 import launch.ChannelServer;
@@ -258,11 +259,11 @@ public class MapleMonster extends AbstractLoadedMapleLife {
 		if (!replaced) {
 			attackers.add(attacker);
 		}
-		if (map.getChannel() == 1 || map.getChannel() == 10 || map.getChannel() == 11 || map.getChannel() == 12
-				|| map.getChannel() == 13 || map.getChannel() == 14 || map.getChannel() == 15 || map.getChannel() == 16
-				|| map.getChannel() == 17 || map.getChannel() == 18 || map.getChannel() == 19) { // buffed
-																									// channel
-			damage = damage / 10;
+		for (byte channel : KindredConstants.BUFFED_CHANNELS) {
+			if (map.getChannel() == channel) {
+				damage = damage / 10;
+				break;
+			}
 		}
 		long rDamage = Math.max(0, Math.min(damage, hp));
 		attacker.addDamage(from, rDamage, updateAttackTime);
@@ -447,11 +448,11 @@ public class MapleMonster extends AbstractLoadedMapleLife {
 			if (attacker.hasDisease(DiseaseStats.CURSE)) {
 				exp /= 2;
 			}
-			if (map.getChannel() == 1 || map.getChannel() == 10 || map.getChannel() == 11 || map.getChannel() == 12
-					|| map.getChannel() == 13 || map.getChannel() == 14 || map.getChannel() == 15 || map.getChannel() == 16
-					|| map.getChannel() == 17 || map.getChannel() == 18 || map.getChannel() == 19) { // buffed
-																										// channel
-				exp *= 10;
+			for (byte channel : KindredConstants.BUFFED_CHANNELS) {
+				if (map.getChannel() == channel) {
+					exp *= 10;
+					break;
+				}
 			}
 			attacker.gainExpMonster(exp, true, highestDamage, pty, Class_Bonus_EXP);
 		}
@@ -470,16 +471,17 @@ public class MapleMonster extends AbstractLoadedMapleLife {
 		int amount = 3;
 		double random2 = Math.random() * 6 + 1;
 		amount *= (int) random2 * getStats().getLevel() / 10;
-		if ((int) random == 2) {		
-			killer.modifyCSPoints(2, amount, true);
+		if ((int) random == 2) {
+			killer.modifyCSPoints(2, amount, false);
 			killer.send(UIPacket.detailShowInfo("Gained " + amount + " Maple Points", false));
-			if (map.getChannel() == 1 || map.getChannel() == 10 || map.getChannel() == 11 || map.getChannel() == 12
-					|| map.getChannel() == 13 || map.getChannel() == 14 || map.getChannel() == 15 || map.getChannel() == 16
-					|| map.getChannel() == 17 || map.getChannel() == 18 || map.getChannel() == 19) { // buffed
-					double randomB = Math.random() * getStats().getLevel() + 1;	// channel
+			for (byte channel : KindredConstants.BUFFED_CHANNELS) {
+				if (map.getChannel() == channel) {
+					double randomB = Math.random() * getStats().getLevel() + 1; // channel
 					int finale = (int) randomB;
-				killer.send(UIPacket.detailShowInfo("[Buffed channel bonus]: " + finale + " Maple Points", false));
-				killer.modifyCSPoints(2, finale, true);
+					killer.send(UIPacket.detailShowInfo("[Bonus]: +" + finale + " Maple Points", false));
+					killer.modifyCSPoints(2, finale, false);
+					break;
+				}
 			}
 		}
 		/**

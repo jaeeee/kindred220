@@ -69,14 +69,26 @@ public class MapleLifeProvider {
 			MapleData monsterInfoData = monsterData.getChildByPath("info");
 
 			stats = new MapleMonsterStats();
-			if (mid == 8860000) { //ark
+			if (mid == 8860000) { // ark
 				stats.setHp((long) 3000000000L);
-			} else if (mid == 8850011) { //emp
+			} else if (mid == 8850011) { // emp
 				stats.setHp((long) 63000000000L);
-			} else if (mid == 8880010) { //mag
+			} else if (mid == 8880010) { // mag
 				stats.setHp((long) 50000000000L);
-//			} else if (mid == 8240099) { //lotus
-//				stats.setHp((long) 10000000000000L);
+			} else if (mid == 8240099) { // lotus
+				stats.setHp((long) 10000000000000L);
+			} else if (mid == 8920100) { // root abyss queen
+				stats.setHp((long) 30000000000L);
+			} else if (mid == 8900100) { // pierre
+				stats.setHp((long) 35000000000L);
+			} else if (mid == 8910001) { // von bon
+				stats.setHp((long) 45000000000L);
+			} else if (mid == 8930100) { // vellum
+				stats.setHp((long) 50000000000L);
+			} else if (mid == 8620007) { //sinister rocky mask
+				stats.setHp(69000000);
+			} else if (mid == 8250007) { //modded deliverbot
+				stats.setHp(100000000);
 			} else {
 				stats.setHp(MapleDataTool.getIntConvert("maxHP", monsterInfoData));
 			}
@@ -102,7 +114,7 @@ public class MapleLifeProvider {
 			stats.setEva((short) MapleDataTool.getIntConvert("eva", monsterInfoData, 0));
 			stats.setCharismaEXP(MapleDataTool.getIntConvert("charismaEXP", monsterInfoData, 0));
 			stats.setChangeableMob(MapleDataTool.getIntConvert("changeableMob", monsterInfoData, 0) == 1);
-//			stats.setChangeableMob(true);
+			// stats.setChangeableMob(true);
 			stats.setMad(MapleDataTool.getIntConvert("MADamage", monsterInfoData, 0));
 			stats.setPad(MapleDataTool.getIntConvert("PADamage", monsterInfoData, 0));
 			stats.setAcc(MapleDataTool.getIntConvert("acc", monsterInfoData, 0));

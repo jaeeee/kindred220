@@ -82,7 +82,7 @@ public final class Start {
 //		DatabaseBackup.getInstance().startTasking();
 		AutoReboot.main(args);
 		ControlUnit.main(args);// ÀÚµ¿¸®º×
-		System.out.println("GlobalDrop Thread Start!!");
+//		System.out.println("GlobalDrop Thread Start!!");
 		Commands.main(args);
 	}
 
@@ -100,7 +100,7 @@ public final class Start {
 	}
 
 	public static void startGC() {
-		System.out.println("[NOTE] The system cleanup program will begin 30 minutes to give the current part time.");
+//		System.out.println("[NOTE] The system cleanup program will begin 30 minutes to give the current part time.");
 		WorldTimer tMan = WorldTimer.getInstance();
 		Runnable r = new Runnable() {
 			public void run() {
@@ -109,8 +109,8 @@ public final class Start {
 				System.gc();
 				float end = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 				constants.ServerConstants.isResourceDispose = false;
-				System.out.println("[NOTE] Unused memory on the system clean-up program "
-						+ (Math.round((start - end) / (1024 * 1024))) + "Organize MB.");
+//				System.out.println("[NOTE] Unused memory on the system clean-up program "
+//						+ (Math.round((start - end) / (1024 * 1024))) + "Organize MB.");
 			}
 		};
 		tMan.register(r, 1800000);
@@ -134,7 +134,7 @@ public final class Start {
 					nu++;
 				}
 			}
-			System.out.println("[System] " + nu + "Delete the two entries recorded.");
+//			System.out.println("[System] " + nu + "Delete the two entries recorded.");
 			ps.close();
 		} catch (SQLException ex) {
 		}
@@ -150,7 +150,7 @@ public final class Start {
 						.executeUpdate();
 				i++;
 			}
-			System.out.println("[System] " + i + "Removal of the reconnect error prone items.");
+//			System.out.println("[System] " + i + "Removal of the reconnect error prone items.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -170,6 +170,6 @@ public final class Start {
 		}
 		TheSidPacket.itemid = itemid.split(",");
 		TheSidPacket.num = num.split(",");
-		System.out.println("[System] " + itemid.length() + "Dolrimpan more cache items.");
+//		System.out.println("[System] " + itemid.length() + "Dolrimpan more cache items.");
 	}
 }

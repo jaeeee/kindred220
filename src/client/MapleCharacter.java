@@ -1048,7 +1048,6 @@ public class MapleCharacter extends AnimatedHinaMapObjectExtend implements Inven
 			}
 			ps.setInt(1, level); // Level
 			ps.setInt(2, chr.fame); // Fame
-			stat.recalcLocalStats();
 			stat.hp = (stat.getCurrentMaxHp());
 			stat.mp = (stat.getCurrentMaxMp());
 			ps.setInt(3, stat.getStr()); // Str
@@ -1099,6 +1098,7 @@ public class MapleCharacter extends AnimatedHinaMapObjectExtend implements Inven
 			ps.setInt(48, 0); // BetaClothes
 			ps.executeUpdate();
 
+			stat.recalcLocalStats();
 			rs = ps.getGeneratedKeys();
 			if (rs.next()) {
 				chr.id = rs.getInt(1);
@@ -4402,6 +4402,11 @@ public class MapleCharacter extends AnimatedHinaMapObjectExtend implements Inven
 
 		AutoJob();
 		maxskill(getJob());// 병신 이거 누가주석함? 노블 쓰래기 인증
+		if (GameConstants.isEvan(getJob())) {
+		changeSkillLevel(22171052, (byte) 1, (byte) 1);
+		changeSkillLevel(22171081, (byte) 1, (byte) 1);
+		changeSkillLevel(22171053, (byte) 1, (byte) 1);
+		}
 		remainingAp += 5;
 		int maxhp = stats.getMaxHp();
 		int maxmp = stats.getMaxMp();
