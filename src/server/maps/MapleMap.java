@@ -835,43 +835,34 @@ public class MapleMap {
 		}
 		final int mobid = monster.getId();
 
-		if (mobid == 8810018) {
-			chr.setExpeditionKilledBoss(true);
-			WorldBroadcasting.broadcastMessage(
-					MainPacketCreator.serverNotice(6, "수많은 도전 끝에 혼테일을 격파한 원정대여! 그대들이 진정한 리프레의 영웅이다!").getBytes());
-		} else if (mobid == 8810122) { // Horntail
-			chr.setExpeditionKilledBoss(true);
-			WorldBroadcasting.broadcastMessage(
-					MainPacketCreator.serverNotice(6, "수많은 도전 끝에 카오스 혼테일을 격파한 원정대여! 그대들이 진정한 리프레의 영웅이다!").getBytes());
-		} else if (mobid == 8820001) {
-			chr.setExpeditionKilledBoss(true);
-			WorldBroadcasting.broadcastMessage(
-					MainPacketCreator.serverNotice(6, "지치지 않는 열정으로 핑크빈을 물리친 원정대여! 그대들이 진정한 시간의 승리자다!").getBytes());
-		} else if (mobid == 8820101) {
-			chr.setExpeditionKilledBoss(true);
-			WorldBroadcasting.broadcastMessage(
-					MainPacketCreator.serverNotice(6, "지치지 않는 열정으로 카오스 핑크빈을 물리친 원정대여! 그대들이 진정한 시간의 승리자다!").getBytes());
-		} else if (mobid == 8850011) {
-			chr.setExpeditionKilledBoss(true);
-			WorldBroadcasting.broadcastMessage(
-					MainPacketCreator.serverNotice(6, "미래에서 여제 시그너스를 물리친 원정대여! 그대들이 진정한 시간의 승리자다!").getBytes());
-		}
-		if (mobid >= 8240000 && mobid <= 8249999) {
-			for (MapleCharacter pchr : chr.getClient().getChannelServer().getPartyMembers(chr.getParty())) {
-				if (mobid == 8240097) {
-					pchr.warp(pchr.getMapId() + 20);
-					// spawnMonsterOnGroundBelow(MapleLifeProvider.getMonster(8240098),
-					// new Point(-150, -16));
-				} else if (mobid == 8240098) {
-					pchr.warp(pchr.getMapId() + 20);
-					// spawnMonsterOnGroundBelow(MapleLifeProvider.getMonster(8240099),
-					// new Point(0, -16));
-				} else if (mobid == 8240099) {
-					killAllMonsters(true);
-					WorldBroadcasting.broadcastMessage(
-							MainPacketCreator.serverNotice(2, "[오르카의 메시지] : 겔리메르 녀석 가만두지 않겟어!").getBytes());
-				}
-			}
+		 if (mobid == 8810018) { //Horntail
+	            chr.setExpeditionKilledBoss(true);
+	            WorldBroadcasting.broadcastMessage(MainPacketCreator.serverNotice(6, "Congratulate the expedition that defeated Horntail in the end of many challenges! You are a true refreshing heroes!").getBytes());
+	        } else if (mobid == 8810122) { //Chaos Horntail
+	            chr.setExpeditionKilledBoss(true);
+	            WorldBroadcasting.broadcastMessage(MainPacketCreator.serverNotice(6, "Congratulate the expedition that defeated Chaos Horntail in the end of many challenges! You are a true refreshing heroes!").getBytes());
+	        } else if (mobid == 8820001) { //Pink Bean
+	            chr.setExpeditionKilledBoss(true);
+	            WorldBroadcasting.broadcastMessage(MainPacketCreator.serverNotice(6, "Congratulate the expedition that defeated Pink Bean with tireless passion! You are the true victors of time!").getBytes());
+	        } else if (mobid == 8820101) {//Chaos Pink Bean
+	            chr.setExpeditionKilledBoss(true);
+	            WorldBroadcasting.broadcastMessage(MainPacketCreator.serverNotice(6, "Congratulate the expedition that defeated Chaos Pink Bean with tireless passion! You are the true victors of time!").getBytes());
+	        } else if (mobid == 8850011) {
+	            chr.setExpeditionKilledBoss(true);
+	            WorldBroadcasting.broadcastMessage(MainPacketCreator.serverNotice(6, "Congratulate the expedition that defeated the Empress Cygnus in the future! You are the true victors of time.!").getBytes());
+	        } if (mobid >= 8240000 && mobid <= 8249999) { //blackhaven mobs
+	            for (MapleCharacter pchr : chr.getClient().getChannelServer().getPartyMembers(chr.getParty())) {
+	        if (mobid == 8240097) { //black heaven core
+	                pchr.warp(pchr.getMapId() + 20);
+	                //spawnMonsterOnGroundBelow(MapleLifeProvider.getMonster(8240098), new Point(-150, -16));
+	        } else if (mobid == 8240098) { // Lotus
+	                pchr.warp(pchr.getMapId() + 20);
+	               // spawnMonsterOnGroundBelow(MapleLifeProvider.getMonster(8240099), new Point(0, -16));
+	        } else if (mobid == 8240099) {
+	            killAllMonsters(true);
+	            WorldBroadcasting.broadcastMessage(MainPacketCreator.serverNotice(2, "[Orca's message] : He won't let go of Gelimer!").getBytes());
+	        }
+	        }
 		} else if (mobid >= 8800003 && mobid <= 8800010) {
 			boolean makeZakReal = true;
 			for (final MapleMapObject mons : getAllMonster()) {
@@ -1009,303 +1000,289 @@ public class MapleMap {
 			for (final MapleCharacter partymem : chr.getClient().getChannelServer().getPartyMembers(chr.getParty())) {
 				partymem.gainSpirit(4310064, i);
 			}
-			broadcastMessage(UIPacket.getItemTopMsg(4310064, "이그드라실 룬의 돌을 " + i + "개 획득 하셨습니다."));
+			broadcastMessage(UIPacket.getItemTopMsg(4310064, "You received " + i + "an Yggdrasil rune."));
 		}
 
-		if (미스틱혼테일 == 8) {
-			MapleMonster mob1 = MapleLifeProvider.getMonster(9300588);
-			spawnMonsterOnGroundBelow(mob1, monster.getPosition());
-			int itemid = 4033303;
-			this.killMonster(4033303);
-			this.killAllMonsters(true);
-			broadcastMessage(MainPacketCreator.showEffect("killing/clear"));
-			broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
-			broadcastMessage(UIPacket.showInfo("문 박사 : 마지막 타격은 <" + chr.getName() + "> 님이 하셨습니다."));
-			chr.dropShowInfo("문 박사 : 마지막 타격 보너스로  3 미스틱 포인트 를 획득 하셨습니다.");
-			chr.Message(5, "문 박사 : 마지막 타격 보너스로  3 미스틱 포인트 를 획득 하셨습니다.");
-			chr.addMistic(8);
-			for (final MapleCharacter partymem : chr.getClient().getChannelServer().getPartyMembers(chr.getParty())) {
-				partymem.addMistic(5);
-				partymem.gainSpirit(itemid, 1);
-				partymem.dropShowInfo("문 박사 : 5 미스틱 포인트를 획득 하셨습니다.");
-				partymem.getClient().getSession()
-						.write(MainPacketCreator.getNPCTalk(9073025, (byte) 0,
-								"보스를 훌륭히 처치해 주셨군요\r\n보스에게서 나온 전리품 #i" + itemid + "##z" + itemid + "##k을(를) 지급해 드렸습니다.",
-								"00 00", (byte) 0));
-			}
-		}
+	       if (미스틱혼테일 == 8) {
+	            MapleMonster mob1 = MapleLifeProvider.getMonster(9300588); //mystic horntail soul
+	            spawnMonsterOnGroundBelow(mob1, monster.getPosition());
+	            int itemid = 4033303;
+		    this.killMonster(4033303);
+	            this.killAllMonsters(true);
+	            broadcastMessage(MainPacketCreator.showEffect("killing/clear"));
+	            broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
+	            broadcastMessage(UIPacket.showInfo("문 박사 : 마지막 타격은 <" + chr.getName() + "> 님이 하셨습니다."));
+	            chr.dropShowInfo("Dr.Moon: You have won 3 Mystic Points as the last battle bonus.");
+	            chr.Message(5,"Dr.Moon: You have won 3 Mystic Points as the last battle bonus.");
+	            chr.addMistic(8);
+	            for (final MapleCharacter partymem : chr.getClient().getChannelServer().getPartyMembers(chr.getParty())) {
+	               partymem.addMistic(5);
+	               partymem.gainSpirit(itemid, 1);
+	               partymem.dropShowInfo("Dr. Moon: You have won 5 Mystic Points.");
+	               partymem.getClient().getSession().write(MainPacketCreator.getNPCTalk(9073025, (byte) 0, "You have done a good job with the boss \r\n보스에게서 나온 전리품 #i" + itemid + "##z" + itemid + "##k을(를) 지급해 드렸습니다.", "00 00", (byte) 0));
+	           }
+	        }
+	        
+	        if (카오스혼테일 == 8) {
+	            MapleMonster mob1 = MapleLifeProvider.getMonster(8810122);
+	            spawnMonsterOnGroundBelow(mob1, monster.getPosition());
+	            killAllMonsters(true);
+	        }
+	        
+	        if(chr.getMapId() == 931050800 || chr.getMapId() == 931050810 || chr.getMapId() == 931050820) {
+	             if (monster.getId() == 9300563 || monster.getId() == 9300594 || monster.getId() == 9300600 || monster.getId() == 9300608 || monster.getId() == 9300588) {
+	                  int itemid = 0;
+	                  switch(monster.getId()) {
+	                      case 9300563:
+	                          itemid = 4033302;
+	                          break;
+	                      case 9300594:
+	                          itemid = 4033311;
+	                          break;
+	                      case 9300600:
+	                          itemid = 4033304;
+	                          break;
+	                      case 9300608:
+	                          itemid = 4033312;
+	                          break;
+	                      case 9300588:
+	                          itemid = 4033303;
+	                          break;
+	                      default:
+	                  }
+	                  this.killAllMonsters(true);
+	                  broadcastMessage(MainPacketCreator.showEffect("killing/clear"));
+	                  broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
+	                  broadcastMessage(UIPacket.showInfo("문 박사 : 마지막 타격은 <" + chr.getName() + "> 님이 하셨습니다."));
+	                  chr.dropShowInfo("Dr.Moon: You have won 3 Mystic Points as the last battle bonus.");
+	                  chr.Message(5,"Dr.Moon: You have won 3 Mystic Points as the last battle bonus.");
+	                  chr.addMistic(8);
+	              for (final MapleCharacter partymem : chr.getClient().getChannelServer().getPartyMembers(chr.getParty())) {
+	                 partymem.addMistic(5);
+	                 partymem.gainSpirit(itemid, 1);
+	                 partymem.dropShowInfo("Dr. Moon: You have won 5 Mystic Points.");
+	                 partymem.getClient().getSession().write(MainPacketCreator.getNPCTalk(9073025, (byte) 0, "You have done a good job with the boss \r\n보스에게서 나온 전리품 #i" + itemid + "##z" + itemid + "##k을(를) 지급해 드렸습니다.", "00 00", (byte) 0));
+	               }
+	       }
+	    }
+	        
+	        if (mapid == 910141101) {
+	            if (베타구출C[0] == 11 && 베타구출C[1] != 11) {
+	                베타구출C[1] ++;
+	                if (베타구출C[1] == 11) {
+	                    broadcastMessage(MainPacketCreator.showEffect("monsterPark/clear"));
+	                    broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
+	                    베타구출(chr,3);
+	                }
+	            } else if (베타구출C[0] != 11 && 베타구출C[1] == 0) {
+	                베타구출C[0] ++;
+	                if (베타구출C[0] == 11) {
+	                    broadcastMessage(MainPacketCreator.showEffect("monsterPark/clear"));
+	                    broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
+	                    베타구출(chr,2);
+	                }
+	            } else if (monster.getId() == 9300808) {
+	                베타구출 = true;
+	                broadcastMessage(MainPacketCreator.showEffect("monsterPark/clear"));
+	                broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
+	                broadcastMessage(MainPacketCreator.getNPCTalk(10201, (byte) 0, "I have got it all done, I need to check the status of Beta soon.", "00 00", (byte) 2));
+	            }
+	        }
+	        
+	        if (보스레이드 > 0 && !monster.isFake() && monster.getStats().isRealBoss() && monster.getId() != 8500001 && monster.getId() != 8800000 && monster.getId() != 8800001 && monster.getId() != 8800100 && monster.getId() != 8800101) {
+	                if (보스레이드 >= 4) {
+	                    broadcastMessage(MainPacketCreator.getClock(5));
+	                    broadcastMessage(UIPacket.detailShowInfo("Congratulations on the Boss Raid Clear, I will move you to town in a short while.", false));
+	                    broadcastMessage(MainPacketCreator.showEffect("monsterPark/clear"));
+	                    broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
+	                      {
+	                          EtcTimer tMan = EtcTimer.getInstance();
+	                          tMan.schedule(new Runnable() {
+	                          @Override
+	                            public void run() {
+	                                for (MapleCharacter pchr : chr.getClient().getChannelServer().getPartyMembers(chr.getParty())) {
+	                                    pchr.warp(100000000);
+	                                    pchr.addboss(보스레이드난이도 == 4 ? 500 : 보스레이드난이도 == 3 ? 100 : 보스레이드난이도 == 2 ? 70 : 50);
+	                                    pchr.send(MainPacketCreator.sendHint("#e#r[보스레이드]#n#k " + (보스레이드난이도 == 4 ? 100 : 보스레이드난이도 == 3 ? 70 : 보스레이드난이도 == 2 ? 50 : 30) + " 포인트를 획득 하셨습니다.", 250, 5));
+	                                }
+	                            }
+	                          }, 5000);
+	                      }
+	            } else {
+	                broadcastMessage(UIPacket.detailShowInfo("The Boss monster will appear in a little while, please prepare", false));
+	                broadcastMessage(MainPacketCreator.showEffect("monsterPark/clear"));
+	                broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
+	                보스레이드(0,4000,7000);
+	            }
+	        }
+	        
+	        크로스헌터(monster,chr);
+	        
+	        if(mapid == 940021000) {
+	            디멘션인베이드진행(1,chr,monster);
+	        }
+	        
+	        if(GameConstants.getTheSidTower(mapid) > 0) {
+	           TheSidMain(monster);
+	        } 
+	        if (withDrops) {
+	                if (dropOwner == null) {
+	                    dropOwner = chr;
+	                }
+	                dropFromMonster(dropOwner, monster);
+	        }
+	        
+	        if (!this.isEliteBossMap() && !monster.isEliteMonster() && !monster.isEliteBoss() && !monster.getStats().isBoss() && monster.getStats().getLevel() - 20 <= chr.getLevel() && chr.getLevel() <= monster.getStats().getLevel() + 20) {
+	            SetEliteMobCommonCount(this.EliteMobCommonCount + 1);
+	        } else if (!this.isEliteBossMap() && monster.isEliteMonster()) {
+	            SetEliteMobCount(this.EliteMobCount + 1);
+	            if (1 <= EliteMobCount() && EliteMobCount() <= 14) {
+	                broadcastMessage(MainPacketCreator.startMapEffect("The dark energy does not disappear, making this place sad.", 5120124, true));
+	            } else if (15 <= EliteMobCount() && EliteMobCount() <= 20) {
+	                broadcastMessage(MainPacketCreator.startMapEffect("The place is filled with dark energy, something seems to happen soon.", 5120124, true));
+	            }
+	            monster.setEliteMonster(false);
+	            timeAllPlayer(this);
+	        } else if (monster.isEliteBoss()) { //보스 퇴치시
+	            setEliteBossMap(false);
+	            CancelEliteBossAlarm(this, chr);
+	            setEliteBossRewardMap(true);
+	            broadcastMessage(UIPacket.showSpecialMapEffect(3, 0, "Bgm36.img/HappyTimeShort", "Map/Map/Map9/924050000.img/back"));
+	            final String msg1 = "I give great gifts to adventurers, take care of the items i throw!";
+	            tools.Timer.ShowTimer.getInstance().schedule(new Runnable() {
+	                @Override
+	                public final void run() {
+	                    broadcastMessage(MainPacketCreator.startMapEffectTime(msg1, 0x92, 4000));
+	                    final MapleMonster mob1 = MapleLifeProvider.getMonster(8220028);
+	                    final MapleMonster mob2 = MapleLifeProvider.getMonster(8220028);
+	                    final MapleMonster mob3 = MapleLifeProvider.getMonster(8220028);
+	                    final MapleMonster mob4 = MapleLifeProvider.getMonster(8220028);
+	                    final MapleMonster[] mobs = {mob1, mob2, mob3, mob4};
+	                    final OverrideMonsterStats ostats1 = new OverrideMonsterStats();
+	                    ostats1.setOFirstAttack(false);
+	                    final OverrideMonsterStats ostats2 = new OverrideMonsterStats();
+	                    ostats2.setOFirstAttack(false);
+	                    final OverrideMonsterStats ostats3 = new OverrideMonsterStats();
+	                    ostats3.setOFirstAttack(false);
+	                    final OverrideMonsterStats ostats4 = new OverrideMonsterStats();
+	                    ostats4.setOFirstAttack(false);
+	                    mob1.setOverrideStats(ostats1);
+	                    mob2.setOverrideStats(ostats2);
+	                    mob3.setOverrideStats(ostats3);
+	                    mob4.setOverrideStats(ostats4);
+	                    for (int i = 0; i < 4; i++) {
+	                        spawnMonster(mobs[i], -2);
+	                    }
+	                    final List<Integer> specialCount = new ArrayList<>();
+	                    final Timer timer = new Timer();
+	                    timer.schedule(new TimerTask() {
+	                        @Override
+	                        public void run() {
+	                            for (int i = 0; i < mobs.length; i++) {
+	                                int Random = Randomizer.rand(0, 62);
+	                                int itemid = 0;
+	                                if (Random >= 0 && Random <= 10) {
+	                                    itemid = 2432391;
+	                                } else if (Random >= 11 && Random <= 20) {
+	                                    itemid = 2432392;
+	                                } else if (Random >= 21 && Random <= 30) {
+	                                    itemid = 2432393;
+	                                } else if (Random >= 31 && Random <= 40) {
+	                                    itemid = 2432394;
+	                                } else if (Random >= 41 && Random <= 50) {
+	                                    itemid = 2432395;
+	                                } else if (Random >= 51 && Random <= 55) {
+	                                    itemid = 2432396;
+	                                } else if (Random >= 56 && Random <= 60) {
+	                                    itemid = 2432397;
+	                                } else if (Random >= 61 && Random <= 62) {
+	                                    if (specialCount.size() < 3) {
+	                                        itemid = 2432398;
+	                                        specialCount.add(itemid);
+	                                    }
+	                                }
+	                                MapleMonster dropper = getMonsterByOid(mobs[i].getObjectId());
+	                                IItem drop = new Item(itemid, (byte) 0, (short) 1, (byte) 0);
 
-		if (카오스혼테일 == 8) {
-			MapleMonster mob1 = MapleLifeProvider.getMonster(8810122);
-			spawnMonsterOnGroundBelow(mob1, monster.getPosition());
-			killAllMonsters(true);
-		}
+	                                spawnItemDrop(dropper, chr, drop, dropper.getPosition(), true, true, true, true, 0x96, Randomizer.rand(0x37, 0xC7));
+	                            }
+	                        }
 
-		if (chr.getMapId() == 931050800 || chr.getMapId() == 931050810 || chr.getMapId() == 931050820) {
-			if (monster.getId() == 9300563 || monster.getId() == 9300594 || monster.getId() == 9300600
-					|| monster.getId() == 9300608 || monster.getId() == 9300588) {
-				int itemid = 0;
-				switch (monster.getId()) {
-				case 9300563:
-					itemid = 4033302;
-					break;
-				case 9300594:
-					itemid = 4033311;
-					break;
-				case 9300600:
-					itemid = 4033304;
-					break;
-				case 9300608:
-					itemid = 4033312;
-					break;
-				case 9300588:
-					itemid = 4033303;
-					break;
-				default:
-				}
-				this.killAllMonsters(true);
-				broadcastMessage(MainPacketCreator.showEffect("killing/clear"));
-				broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
-				broadcastMessage(UIPacket.showInfo("문 박사 : 마지막 타격은 <" + chr.getName() + "> 님이 하셨습니다."));
-				chr.dropShowInfo("문 박사 : 마지막 타격 보너스로  3 미스틱 포인트 를 획득 하셨습니다.");
-				chr.Message(5, "문 박사 : 마지막 타격 보너스로  3 미스틱 포인트 를 획득 하셨습니다.");
-				chr.addMistic(8);
-				for (final MapleCharacter partymem : chr.getClient().getChannelServer()
-						.getPartyMembers(chr.getParty())) {
-					partymem.addMistic(5);
-					partymem.gainSpirit(itemid, 1);
-					partymem.dropShowInfo("문 박사 : 5 미스틱 포인트를 획득 하셨습니다.");
-					partymem.getClient().getSession().write(MainPacketCreator.getNPCTalk(9073025, (byte) 0,
-							"보스를 훌륭히 처치해 주셨군요\r\n보스에게서 나온 전리품 #i" + itemid + "##z" + itemid + "##k을(를) 지급해 드렸습니다.",
-							"00 00", (byte) 0));
-				}
-			}
-		}
+	                    }, 500, 500);
+	                    broadcastMessage(MainPacketCreator.getMilliClock(22000));
+	                    MapTimer.getInstance().schedule(new Runnable() {
+	                        @Override
+	                        public final void run() {
+	                            setEliteBossRewardMap(false);
+	                            broadcastMessage(UIPacket.cancelSpecialMapEffect());
+	                            broadcastMessage(MainPacketCreator.playSound("eliteMonster/gameOver"));
+	                            List<MapleMapObject> items = getMapObjectsInRange(chr.getPosition(), Double.POSITIVE_INFINITY, Arrays.asList(MapleMapObjectType.ITEM));
+	                            for (MapleMapObject i : items) {
+	                                removeMapObject(i);
+	                                broadcastMessage(MainPacketCreator.removeItemFromMap(i.getObjectId(), 0, 0), i.getPosition());
+	                                //}
+	                            }
 
-		if (mapid == 910141101) {
-			if (베타구출C[0] == 11 && 베타구출C[1] != 11) {
-				베타구출C[1]++;
-				if (베타구출C[1] == 11) {
-					broadcastMessage(MainPacketCreator.showEffect("monsterPark/clear"));
-					broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
-					베타구출(chr, 3);
-				}
-			} else if (베타구출C[0] != 11 && 베타구출C[1] == 0) {
-				베타구출C[0]++;
-				if (베타구출C[0] == 11) {
-					broadcastMessage(MainPacketCreator.showEffect("monsterPark/clear"));
-					broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
-					베타구출(chr, 2);
-				}
-			} else if (monster.getId() == 9300808) {
-				베타구출 = true;
-				broadcastMessage(MainPacketCreator.showEffect("monsterPark/clear"));
-				broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
-				broadcastMessage(MainPacketCreator.getNPCTalk(10201, (byte) 0, "이걸로 모두 처치한건가, 빨리 베타의 상태를 확인 해봐야겠어",
-						"00 00", (byte) 2));
-			}
-		}
+	                        }
+	                    }, 23000);
+	                    /*
+	                     2432391 - 경험치(소)
+	                     2432392 - 경험치(대)
+	                     2432393 - 메소(소)
+	                     2432394 - 메소(대)
+	                     2432395 - 포션
+	                     2432396 - 방어구
+	                     2432397 - 무기
+	                     2432398 - 희귀 아이템
+	                     */
+	                }
+	            }, 7000L);
+	        }
+	        if (this.EliteMobCommonCount == 200 && this.EliteMobCount < 5) {
+	            SetEliteMobCommonCount(0);
+	            MapleMonster elite = makeEliteMonster(monster);
+	            spawnEliteMonster(elite);
+	            broadcastMessage(UIPacket.playSpecialMapSound("Field.img/eliteMonster/Regen"), chr.getPosition());
+	            broadcastMessage(MainPacketCreator.startMapEffect("A powerful monster appears in the dark energy.", 5120124, true));
+	            timeAllPlayer(this);
+	        }
+	       if (this.EliteMobCommonCount == 200 && this.EliteMobCount >= 8) { //보스 소환
+	            SetEliteMobCommonCount(0);
+	            SetEliteMobCount(0);
+	            setEliteBossMap(true);
+	            broadcastMessage(UIPacket.showSpecialMapEffect(2, 0, "Bgm36.img/RoyalGuard", null));
+	            //chr.getMap().setClock(true);
+	            //chr.getMap().setTimeLimit(timeLimit);
 
-		if (보스레이드 > 0 && !monster.isFake() && monster.getStats().isRealBoss() && monster.getId() != 8500001
-				&& monster.getId() != 8800000 && monster.getId() != 8800001 && monster.getId() != 8800100
-				&& monster.getId() != 8800101) {
-			if (보스레이드 >= 4) {
-				broadcastMessage(MainPacketCreator.getClock(5));
-				broadcastMessage(UIPacket.detailShowInfo("보스레이드 클리어를 축하드립니다. 잠시후 마을로 이동됩니다.", false));
-				broadcastMessage(MainPacketCreator.showEffect("monsterPark/clear"));
-				broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
-				{
-					EtcTimer tMan = EtcTimer.getInstance();
-					tMan.schedule(new Runnable() {
-						@Override
-						public void run() {
-							for (MapleCharacter pchr : chr.getClient().getChannelServer()
-									.getPartyMembers(chr.getParty())) {
-								pchr.warp(100000000);
-								pchr.addboss(보스레이드난이도 == 4 ? 500 : 보스레이드난이도 == 3 ? 100 : 보스레이드난이도 == 2 ? 70 : 50);
-								pchr.send(MainPacketCreator.sendHint("#e#r[보스레이드]#n#k "
-										+ (보스레이드난이도 == 4 ? 100 : 보스레이드난이도 == 3 ? 70 : 보스레이드난이도 == 2 ? 50 : 30)
-										+ " 포인트를 획득 하셨습니다.", 250, 5));
-							}
-						}
-					}, 5000);
-				}
-			} else {
-				broadcastMessage(UIPacket.detailShowInfo("잠시후 보스몬스터가 등장합니다. 준비해 주십시오", false));
-				broadcastMessage(MainPacketCreator.showEffect("monsterPark/clear"));
-				broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
-				보스레이드(0, 4000, 7000);
-			}
-		}
-
-		크로스헌터(monster, chr);
-
-		if (mapid == 940021000) {
-			디멘션인베이드진행(1, chr, monster);
-		}
-
-		if (GameConstants.getTheSidTower(mapid) > 0) {
-			TheSidMain(monster);
-		}
-		if (withDrops) {
-			if (dropOwner == null) {
-				dropOwner = chr;
-			}
-			dropFromMonster(dropOwner, monster);
-		}
-
-		if (!this.isEliteBossMap() && !monster.isEliteMonster() && !monster.isEliteBoss()
-				&& !monster.getStats().isBoss() && monster.getStats().getLevel() - 20 <= chr.getLevel()
-				&& chr.getLevel() <= monster.getStats().getLevel() + 20) {
-			SetEliteMobCommonCount(this.EliteMobCommonCount + 1);
-		} else if (!this.isEliteBossMap() && monster.isEliteMonster()) {
-			SetEliteMobCount(this.EliteMobCount + 1);
-			if (1 <= EliteMobCount() && EliteMobCount() <= 14) {
-				broadcastMessage(MainPacketCreator.startMapEffect("어두운 기운이 사라지지 않아 이곳을 음산하게 만들고 있습니다.", 5120124, true));
-			} else if (15 <= EliteMobCount() && EliteMobCount() <= 20) {
-				broadcastMessage(
-						MainPacketCreator.startMapEffect("이곳이 어두운 기운으로 가득차 곧 무슨 일이 일어날 듯 합니다.", 5120124, true));
-			}
-			monster.setEliteMonster(false);
-			timeAllPlayer(this);
-		} else if (monster.isEliteBoss()) { // 보스 퇴치시
-			setEliteBossMap(false);
-			CancelEliteBossAlarm(this, chr);
-			setEliteBossRewardMap(true);
-			broadcastMessage(
-					UIPacket.showSpecialMapEffect(3, 0, "Bgm36.img/HappyTimeShort", "Map/Map/Map9/924050000.img/back"));
-			final String msg1 = "착한 모험가들에게 선물을 주지! 내가 던지는 아이템을 잘 받아 봐!";
-			tools.Timer.ShowTimer.getInstance().schedule(new Runnable() {
-				@Override
-				public final void run() {
-					broadcastMessage(MainPacketCreator.startMapEffectTime(msg1, 0x92, 4000));
-					final MapleMonster mob1 = MapleLifeProvider.getMonster(8220028);
-					final MapleMonster mob2 = MapleLifeProvider.getMonster(8220028);
-					final MapleMonster mob3 = MapleLifeProvider.getMonster(8220028);
-					final MapleMonster mob4 = MapleLifeProvider.getMonster(8220028);
-					final MapleMonster[] mobs = { mob1, mob2, mob3, mob4 };
-					final OverrideMonsterStats ostats1 = new OverrideMonsterStats();
-					ostats1.setOFirstAttack(false);
-					final OverrideMonsterStats ostats2 = new OverrideMonsterStats();
-					ostats2.setOFirstAttack(false);
-					final OverrideMonsterStats ostats3 = new OverrideMonsterStats();
-					ostats3.setOFirstAttack(false);
-					final OverrideMonsterStats ostats4 = new OverrideMonsterStats();
-					ostats4.setOFirstAttack(false);
-					mob1.setOverrideStats(ostats1);
-					mob2.setOverrideStats(ostats2);
-					mob3.setOverrideStats(ostats3);
-					mob4.setOverrideStats(ostats4);
-					for (int i = 0; i < 4; i++) {
-						spawnMonster(mobs[i], -2);
-					}
-					final List<Integer> specialCount = new ArrayList<>();
-					final Timer timer = new Timer();
-					timer.schedule(new TimerTask() {
-						@Override
-						public void run() {
-							for (int i = 0; i < mobs.length; i++) {
-								int Random = Randomizer.rand(0, 62);
-								int itemid = 0;
-								if (Random >= 0 && Random <= 10) {
-									itemid = 2432391;
-								} else if (Random >= 11 && Random <= 20) {
-									itemid = 2432392;
-								} else if (Random >= 21 && Random <= 30) {
-									itemid = 2432393;
-								} else if (Random >= 31 && Random <= 40) {
-									itemid = 2432394;
-								} else if (Random >= 41 && Random <= 50) {
-									itemid = 2432395;
-								} else if (Random >= 51 && Random <= 55) {
-									itemid = 2432396;
-								} else if (Random >= 56 && Random <= 60) {
-									itemid = 2432397;
-								} else if (Random >= 61 && Random <= 62) {
-									if (specialCount.size() < 3) {
-										itemid = 2432398;
-										specialCount.add(itemid);
-									}
-								}
-								MapleMonster dropper = getMonsterByOid(mobs[i].getObjectId());
-								IItem drop = new Item(itemid, (byte) 0, (short) 1, (byte) 0);
-
-								spawnItemDrop(dropper, chr, drop, dropper.getPosition(), true, true, true, true, 0x96,
-										Randomizer.rand(0x37, 0xC7));
-							}
-						}
-
-					}, 500, 500);
-					broadcastMessage(MainPacketCreator.getMilliClock(22000));
-					MapTimer.getInstance().schedule(new Runnable() {
-						@Override
-						public final void run() {
-							setEliteBossRewardMap(false);
-							broadcastMessage(UIPacket.cancelSpecialMapEffect());
-							broadcastMessage(MainPacketCreator.playSound("eliteMonster/gameOver"));
-							List<MapleMapObject> items = getMapObjectsInRange(chr.getPosition(),
-									Double.POSITIVE_INFINITY, Arrays.asList(MapleMapObjectType.ITEM));
-							for (MapleMapObject i : items) {
-								removeMapObject(i);
-								broadcastMessage(MainPacketCreator.removeItemFromMap(i.getObjectId(), 0, 0),
-										i.getPosition());
-								// }
-							}
-
-						}
-					}, 23000);
-					/*
-					 * 2432391 - 경험치(소) 2432392 - 경험치(대) 2432393 - 메소(소) 2432394
-					 * - 메소(대) 2432395 - 포션 2432396 - 방어구 2432397 - 무기 2432398 -
-					 * 희귀 아이템
-					 */
-				}
-			}, 7000L);
-		}
-		if (this.EliteMobCommonCount == 200 && this.EliteMobCount < 5) {
-			SetEliteMobCommonCount(0);
-			MapleMonster elite = makeEliteMonster(monster);
-			spawnEliteMonster(elite);
-			broadcastMessage(UIPacket.playSpecialMapSound("Field.img/eliteMonster/Regen"), chr.getPosition());
-			broadcastMessage(MainPacketCreator.startMapEffect("어두운 기운과 함께 강력한 몬스터가 출현합니다.", 5120124, true));
-			timeAllPlayer(this);
-		}
-		if (this.EliteMobCommonCount == 200 && this.EliteMobCount >= 8) { // 보스
-																			// 소환
-			SetEliteMobCommonCount(0);
-			SetEliteMobCount(0);
-			setEliteBossMap(true);
-			broadcastMessage(UIPacket.showSpecialMapEffect(2, 0, "Bgm36.img/RoyalGuard", null));
-			// chr.getMap().setClock(true);
-			// chr.getMap().setTimeLimit(timeLimit);
-
-			final int RandomI = Randomizer.rand(0, 4);
-			final int BossID = 8220020 + RandomI + 2;
-			final int EffectID = 5120120 + RandomI + 5;
-			final String EffectMsgs[] = { "검은 기사 모카딘 : 위대한 분을 위하여 너를 처단하겠다.", "미친 마법사 카리아인 : 미천한 것들이 날뛰고 있구나. 크크크크...",
-					"돌격형 CQ57 : 목표발견. 제거 행동을 시작한다.", "인간사냥꾼 줄라이 : 사냥감이 나타났군.", "싸움꾼 플레드 : 재미 있겠군. 어디 한 번 놀아볼까.", };
-			final MapleMonster boss = makeEliteBoss(monster, MapleLifeProvider.getMonster(BossID));
-			final MapleMonster elite1 = makeEliteMonster(monster);
-			final MapleMonster elite2 = makeEliteMonster(monster);
-			MapleMonster killmob;
-			for (MapleMapObject monstermo : getMapObjectsInRange(chr.getPosition(), Double.POSITIVE_INFINITY,
-					Arrays.asList(MapleMapObjectType.MONSTER))) {
-				killmob = (MapleMonster) monstermo;
-				killMonster(killmob);
-
-			}
-			tools.Timer.ShowTimer.getInstance().schedule(new Runnable() {
-				public final void run() {
-					spawnEliteMonster(elite1);
-					spawnEliteMonster(elite2);
-					spawnEliteMonster(boss);
-					AlarmEliteBoss(chr.getMap(), chr, BossID);
-					broadcastMessage(MainPacketCreator.startMapEffect(EffectMsgs[RandomI], EffectID, true));
-					timeAllPlayer(chr.getMap());
-				}
-			}, 6000L);
-		}
-	}
+	            final int RandomI = Randomizer.rand(0, 4);
+	            final int BossID = 8220020 + RandomI + 2;
+	            final int EffectID = 5120120 + RandomI + 5;
+	            final String EffectMsgs[] = {"Black Knight: I will punish you!",
+	                "Crazy Wizard: there are mad things going on, kekeke...",
+	                "Assault type CQ57: Target discovery. Initiate the removal action.",
+	                "Human Hunter: This looks like a fun game.",
+	                "Ferocious Fighter: This Looks fun, let us get the fight started!",};
+	            final MapleMonster boss = makeEliteBoss(monster, MapleLifeProvider.getMonster(BossID));
+	            final MapleMonster elite1 = makeEliteMonster(monster);
+	            final MapleMonster elite2 = makeEliteMonster(monster);
+	            MapleMonster killmob;
+	            for (MapleMapObject monstermo : getMapObjectsInRange(chr.getPosition(), Double.POSITIVE_INFINITY, Arrays.asList(MapleMapObjectType.MONSTER))) {
+	                killmob = (MapleMonster) monstermo;
+	                killMonster(killmob);
+	                
+	            }
+	            tools.Timer.ShowTimer.getInstance().schedule(new Runnable() {
+	                public final void run() {
+	                    spawnEliteMonster(elite1);
+	                    spawnEliteMonster(elite2);
+	                    spawnEliteMonster(boss);
+	                    AlarmEliteBoss(chr.getMap(), chr, BossID);
+	                    broadcastMessage(MainPacketCreator.startMapEffect(EffectMsgs[RandomI], EffectID, true));
+	                    timeAllPlayer(chr.getMap());
+	                }
+	            }, 6000L);
+	        }
+	    }
 
 	public MapleMonster makeEliteMonster(final MapleMonster monster) {
 		final MapleMonster elite = MapleLifeProvider.getMonster(monster.getId());
@@ -1335,7 +1312,7 @@ public class MapleMap {
 		final OverrideMonsterStats ostats = new OverrideMonsterStats();
 		eliteboss.setEliteBoss(true);
 		eliteboss.setEliteType(Randomizer.rand(0x64, 0x88));
-		ostats.setOHp(sourcemob.getMobMaxHp() * 75); // 필드몹의 75배
+		ostats.setOHp(sourcemob.getMobMaxHp() * 75); // set hp times 75
 		ostats.setOMp(sourcemob.getMobMaxMp());
 		ostats.setOPad(0);
 		ostats.setOPhysicalDefense(sourcemob.getStats().getPhysicalDefense());
@@ -1405,129 +1382,109 @@ public class MapleMap {
 		itr = null;
 	}
 
-	public void 크로스헌터(MapleMonster monster, MapleCharacter chr) {
-		if (monster.getId() == 9300477) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 제가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter", "m0=2");
-			chr.setKeyValue("cross", "2");
-			chr.send(MainPacketCreator.updateInfoQuest(0x670, chr.getKeyValue("chapter")));
-		} else if (monster.getId() == 9300878) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 제가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter", "m0=2;m1=2");
-			chr.setKeyValue("cross", "3");
-			chr.send(MainPacketCreator.updateInfoQuest(0x670, chr.getKeyValue("chapter")));
-		} else if (monster.getId() == 9300879) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 제가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter", "m0=2;m1=2;m2=2");
-			chr.setKeyValue("cross", "4");
-			chr.send(MainPacketCreator.updateInfoQuest(0x670, chr.getKeyValue("chapter")));
-		} else if (monster.getId() == 9801015) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter", "m0=2;m1=2;m2=2;m3=2");
-			chr.setKeyValue("cross", "5");
-			chr.send(MainPacketCreator.updateInfoQuest(0x670, chr.getKeyValue("chapter")));
-		} else if (monster.getId() == 9300510) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter", "m0=2;m1=2;m2=2;m3=2;m4=2");
-			chr.setKeyValue("cross", "6");
-			chr.send(MainPacketCreator.updateInfoQuest(0x670, chr.getKeyValue("chapter")));
-		} else if (monster.getId() == 9300479) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter2", "m0=2");
-			chr.setKeyValue("cross", "8");
-			chr.send(MainPacketCreator.updateInfoQuest(0x671, chr.getKeyValue("chapter2")));
-		} else if (monster.getId() == 9300480) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter2", "m0=2;m1=2");
-			chr.setKeyValue("cross", "9");
-			chr.send(MainPacketCreator.updateInfoQuest(0x671, chr.getKeyValue("chapter2")));
-		} else if (monster.getId() == 9300511) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter2", "m0=2;m1=2;m2=2");
-			chr.setKeyValue("cross", "10");
-			chr.send(MainPacketCreator.updateInfoQuest(0x671, chr.getKeyValue("chapter2")));
-		} else if (monster.getId() == 9300512) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter2", "m0=2;m1=2;m2=2;m3=2");
-			chr.setKeyValue("cross", "11");
-			chr.send(MainPacketCreator.updateInfoQuest(0x671, chr.getKeyValue("chapter2")));
-		} else if (monster.getId() == 9300482) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter2", "m0=2;m1=2;m2=2;m3=2;m4=2");
-			chr.setKeyValue("cross", "12");
-			chr.send(MainPacketCreator.updateInfoQuest(0x671, chr.getKeyValue("chapter2")));
-		} else if (monster.getId() == 9300475) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter3", "m0=2");
-			chr.setKeyValue("cross", "14");
-			chr.send(MainPacketCreator.updateInfoQuest(0x672, chr.getKeyValue("chapter3")));
-		} else if (monster.getId() == 9300514) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter3", "m0=2;m1=2");
-			chr.setKeyValue("cross", "15");
-			chr.send(MainPacketCreator.updateInfoQuest(0x672, chr.getKeyValue("chapter3")));
-		} else if (monster.getId() == 9300880) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter3", "m0=2;m1=2;m2=2");
-			chr.setKeyValue("cross", "16");
-			chr.send(MainPacketCreator.updateInfoQuest(0x672, chr.getKeyValue("chapter3")));
-		} else if (monster.getId() == 9300478) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter3", "m0=2;m1=2;m2=2;m3=2");
-			chr.setKeyValue("cross", "17");
-			chr.send(MainPacketCreator.updateInfoQuest(0x672, chr.getKeyValue("chapter3")));
-		} else if (monster.getId() == 9300513) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter3", "m0=2;m1=2;m2=2;m3=2;m4=2");
-			chr.setKeyValue("cross", "18");
-			chr.send(MainPacketCreator.updateInfoQuest(0x672, chr.getKeyValue("chapter3")));
-		} else if (monster.getId() == 9300515) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter4", "m0=2");
-			chr.setKeyValue("cross", "20");
-			chr.send(MainPacketCreator.updateInfoQuest(0x673, chr.getKeyValue("chapter4")));
-		} else if (monster.getId() == 9300516) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter4", "m0=2;m1=2");
-			chr.setKeyValue("cross", "21");
-			chr.send(MainPacketCreator.updateInfoQuest(0x673, chr.getKeyValue("chapter4")));
-		} else if (monster.getId() == 9300517) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter4", "m0=2;m1=2;m2=2");
-			chr.setKeyValue("cross", "22");
-			chr.send(MainPacketCreator.updateInfoQuest(0x673, chr.getKeyValue("chapter4")));
-		} else if (monster.getId() == 9300518) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter4", "m0=2;m1=2;m2=2;m3=2");
-			chr.setKeyValue("cross", "23");
-			chr.send(MainPacketCreator.updateInfoQuest(0x673, chr.getKeyValue("chapter4")));
-		} else if (monster.getId() == 9300519) {
-			chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0,
-					"역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
-			chr.setKeyValue("chapter4", "m0=2;m1=2;m2=2;m3=2;m4=2");
-			chr.setKeyValue("cross", "24");
-			chr.send(MainPacketCreator.updateInfoQuest(0x673, chr.getKeyValue("chapter4")));
-		}
-	}
+	  public void 크로스헌터(MapleMonster monster, MapleCharacter chr) {//silent crusade
+	        if (monster.getId() == 9300477) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than i thought", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter", "m0=2");
+	            chr.setKeyValue("cross", "2");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x670, chr.getKeyValue("chapter")));
+	        } else if (monster.getId() == 9300878) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter", "m0=2;m1=2");
+	            chr.setKeyValue("cross", "3");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x670, chr.getKeyValue("chapter")));            
+	        } else if (monster.getId() == 9300879) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter", "m0=2;m1=2;m2=2");
+	            chr.setKeyValue("cross", "4");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x670, chr.getKeyValue("chapter")));                
+	        } else if (monster.getId() == 9801015) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter", "m0=2;m1=2;m2=2;m3=2");
+	            chr.setKeyValue("cross", "5");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x670, chr.getKeyValue("chapter")));              
+	        } else if (monster.getId() == 9300510) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter", "m0=2;m1=2;m2=2;m3=2;m4=2");
+	            chr.setKeyValue("cross", "6");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x670, chr.getKeyValue("chapter")));                          
+	        } else if (monster.getId() == 9300479) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter2", "m0=2");
+	            chr.setKeyValue("cross", "8");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x671, chr.getKeyValue("chapter2")));              
+	        } else if (monster.getId() == 9300480) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter2", "m0=2;m1=2");
+	            chr.setKeyValue("cross", "9");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x671, chr.getKeyValue("chapter2")));               
+	        } else if (monster.getId() == 9300511) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter2", "m0=2;m1=2;m2=2");
+	            chr.setKeyValue("cross", "10");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x671, chr.getKeyValue("chapter2")));                  
+	        } else if (monster.getId() == 9300512) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter2", "m0=2;m1=2;m2=2;m3=2");
+	            chr.setKeyValue("cross", "11");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x671, chr.getKeyValue("chapter2")));            
+	        } else if (monster.getId() == 9300482) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter2", "m0=2;m1=2;m2=2;m3=2;m4=2");
+	            chr.setKeyValue("cross", "12");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x671, chr.getKeyValue("chapter2")));    
+	        } else if (monster.getId() == 9300475) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter3", "m0=2");
+	            chr.setKeyValue("cross", "14");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x672, chr.getKeyValue("chapter3")));                
+	        } else if (monster.getId() == 9300514) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter3", "m0=2;m1=2");
+	            chr.setKeyValue("cross", "15");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x672, chr.getKeyValue("chapter3")));              
+	        } else if (monster.getId() == 9300880) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter3", "m0=2;m1=2;m2=2");
+	            chr.setKeyValue("cross", "16");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x672, chr.getKeyValue("chapter3")));             
+	        } else if (monster.getId() == 9300478) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter3", "m0=2;m1=2;m2=2;m3=2");
+	            chr.setKeyValue("cross", "17");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x672, chr.getKeyValue("chapter3")));            
+	        } else if (monster.getId() == 9300513) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter3", "m0=2;m1=2;m2=2;m3=2;m4=2");
+	            chr.setKeyValue("cross", "18");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x672, chr.getKeyValue("chapter3")));  
+	        } else if (monster.getId() == 9300515) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter4", "m0=2");
+	            chr.setKeyValue("cross", "20");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x673, chr.getKeyValue("chapter4")));      
+	        } else if (monster.getId() == 9300516) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter4", "m0=2;m1=2");
+	            chr.setKeyValue("cross", "21");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x673, chr.getKeyValue("chapter4"))); 
+	        } else if (monster.getId() == 9300517) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter4", "m0=2;m1=2;m2=2");
+	            chr.setKeyValue("cross", "22");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x673, chr.getKeyValue("chapter4"))); 
+	        } else if (monster.getId() == 9300518) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter4", "m0=2;m1=2;m2=2;m3=2");
+	            chr.setKeyValue("cross", "23");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x673, chr.getKeyValue("chapter4"))); 
+	        } else if (monster.getId() == 9300519) {
+	            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
+	            chr.setKeyValue("chapter4", "m0=2;m1=2;m2=2;m3=2;m4=2");
+	            chr.setKeyValue("cross", "24");
+	            chr.send(MainPacketCreator.updateInfoQuest(0x673, chr.getKeyValue("chapter4"))); 
+	        }
+	    }
 
 	public final void killAllMonsters(final boolean animate) {
 		for (final MapleMapObject m : getAllMonster()) {
@@ -2463,7 +2420,7 @@ public class MapleMap {
 			chr.send(mapEffect.makeStartData());
 		}
 
-		if (mapid == 109050001) { // 이벤트맵 나가는 곳
+		if (mapid == 109050001) { // Event map exit
 			MapleMap map = chr.getClient().getChannelServer().getMapFactory().getMap(ServerConstants.startMap);
 			chr.changeMap(map, map.getPortal(0));
 		}
@@ -2480,7 +2437,7 @@ public class MapleMap {
 
 		for (int i = 0; i < 3; ++i) {
 			if (chr.getPet(i) != null) {
-				chr.getPet(i).setPos(chr.getPosition()); // 펫 좌표 업데이트
+				chr.getPet(i).setPos(chr.getPosition()); // update pet coordinates
 				chr.getClient().send(PetPacket.updatePet(chr, chr.getPet(i), false, chr.getPetLoot()));
 				broadcastMessage(PetPacket.showPet(chr, chr.getPet(i), false, false));
 			}
@@ -2495,7 +2452,7 @@ public class MapleMap {
 		}
 
 		if (chr.getAndroid() != null) { // Set
-			chr.getAndroid().setPosition(chr.getPosition()); // 안드로이드 좌표 업데이트
+			chr.getAndroid().setPosition(chr.getPosition()); // update android coordinates
 			broadcastMessage(chr, AndroidPacket.spawnAndroid(chr, chr.getAndroid()), true);
 		}
 
@@ -2649,7 +2606,7 @@ public class MapleMap {
 		}
 
 		if (chr.getMapId() == 105200410) {
-			chr.send(MainPacketCreator.getNPCTalk(2007, (byte) 0, "어라? 저기있는 몬스터는 도대체 뭐지?\r\n(대화를 걸어보자)", "00 01",
+			chr.send(MainPacketCreator.getNPCTalk(2007, (byte) 0, "What? What is that monster over there?\r\n(Let us talk to it)", "00 01",
 					(byte) 2));
 			chr.send(MainPacketCreator.resetActions());
 		}
@@ -3158,7 +3115,7 @@ public class MapleMap {
 			ps.executeUpdate();
 			ps.close();
 		} catch (Exception e) {
-			System.err.println("[오류] DB로 보스 쿨타임을 저장하는데 실패했습니다.");
+			System.err.println("[Error] Failed to save boss cooldown to DB.");
 			if (!ServerConstants.realese) {
 				e.printStackTrace();
 			}
@@ -3396,7 +3353,7 @@ public class MapleMap {
 				@Override
 				public void run() {
 					broadcastMessage(
-							MainPacketCreator.serverNotice(1, "제한시간 2분이 지나 양이 승리하였습니다!\r\n모든 분들은 게임 보상맵으로 이동됩니다."));
+							MainPacketCreator.serverNotice(1, "The game is over! It has been 2 minutes. Everyone will be moved to the rewards map."));
 					for (MapleCharacter chr : getCharacters()) {
 						chr.getStat().setHp(chr.getStat().getMaxHp());
 						chr.updateSingleStat(PlayerStat.HP, chr.getStat().getMaxHp());
@@ -3423,16 +3380,16 @@ public class MapleMap {
 		}
 	}
 
-	public void startTheSid(int type) {
+	public void startTheSid(int type) { //tower of oz
 		if (type == 1) {
 			broadcastMessage(MainPacketCreator.showEffect("defense/count"));
-			broadcastMessage(TheSidPacket.TheSidMessage("곧 있으면 몬스터들이 나올거야 전투를 준비해줘!!", 3000));
+			broadcastMessage(TheSidPacket.TheSidMessage("Monsters will come out soon. Prepare for battle!", 3000));
 			EtcTimer tMan = EtcTimer.getInstance();
 			tMan.schedule(new Runnable() {
 				@Override
 				public void run() {
 					broadcastMessage(MainPacketCreator.showEffect("defense/wave/1"));
-					broadcastMessage(TheSidPacket.TheSidMessage("우선 고대 슬라임을 모두 물리쳐줘!!", 3000));
+					broadcastMessage(TheSidPacket.TheSidMessage("First of all, i want you to defeat all the ancient slimes!", 3000));
 					for (int i = 0; i < 30; i++) {
 						MapleMonster mob = MapleLifeProvider.getMonster(Randomizer.rand(9309047, 9309046));
 						spawnMonsterOnGroundBelow(mob, new Point(333, 155));
@@ -3445,7 +3402,7 @@ public class MapleMap {
 				@Override
 				public void run() {
 					broadcastMessage(MainPacketCreator.showEffect("defense/count"));
-					broadcastMessage(TheSidPacket.TheSidMessage("고대 거북이 들을 진압해줘!!", 3000));
+					broadcastMessage(TheSidPacket.TheSidMessage("Crush the ancient turtles!", 3000));
 				}
 			}, 3000);
 			EtcTimer tMan1 = EtcTimer.getInstance();
@@ -3465,7 +3422,7 @@ public class MapleMap {
 				@Override
 				public void run() {
 					broadcastMessage(MainPacketCreator.showEffect("defense/count"));
-					broadcastMessage(TheSidPacket.TheSidMessage("화산 벌래들에게 누적데미지 50억을 만들어줘!!", 3000));
+					broadcastMessage(TheSidPacket.TheSidMessage("do 5billion damage to the Volcanoes!", 3000));
 				}
 			}, 3000);
 			EtcTimer tMan1 = EtcTimer.getInstance();
@@ -3485,7 +3442,7 @@ public class MapleMap {
 				@Override
 				public void run() {
 					broadcastMessage(MainPacketCreator.showEffect("defense/count"));
-					broadcastMessage(TheSidPacket.TheSidMessage("간부중 하나인 거대 거미가 나올거야 거대 거미를 처치해줘!!", 3000));
+					broadcastMessage(TheSidPacket.TheSidMessage("Watch out for the spider!", 3000));
 				}
 			}, 3000);
 			EtcTimer tMan1 = EtcTimer.getInstance();
@@ -3503,7 +3460,7 @@ public class MapleMap {
 				@Override
 				public void run() {
 					broadcastMessage(MainPacketCreator.showEffect("defense/count"));
-					broadcastMessage(TheSidPacket.TheSidMessage("간부중 하나인 양철 나무꾼이 나올거야 양철 나무꾼을 처치해줘!!", 3000));
+					broadcastMessage(TheSidPacket.TheSidMessage("One of the officiers, the Scarecrow is coming out!", 3000));
 				}
 			}, 2000);
 			EtcTimer tMan1 = EtcTimer.getInstance();
@@ -3521,7 +3478,7 @@ public class MapleMap {
 				@Override
 				public void run() {
 					broadcastMessage(MainPacketCreator.showEffect("defense/count"));
-					broadcastMessage(TheSidPacket.TheSidMessage("간부중 하나인 겁에 질린 사자가 나올거야 겁에 질린 사자를 처치해줘!!", 3000));
+					broadcastMessage(TheSidPacket.TheSidMessage("Another officier, the lion will hunt you!", 3000));
 				}
 			}, 2000);
 			EtcTimer tMan1 = EtcTimer.getInstance();
@@ -3539,7 +3496,7 @@ public class MapleMap {
 				@Override
 				public void run() {
 					broadcastMessage(MainPacketCreator.showEffect("defense/count"));
-					broadcastMessage(TheSidPacket.TheSidMessage("간부중 하나인 허수아비가 나올거야 허수아비를 처치해줘!!", 3000));
+					broadcastMessage(TheSidPacket.TheSidMessage("One of the officiers, the Scarecrow is coming out!", 3000));
 				}
 			}, 2000);
 			EtcTimer tMan1 = EtcTimer.getInstance();
@@ -3557,7 +3514,7 @@ public class MapleMap {
 				@Override
 				public void run() {
 					broadcastMessage(MainPacketCreator.showEffect("defense/count"));
-					broadcastMessage(TheSidPacket.TheSidMessage("마지막 간부인 도로시가 나올꺼야 단단히 준비해둬!!", 3000));
+					broadcastMessage(TheSidPacket.TheSidMessage("The final boss, Dorothy will come out!", 3000));
 				}
 			}, 2000);
 			EtcTimer tMan1 = EtcTimer.getInstance();
@@ -3586,19 +3543,19 @@ public class MapleMap {
 	public void TheSidMain(MapleMonster monster) {
 		if (monster.getId() == 9309205) {
 			broadcastMessage(MainPacketCreator.showEffect("Gstar/clearS"));
-			broadcastMessage(TheSidPacket.TheSidMessage("양철 나무꾼을 처치하다니 대단해!!", 3000));
+			broadcastMessage(TheSidPacket.TheSidMessage("It is great to kill the Scarecrow!", 3000));
 			this.spawnNpc(2540005, new Point(-461, 108));
 		} else if (monster.getId() == 9309200) {
 			broadcastMessage(MainPacketCreator.showEffect("Gstar/clearS"));
-			broadcastMessage(TheSidPacket.TheSidMessage("겁에 질린 사자를 처치하다니 대단해!!", 3000));
+			broadcastMessage(TheSidPacket.TheSidMessage("It is great to terrify the Lion!", 3000));
 			spawnNpc(2540005, new Point(1273, 155));
 		} else if (monster.getId() == 9309203) {
 			broadcastMessage(MainPacketCreator.showEffect("Gstar/clearS"));
-			broadcastMessage(TheSidPacket.TheSidMessage("허수아비를 처치하다니 대단해!!", 3000));
+			broadcastMessage(TheSidPacket.TheSidMessage("It's great to have a ScareCrow!", 3000));
 			spawnNpc(2540005, new Point(1273, 155));
 		} else if (monster.getId() == 9309207) {
 			broadcastMessage(MainPacketCreator.showEffect("Gstar/clearS"));
-			broadcastMessage(TheSidPacket.TheSidMessage("더 시드를 구한걸 정말 축하해!!", 3000));
+			broadcastMessage(TheSidPacket.TheSidMessage("Congratulations on saving the Seed!", 3000));
 			spawnNpc(2540005, new Point(77, 185));
 		} else if (!newthesid[0]) {
 			슬라임카운트++;
@@ -3609,7 +3566,7 @@ public class MapleMap {
 					spawnMonsterOnGroundBelow(mob, new Point(333, 155));
 				}
 			} else if (슬라임카운트 == 300) {
-				broadcastMessage(TheSidPacket.TheSidMessage("잠시뒤에 또다른 몬스터가 나올거야!! 긴장을 늦추지 말아줘!", 3000));
+				broadcastMessage(TheSidPacket.TheSidMessage("After a while another monster will come out! Do not be too nervous!", 3000));
 				broadcastMessage(MainPacketCreator.showEffect("Gstar/clearS"));
 				newthesid[0] = true;
 				startTheSid(2);
@@ -3624,7 +3581,7 @@ public class MapleMap {
 					spawnMonsterOnGroundBelow(mob, new Point(333, 155));
 				}
 			} else if (거북이카운트 == 510) {
-				broadcastMessage(TheSidPacket.TheSidMessage("잠시뒤에 또다른 몬스터가 나올거야!! 긴장을 늦추지 말아줘!", 3000));
+				broadcastMessage(TheSidPacket.TheSidMessage("After a while another monster will come out! Do not relax too much!", 3000));
 				broadcastMessage(MainPacketCreator.showEffect("Gstar/clearS"));
 				newthesid[1] = true;
 				startTheSid(3);
@@ -3640,7 +3597,7 @@ public class MapleMap {
 			}
 		} else if (!newthesid[3]) {
 			broadcastMessage(MainPacketCreator.showEffect("Gstar/clearS"));
-			broadcastMessage(TheSidPacket.TheSidMessage("거대 거미를 처치하다니 대단해!!", 3000));
+			broadcastMessage(TheSidPacket.TheSidMessage("It is great to kill a Giant Spider!", 3000));
 			this.spawnNpc(2540005, new Point(333, 155));
 			newthesid[3] = true;
 		}
@@ -3664,7 +3621,7 @@ public class MapleMap {
 				partymem.TheSidClear(50, 12345, 100);
 				partymem.gainExp(900000, true, true, true);
 			}
-			partymem.send(UIPacket.getItemTopMsg(2431694, " 클리어 보상으로 10주년 선물상자 200개가 지급 되었습니다."));
+			partymem.send(UIPacket.getItemTopMsg(2431694, " You have cleared the Tower of Oz and received 200 10th anniversary gift boxes."));
 			partymem.gainItem(2431694, (short) 200, false, -1, "더 시드");
 		}
 	}
@@ -4284,13 +4241,13 @@ public class MapleMap {
 						if (npc != null) {
 							addMapObject(npc);
 						} else {
-							System.err.println("[오류] 엔피시 데이터를 만드는중 널 포인터 오류가 발생했습니다.");
+							System.err.println("[Error] A null pointer error occurred while creating NPC data.");
 						}
 					}
 				}
 			}
 		} catch (Exception e) {
-			System.err.println("[오류] 엔피시를 DB로부터 불러오는데 오류가 발생했습니다.");
+			System.err.println("[Error] There was an error fetching NPC from DB.");
 			if (!ServerConstants.realese)
 				e.printStackTrace();
 		}
@@ -4314,9 +4271,9 @@ public class MapleMap {
 	public void 베타구출(final MapleCharacter chr, final int a) {
 		if (베타구출C[0] == 0) {
 			broadcastMessage(
-					MainPacketCreator.getNPCTalk(3000131, (byte) 0, "겁도없이 이곳에 오다니 각오하는게 좋을거다!!", "00 00", (byte) 0));
+					MainPacketCreator.getNPCTalk(3000131, (byte) 0, "You should be prepared to come here without fear!", "00 00", (byte) 0));
 		} else if (베타구출C[0] == 11 && 베타구출C[1] == 11) {
-			broadcastMessage(MainPacketCreator.getNPCTalk(3000131, (byte) 0, "녀석 재법이군, 미완성이긴 하지만 과연 이녀석도 막을 수 있을까!!",
+			broadcastMessage(MainPacketCreator.getNPCTalk(3000131, (byte) 0, "He is a reassembly, unfinished, but I wonder if he can stop this guy!!",
 					"00 00", (byte) 0));
 		}
 		{
@@ -4334,7 +4291,7 @@ public class MapleMap {
 			tMan.schedule(new Runnable() {
 				@Override
 				public void run() {
-					broadcastMessage(TheSidPacket.TopMessage("어두운 기운과 함께 강력한 몬스터가 출현합니다.", 138, 3000));
+					broadcastMessage(TheSidPacket.TopMessage("Powerful monsters appear with dark energy.", 138, 3000));
 					broadcastMessage(MainPacketCreator.playSound("Field.img/eliteMonster/Regen"));
 					if (베타구출C[0] == 0 && 베타구출C[1] == 0) {
 						베타구출C[0] = 1;
@@ -4414,7 +4371,7 @@ public class MapleMap {
 		}
 		final int monsterid = mobid;
 		if (보스레이드 == 0)
-			broadcastMessage(UIPacket.detailShowInfo("보스레이드 인스텐스에 입장하신걸 환영합니다.", false));
+			broadcastMessage(UIPacket.detailShowInfo("Welcome to the Boss Raid instance.", false));
 		보스레이드++;
 		{
 			EtcTimer tMan = EtcTimer.getInstance();
@@ -4433,7 +4390,7 @@ public class MapleMap {
 				public void run() {
 					MapleMonster mob = MapleLifeProvider.getMonster(monsterid);
 					spawnMonsterOnGroundBelow(mob, new Point(보스레이드좌표[0], 보스레이드좌표[1]));
-					broadcastMessage(UIPacket.detailShowInfo(보스레이드 + "단계 보스몬스터가 소환 되었습니다.", false));
+					broadcastMessage(UIPacket.detailShowInfo(보스레이드 + "Boss monster Summoned.", false));
 					broadcastMessage(MainPacketCreator.showEffect("defense/wave/" + 보스레이드));
 				}
 			}, stime);
