@@ -78,7 +78,7 @@ public class MapleShop {
 
     public void sendShop(MapleClient c) {
         if (items == null) {
-            System.out.println("[알림] 상점에 아무정보가 없습니다.");
+            System.out.println("[Reminder] There are no items in this shop.");
             return;
         }
 	c.getPlayer().setShop(this);
@@ -106,7 +106,7 @@ public class MapleShop {
                     c.getPlayer().getRebuyList().remove(index);
                     c.getSession().write(MainPacketCreator.confirmShopTransaction((byte) 0, index));
                 } else {
-                    c.getPlayer().dropMessage(1, "인벤토리가 꽉 찼습니다.");
+                    c.getPlayer().dropMessage(1, "Inventory is full.");
                     c.getSession().write(MainPacketCreator.confirmShopTransaction((byte) 0, -1));
                 }
             } else {
@@ -132,7 +132,7 @@ public class MapleShop {
 			}
 		    }
 		} else {
-		    c.getPlayer().dropMessage(1, "인벤토리가 부족합니다.");
+		    c.getPlayer().dropMessage(1, "Not enough space in your inventory.");
 		}
 		c.getSession().write(MainPacketCreator.confirmShopTransaction((byte) 0, -1));
 	    }
@@ -153,7 +153,7 @@ public class MapleShop {
 			}
 		    }
 		} else {
-		    c.getPlayer().dropMessage(1, "인벤토리가 부족합니다.");
+		    c.getPlayer().dropMessage(1, "Not enough space in your inventory.");
 		}
 		c.getSession().write(MainPacketCreator.confirmShopTransaction((byte) 0, -1));
 	    }

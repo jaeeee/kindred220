@@ -36,11 +36,11 @@ public class MapleMapScriptMethods {
 
     private static final Point witchTowerPos = new Point(-60, 184);
     private static final String[] mulungEffects = {
-        "무릉도장에 도전한 것을 후회하게 해주겠다! 어서 들어와봐!",
-        "기다리고 있었다! 용기가 남았다면 들어와 보시지!",
-        "배짱 하나는 두둑하군! 현명함과 무모함을 혼동하지말라고!",
-        "무릉도장에 도전하다니 용기가 가상하군!",
-        "패배의 길을 걷고싶다면 들어오라고!"};
+        "Let me make you regret entering the Mu Lung Dojo! Come on in!",
+        "I was waiting! If you have the courage, come in!",
+        "Don not confus smartness and recklessness!",
+        "The courage to Challenge the Mu Lung Dojo!",
+        "If you want to walk the Road of defeat, come on in!"};
 
     private static enum onFirstUserEnter {
 
@@ -103,7 +103,7 @@ public class MapleMapScriptMethods {
                 break;
             }
             case banban_Summon: {
-                c.getPlayer().getMap().startMapEffect("차원의 틈에서 반반을 소환하자.", 5120025, 5000);
+                c.getPlayer().getMap().startMapEffect("Summon half of the gaps in a dimension.", 5120025, 5000);
                 break;
             }
             default: {
@@ -125,11 +125,11 @@ public class MapleMapScriptMethods {
                 break;
             }
             case cygnus_Summon: {
-                c.getPlayer().getMap().startMapEffect("이곳을 찾아 온 사람을 보는 것은 정말 오랜만이예요. 하지만 무사히 돌아간 분도 없었답니다.", 5120043);
+                c.getPlayer().getMap().startMapEffect("It's been a long time since I've seen people come here. And none went back safely...", 5120043);
                 break;
             }
             case mPark_stageEff: {
-                c.getPlayer().send(UIPacket.showInfo("몬스터를 모두 잡아야 다음 스테이지로 이동할 수 있습니다."));
+                c.getPlayer().send(UIPacket.showInfo("You must defeat all the monsters before you can move to the next map."));
                 switch ((c.getPlayer().getMapId() % 1000) / 100) {
                     case 0:
                     case 1:
@@ -146,7 +146,7 @@ public class MapleMapScriptMethods {
                 break;
             }
             case aswan_stageEff: {
-                c.getPlayer().send(UIPacket.showInfo("필드 내의 모든 몬스터를 제거해야 다음 스테이지로 이동하실 수 있습니다."));
+                c.getPlayer().send(UIPacket.showInfo("You must defeat all the monsters before you can move to the next map."));
                 switch ((c.getPlayer().getMapId() % 1000) / 100) {
                     case 1:
                     case 2:
@@ -166,7 +166,7 @@ public class MapleMapScriptMethods {
                 break;
             }
             case starforce_enter: {
-                c.getPlayer().getMap().startMapEffect(c.getPlayer().getMap().getBarrier() + " 이상의 스타포스가 필요한 지역입니다.", 5120024);
+                c.getPlayer().getMap().startMapEffect(c.getPlayer().getMap().getBarrier() + " Need more Starforce.", 5120024);
                 break;
             }
             default: {

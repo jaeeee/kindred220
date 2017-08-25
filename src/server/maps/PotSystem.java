@@ -82,16 +82,16 @@ public class PotSystem {
                 if (newExp >= needExp) {
                     SaveToDB(guildid);
                     if (level !=4) {
-                    chr.dropMessage(6,react.getName() + "의 나무 : 오홍 진화!!");
+                    chr.dropMessage(6,react.getName() + "Tree: My level is not high enough!!");
                     return true;
                     } else {
                         react.setState((byte) 1);
-                        chr.dropMessage(6,react.getName() + "의 나무 : 이제 저를 수확하실 수 있어요.");
+                        chr.dropMessage(6,react.getName() + "Tree: Now my level is high enough.");
                     return false;
                     }
                 }
 
-                chr.dropMessage(6,react.getName() + "의 나무 : 후루루룹 물을 먹읍시다 " + newExp + "/" + needExp);
+                chr.dropMessage(6,react.getName() + "Tree: Give me more water! " + newExp + "/" + needExp);
             }
             return false;
             }

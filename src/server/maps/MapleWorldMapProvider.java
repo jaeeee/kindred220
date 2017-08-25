@@ -196,11 +196,11 @@ public class MapleWorldMapProvider {
                         if (mob != null) {
                             map.addMonsterSpawn(mob, rs.getInt("mobTime"), null);
                         } else {
-                            System.err.println("[오류] 엔피시 데이터를 만드는중 널 포인터 오류가 발생했습니다.");
+                            System.err.println("[Error] A Null Pointer Error appeared wihle creating monster data.");
                         }
                     }
                 } catch (Exception e) {
-                    System.err.println("[오류] 엔피시를 DB로부터 불러오는데 오류가 발생했습니다.");
+                    System.err.println("[Error] There was an error in fetching monster data from the DB.");
                     if (!ServerConstants.realese) {
                         e.printStackTrace();
                     }
@@ -218,13 +218,13 @@ public class MapleWorldMapProvider {
                             if (pnpc != null) {
                                 map.addMapObject(pnpc);
                             } else {
-                                System.err.println("[오류] 플레이어 엔피시 데이터를 만드는중 널 포인터 오류가 발생했습니다.");
+                                System.err.println("[Error] A Null Pointer Error occured while creating player npc data.");
                             }
 //                     System.out.println("ID " + rs.getInt("id") + "Something Added..");
                         }
 
                     } catch (Exception e) {
-                        System.err.println("[오류] 플레이어 엔피시를 DB로부터 불러오는데 오류가 발생했습니다.");
+                        System.err.println("[Error] There was an error in fetching player npc data from the DB.");
                         if (!ServerConstants.realese) {
                             e.printStackTrace();
                         }
@@ -246,11 +246,11 @@ public class MapleWorldMapProvider {
                             if (npc != null) {
                                 map.addMapObject(npc);
                             } else {
-                                System.err.println("[오류] 엔피시 데이터를 만드는중 널 포인터 오류가 발생했습니다.");
+                                System.err.println("[Error] There was an error creating NPC data.");
                             }
                         }
                     } catch (Exception e) {
-                        System.err.println("[오류] 엔피시를 DB로부터 불러오는데 오류가 발생했습니다.");
+                        System.err.println("[Error] There was an error fetching NPC data from the DB.");
                         if (!ServerConstants.realese) {
                             e.printStackTrace();
                         }
@@ -280,7 +280,7 @@ public class MapleWorldMapProvider {
                         }
                     }
                 } catch (Exception e) {
-                    System.err.println("[오류] 길드화분을 DB로부터 불러오는데 오류가 발생했습니다.");
+                    System.err.println("[Error] There was an error loading the guild from the DB.");
                     if (!ServerConstants.realese) {
                         e.printStackTrace();
                     }
@@ -317,7 +317,7 @@ public class MapleWorldMapProvider {
                             map.spawnReactor(myReactor);
                         }
                     } catch (Exception e) {
-                        System.err.println("[오류] 광맥을 DB로부터 불러오는데 오류가 발생했습니다.");
+                        System.err.println("[Error] There was an error fetching the vein from the DB.");
                         if (!ServerConstants.realese) {
                             e.printStackTrace();
                         }
@@ -334,7 +334,7 @@ public class MapleWorldMapProvider {
                     ps.close();
                     rs.close();
                 } catch (Exception e) {
-                    System.err.println("[오류] 보스맵 쿨타임을 적용시키는데 실패했습니다.");
+                    System.err.println("[Error] Failed to apply boss map cooldown.");
                     if (!ServerConstants.realese) {
                         e.printStackTrace();
                     }

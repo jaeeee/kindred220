@@ -780,35 +780,35 @@ public class MapleMap {
         }
         final int mobid = monster.getId();
 
-        if (mobid == 8810018) {
+        if (mobid == 8810018) { //Horntail
             chr.setExpeditionKilledBoss(true);
-            WorldBroadcasting.broadcastMessage(MainPacketCreator.serverNotice(6, "수많은 도전 끝에 혼테일을 격파한 원정대여! 그대들이 진정한 리프레의 영웅이다!").getBytes());
-        } else if (mobid == 8810122) { // Horntail
+            WorldBroadcasting.broadcastMessage(MainPacketCreator.serverNotice(6, "Congratulate the expedition that defeated Horntail in the end of many challenges! You are a true refreshing heroes!").getBytes());
+        } else if (mobid == 8810122) { //Chaos Horntail
             chr.setExpeditionKilledBoss(true);
-            WorldBroadcasting.broadcastMessage(MainPacketCreator.serverNotice(6, "수많은 도전 끝에 카오스 혼테일을 격파한 원정대여! 그대들이 진정한 리프레의 영웅이다!").getBytes());
-        } else if (mobid == 8820001) {
+            WorldBroadcasting.broadcastMessage(MainPacketCreator.serverNotice(6, "Congratulate the expedition that defeated Chaos Horntail in the end of many challenges! You are a true refreshing heroes!").getBytes());
+        } else if (mobid == 8820001) { //Pink Bean
             chr.setExpeditionKilledBoss(true);
-            WorldBroadcasting.broadcastMessage(MainPacketCreator.serverNotice(6, "지치지 않는 열정으로 핑크빈을 물리친 원정대여! 그대들이 진정한 시간의 승리자다!").getBytes());
-        } else if (mobid == 8820101) {
+            WorldBroadcasting.broadcastMessage(MainPacketCreator.serverNotice(6, "Congratulate the expedition that defeated Pink Bean with tireless passion! You are the true victors of time!").getBytes());
+        } else if (mobid == 8820101) {//Chaos Pink Bean
             chr.setExpeditionKilledBoss(true);
-            WorldBroadcasting.broadcastMessage(MainPacketCreator.serverNotice(6, "지치지 않는 열정으로 카오스 핑크빈을 물리친 원정대여! 그대들이 진정한 시간의 승리자다!").getBytes());
+            WorldBroadcasting.broadcastMessage(MainPacketCreator.serverNotice(6, "Congratulate the expedition that defeated Chaos Pink Bean with tireless passion! You are the true victors of time!").getBytes());
         } else if (mobid == 8850011) {
             chr.setExpeditionKilledBoss(true);
-            WorldBroadcasting.broadcastMessage(MainPacketCreator.serverNotice(6, "미래에서 여제 시그너스를 물리친 원정대여! 그대들이 진정한 시간의 승리자다!").getBytes());
-        } if (mobid >= 8240000 && mobid <= 8249999) {
+            WorldBroadcasting.broadcastMessage(MainPacketCreator.serverNotice(6, "Congratulate the expedition that defeated the Empress Cygnus in the future! You are the true victors of time.!").getBytes());
+        } if (mobid >= 8240000 && mobid <= 8249999) { //blackhaven mobs
             for (MapleCharacter pchr : chr.getClient().getChannelServer().getPartyMembers(chr.getParty())) {
-        if (mobid == 8240097) {
+        if (mobid == 8240097) { //black heaven core
                 pchr.warp(pchr.getMapId() + 20);
                 //spawnMonsterOnGroundBelow(MapleLifeProvider.getMonster(8240098), new Point(-150, -16));
-        } else if (mobid == 8240098) {
+        } else if (mobid == 8240098) { // Lotus
                 pchr.warp(pchr.getMapId() + 20);
                // spawnMonsterOnGroundBelow(MapleLifeProvider.getMonster(8240099), new Point(0, -16));
         } else if (mobid == 8240099) {
             killAllMonsters(true);
-            WorldBroadcasting.broadcastMessage(MainPacketCreator.serverNotice(2, "[오르카의 메시지] : 겔리메르 녀석 가만두지 않겟어!").getBytes());
+            WorldBroadcasting.broadcastMessage(MainPacketCreator.serverNotice(2, "[Orca's message] : He won't let go of Gelimer!").getBytes());
         }
         }
-        } else if (mobid >= 8800003 && mobid <= 8800010) {
+        } else if (mobid >= 8800003 && mobid <= 8800010) { //zakum parts
             boolean makeZakReal = true;
             for (final MapleMapObject mons : getAllMonster()) {
                 MapleMonster mob = (MapleMonster) mons;
@@ -828,7 +828,7 @@ public class MapleMap {
                     }
                 }
             }
-        } else if (mobid >= 8800103 && mobid <= 8800110) {
+        } else if (mobid >= 8800103 && mobid <= 8800110) { //chaos zak
             boolean makeZakReal = true;
             for (final MapleMapObject mons : getAllMonster()) {
                 MapleMonster mob = (MapleMonster) mons;
@@ -885,13 +885,13 @@ public class MapleMap {
         } else if (mobid == 8850004) {
             spawnMonsterOnGroundBelow(MapleLifeProvider.getMonster(8850012), new Point(-363, 100));
         }
-        if (mobid == 8800002) { //자쿰
+        if (mobid == 8800002) { //zakum
             chr.setExpeditionKilledBoss(true);
         }
-        if (mobid == 8800102) { //카오스자쿰
+        if (mobid == 8800102) { //Chaos Zakum
             chr.setExpeditionKilledBoss(true);
         }
-        if (mobid == 8840000) { //반레온
+        if (mobid == 8840000) { //Von Leon
             chr.setExpeditionKilledBoss(true);
         } 
         switch(mapid) {
@@ -928,18 +928,18 @@ public class MapleMap {
             카오스혼테일 ++;
         }
         
-        if (monster.getId() == 8910001 || monster.getId() == 8900102 || monster.getId() == 8920103 || monster.getId() == 8930100) {
+        if (monster.getId() == 8910001 || monster.getId() == 8900102 || monster.getId() == 8920103 || monster.getId() == 8930100) { // Root Abyss
             broadcastMessage(MainPacketCreator.showEffect("killing/clear"));
             broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
             int i = monster.getId() == 8930100 ? 7 + Randomizer.nextInt(13) : monster.getId() == 8920103 ? 5 + Randomizer.nextInt(4) : monster.getId() == 8900102 ? 3 + Randomizer.nextInt(4) : 6 + Randomizer.nextInt(9);
             for (final MapleCharacter partymem : chr.getClient().getChannelServer().getPartyMembers(chr.getParty())) {
                partymem.gainSpirit(4310064, i);
            }        
-            broadcastMessage(UIPacket.getItemTopMsg(4310064, "이그드라실 룬의 돌을 " + i + "개 획득 하셨습니다."));
+            broadcastMessage(UIPacket.getItemTopMsg(4310064, "You received " + i + "an Yggdrasil rune."));
         }
         
         if (미스틱혼테일 == 8) {
-            MapleMonster mob1 = MapleLifeProvider.getMonster(9300588);
+            MapleMonster mob1 = MapleLifeProvider.getMonster(9300588); //mystic horntail soul
             spawnMonsterOnGroundBelow(mob1, monster.getPosition());
             int itemid = 4033303;
 	    this.killMonster(4033303);
@@ -947,14 +947,14 @@ public class MapleMap {
             broadcastMessage(MainPacketCreator.showEffect("killing/clear"));
             broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
             broadcastMessage(UIPacket.showInfo("문 박사 : 마지막 타격은 <" + chr.getName() + "> 님이 하셨습니다."));
-            chr.dropShowInfo("문 박사 : 마지막 타격 보너스로  3 미스틱 포인트 를 획득 하셨습니다.");
-            chr.Message(5,"문 박사 : 마지막 타격 보너스로  3 미스틱 포인트 를 획득 하셨습니다.");
+            chr.dropShowInfo("Dr.Moon: You have won 3 Mystic Points as the last battle bonus.");
+            chr.Message(5,"Dr.Moon: You have won 3 Mystic Points as the last battle bonus.");
             chr.addMistic(8);
             for (final MapleCharacter partymem : chr.getClient().getChannelServer().getPartyMembers(chr.getParty())) {
                partymem.addMistic(5);
                partymem.gainSpirit(itemid, 1);
-               partymem.dropShowInfo("문 박사 : 5 미스틱 포인트를 획득 하셨습니다.");
-               partymem.getClient().getSession().write(MainPacketCreator.getNPCTalk(9073025, (byte) 0, "보스를 훌륭히 처치해 주셨군요\r\n보스에게서 나온 전리품 #i" + itemid + "##z" + itemid + "##k을(를) 지급해 드렸습니다.", "00 00", (byte) 0));
+               partymem.dropShowInfo("Dr. Moon: You have won 5 Mystic Points.");
+               partymem.getClient().getSession().write(MainPacketCreator.getNPCTalk(9073025, (byte) 0, "You have done a good job with the boss \r\n보스에게서 나온 전리품 #i" + itemid + "##z" + itemid + "##k을(를) 지급해 드렸습니다.", "00 00", (byte) 0));
            }
         }
         
@@ -989,14 +989,14 @@ public class MapleMap {
                   broadcastMessage(MainPacketCreator.showEffect("killing/clear"));
                   broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
                   broadcastMessage(UIPacket.showInfo("문 박사 : 마지막 타격은 <" + chr.getName() + "> 님이 하셨습니다."));
-                  chr.dropShowInfo("문 박사 : 마지막 타격 보너스로  3 미스틱 포인트 를 획득 하셨습니다.");
-                  chr.Message(5,"문 박사 : 마지막 타격 보너스로  3 미스틱 포인트 를 획득 하셨습니다.");
+                  chr.dropShowInfo("Dr.Moon: You have won 3 Mystic Points as the last battle bonus.");
+                  chr.Message(5,"Dr.Moon: You have won 3 Mystic Points as the last battle bonus.");
                   chr.addMistic(8);
               for (final MapleCharacter partymem : chr.getClient().getChannelServer().getPartyMembers(chr.getParty())) {
                  partymem.addMistic(5);
                  partymem.gainSpirit(itemid, 1);
-                 partymem.dropShowInfo("문 박사 : 5 미스틱 포인트를 획득 하셨습니다.");
-                 partymem.getClient().getSession().write(MainPacketCreator.getNPCTalk(9073025, (byte) 0, "보스를 훌륭히 처치해 주셨군요\r\n보스에게서 나온 전리품 #i" + itemid + "##z" + itemid + "##k을(를) 지급해 드렸습니다.", "00 00", (byte) 0));
+                 partymem.dropShowInfo("Dr. Moon: You have won 5 Mystic Points.");
+                 partymem.getClient().getSession().write(MainPacketCreator.getNPCTalk(9073025, (byte) 0, "You have done a good job with the boss \r\n보스에게서 나온 전리품 #i" + itemid + "##z" + itemid + "##k을(를) 지급해 드렸습니다.", "00 00", (byte) 0));
                }
        }
     }
@@ -1020,14 +1020,14 @@ public class MapleMap {
                 베타구출 = true;
                 broadcastMessage(MainPacketCreator.showEffect("monsterPark/clear"));
                 broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
-                broadcastMessage(MainPacketCreator.getNPCTalk(10201, (byte) 0, "이걸로 모두 처치한건가, 빨리 베타의 상태를 확인 해봐야겠어", "00 00", (byte) 2));
+                broadcastMessage(MainPacketCreator.getNPCTalk(10201, (byte) 0, "I have got it all done, I need to check the status of Beta soon.", "00 00", (byte) 2));
             }
         }
         
         if (보스레이드 > 0 && !monster.isFake() && monster.getStats().isRealBoss() && monster.getId() != 8500001 && monster.getId() != 8800000 && monster.getId() != 8800001 && monster.getId() != 8800100 && monster.getId() != 8800101) {
                 if (보스레이드 >= 4) {
                     broadcastMessage(MainPacketCreator.getClock(5));
-                    broadcastMessage(UIPacket.detailShowInfo("보스레이드 클리어를 축하드립니다. 잠시후 마을로 이동됩니다.", false));
+                    broadcastMessage(UIPacket.detailShowInfo("Congratulations on the Boss Raid Clear, I will move you to town in a short while.", false));
                     broadcastMessage(MainPacketCreator.showEffect("monsterPark/clear"));
                     broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
                       {
@@ -1044,7 +1044,7 @@ public class MapleMap {
                           }, 5000);
                       }
             } else {
-                broadcastMessage(UIPacket.detailShowInfo("잠시후 보스몬스터가 등장합니다. 준비해 주십시오", false));
+                broadcastMessage(UIPacket.detailShowInfo("The Boss monster will appear in a little while, please prepare", false));
                 broadcastMessage(MainPacketCreator.showEffect("monsterPark/clear"));
                 broadcastMessage(MainPacketCreator.playSound("Party1/Clear"));
                 보스레이드(0,4000,7000);
@@ -1072,9 +1072,9 @@ public class MapleMap {
         } else if (!this.isEliteBossMap() && monster.isEliteMonster()) {
             SetEliteMobCount(this.EliteMobCount + 1);
             if (1 <= EliteMobCount() && EliteMobCount() <= 14) {
-                broadcastMessage(MainPacketCreator.startMapEffect("어두운 기운이 사라지지 않아 이곳을 음산하게 만들고 있습니다.", 5120124, true));
+                broadcastMessage(MainPacketCreator.startMapEffect("The dark energy does not disappear, making this place sad.", 5120124, true));
             } else if (15 <= EliteMobCount() && EliteMobCount() <= 20) {
-                broadcastMessage(MainPacketCreator.startMapEffect("이곳이 어두운 기운으로 가득차 곧 무슨 일이 일어날 듯 합니다.", 5120124, true));
+                broadcastMessage(MainPacketCreator.startMapEffect("The place is filled with dark energy, something seems to happen soon.", 5120124, true));
             }
             monster.setEliteMonster(false);
             timeAllPlayer(this);
@@ -1083,7 +1083,7 @@ public class MapleMap {
             CancelEliteBossAlarm(this, chr);
             setEliteBossRewardMap(true);
             broadcastMessage(UIPacket.showSpecialMapEffect(3, 0, "Bgm36.img/HappyTimeShort", "Map/Map/Map9/924050000.img/back"));
-            final String msg1 = "착한 모험가들에게 선물을 주지! 내가 던지는 아이템을 잘 받아 봐!";
+            final String msg1 = "I give great gifts to adventurers, take care of the items i throw!";
             tools.Timer.ShowTimer.getInstance().schedule(new Runnable() {
                 @Override
                 public final void run() {
@@ -1178,7 +1178,7 @@ public class MapleMap {
             MapleMonster elite = makeEliteMonster(monster);
             spawnEliteMonster(elite);
             broadcastMessage(UIPacket.playSpecialMapSound("Field.img/eliteMonster/Regen"), chr.getPosition());
-            broadcastMessage(MainPacketCreator.startMapEffect("어두운 기운과 함께 강력한 몬스터가 출현합니다.", 5120124, true));
+            broadcastMessage(MainPacketCreator.startMapEffect("A powerful monster appears in the dark energy.", 5120124, true));
             timeAllPlayer(this);
         }
        if (this.EliteMobCommonCount == 200 && this.EliteMobCount >= 8) { //보스 소환
@@ -1192,11 +1192,11 @@ public class MapleMap {
             final int RandomI = Randomizer.rand(0, 4);
             final int BossID = 8220020 + RandomI + 2;
             final int EffectID = 5120120 + RandomI + 5;
-            final String EffectMsgs[] = {"검은 기사 모카딘 : 위대한 분을 위하여 너를 처단하겠다.",
-                "미친 마법사 카리아인 : 미천한 것들이 날뛰고 있구나. 크크크크...",
-                "돌격형 CQ57 : 목표발견. 제거 행동을 시작한다.",
-                "인간사냥꾼 줄라이 : 사냥감이 나타났군.",
-                "싸움꾼 플레드 : 재미 있겠군. 어디 한 번 놀아볼까.",};
+            final String EffectMsgs[] = {"Black Knight: I will punish you!",
+                "Crazy Wizard: there are mad things going on, kekeke...",
+                "Assault type CQ57: Target discovery. Initiate the removal action.",
+                "Human Hunter: This looks like a fun game.",
+                "Ferocious Fighter: This Looks fun, let us get the fight started!",};
             final MapleMonster boss = makeEliteBoss(monster, MapleLifeProvider.getMonster(BossID));
             final MapleMonster elite1 = makeEliteMonster(monster);
             final MapleMonster elite2 = makeEliteMonster(monster);
@@ -1247,7 +1247,7 @@ public class MapleMap {
         final OverrideMonsterStats ostats = new OverrideMonsterStats();
         eliteboss.setEliteBoss(true);
         eliteboss.setEliteType(Randomizer.rand(0x64, 0x88));
-        ostats.setOHp(sourcemob.getMobMaxHp() * 75); //필드몹의 75배
+        ostats.setOHp(sourcemob.getMobMaxHp() * 75); //75 times the field mob hp
         ostats.setOMp(sourcemob.getMobMaxMp());
         ostats.setOPad(0);
         ostats.setOPhysicalDefense(sourcemob.getStats().getPhysicalDefense());
@@ -1317,104 +1317,104 @@ public class MapleMap {
         itr = null;
     }
     
-    public void 크로스헌터(MapleMonster monster, MapleCharacter chr) {
+    public void 크로스헌터(MapleMonster monster, MapleCharacter chr) {//silent crusade
         if (monster.getId() == 9300477) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 제가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than i thought", "00 00", (byte) 0));
             chr.setKeyValue("chapter", "m0=2");
             chr.setKeyValue("cross", "2");
             chr.send(MainPacketCreator.updateInfoQuest(0x670, chr.getKeyValue("chapter")));
         } else if (monster.getId() == 9300878) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 제가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter", "m0=2;m1=2");
             chr.setKeyValue("cross", "3");
             chr.send(MainPacketCreator.updateInfoQuest(0x670, chr.getKeyValue("chapter")));            
         } else if (monster.getId() == 9300879) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 제가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter", "m0=2;m1=2;m2=2");
             chr.setKeyValue("cross", "4");
             chr.send(MainPacketCreator.updateInfoQuest(0x670, chr.getKeyValue("chapter")));                
         } else if (monster.getId() == 9801015) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter", "m0=2;m1=2;m2=2;m3=2");
             chr.setKeyValue("cross", "5");
             chr.send(MainPacketCreator.updateInfoQuest(0x670, chr.getKeyValue("chapter")));              
         } else if (monster.getId() == 9300510) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter", "m0=2;m1=2;m2=2;m3=2;m4=2");
             chr.setKeyValue("cross", "6");
             chr.send(MainPacketCreator.updateInfoQuest(0x670, chr.getKeyValue("chapter")));                          
         } else if (monster.getId() == 9300479) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter2", "m0=2");
             chr.setKeyValue("cross", "8");
             chr.send(MainPacketCreator.updateInfoQuest(0x671, chr.getKeyValue("chapter2")));              
         } else if (monster.getId() == 9300480) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter2", "m0=2;m1=2");
             chr.setKeyValue("cross", "9");
             chr.send(MainPacketCreator.updateInfoQuest(0x671, chr.getKeyValue("chapter2")));               
         } else if (monster.getId() == 9300511) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter2", "m0=2;m1=2;m2=2");
             chr.setKeyValue("cross", "10");
             chr.send(MainPacketCreator.updateInfoQuest(0x671, chr.getKeyValue("chapter2")));                  
         } else if (monster.getId() == 9300512) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter2", "m0=2;m1=2;m2=2;m3=2");
             chr.setKeyValue("cross", "11");
             chr.send(MainPacketCreator.updateInfoQuest(0x671, chr.getKeyValue("chapter2")));            
         } else if (monster.getId() == 9300482) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter2", "m0=2;m1=2;m2=2;m3=2;m4=2");
             chr.setKeyValue("cross", "12");
             chr.send(MainPacketCreator.updateInfoQuest(0x671, chr.getKeyValue("chapter2")));    
         } else if (monster.getId() == 9300475) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter3", "m0=2");
             chr.setKeyValue("cross", "14");
             chr.send(MainPacketCreator.updateInfoQuest(0x672, chr.getKeyValue("chapter3")));                
         } else if (monster.getId() == 9300514) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter3", "m0=2;m1=2");
             chr.setKeyValue("cross", "15");
             chr.send(MainPacketCreator.updateInfoQuest(0x672, chr.getKeyValue("chapter3")));              
         } else if (monster.getId() == 9300880) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter3", "m0=2;m1=2;m2=2");
             chr.setKeyValue("cross", "16");
             chr.send(MainPacketCreator.updateInfoQuest(0x672, chr.getKeyValue("chapter3")));             
         } else if (monster.getId() == 9300478) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter3", "m0=2;m1=2;m2=2;m3=2");
             chr.setKeyValue("cross", "17");
             chr.send(MainPacketCreator.updateInfoQuest(0x672, chr.getKeyValue("chapter3")));            
         } else if (monster.getId() == 9300513) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter3", "m0=2;m1=2;m2=2;m3=2;m4=2");
             chr.setKeyValue("cross", "18");
             chr.send(MainPacketCreator.updateInfoQuest(0x672, chr.getKeyValue("chapter3")));  
         } else if (monster.getId() == 9300515) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter4", "m0=2");
             chr.setKeyValue("cross", "20");
             chr.send(MainPacketCreator.updateInfoQuest(0x673, chr.getKeyValue("chapter4")));      
         } else if (monster.getId() == 9300516) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter4", "m0=2;m1=2");
             chr.setKeyValue("cross", "21");
             chr.send(MainPacketCreator.updateInfoQuest(0x673, chr.getKeyValue("chapter4"))); 
         } else if (monster.getId() == 9300517) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter4", "m0=2;m1=2;m2=2");
             chr.setKeyValue("cross", "22");
             chr.send(MainPacketCreator.updateInfoQuest(0x673, chr.getKeyValue("chapter4"))); 
         } else if (monster.getId() == 9300518) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter4", "m0=2;m1=2;m2=2;m3=2");
             chr.setKeyValue("cross", "23");
             chr.send(MainPacketCreator.updateInfoQuest(0x673, chr.getKeyValue("chapter4"))); 
         } else if (monster.getId() == 9300519) {
-            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "역시 #b" + chr.getName() + "#k님은 저가 생각 했던것보다 훨씬 강한 분이 셨군요", "00 00", (byte) 0));
+            chr.getClient().getSession().write(MainPacketCreator.getNPCTalk(2144004, (byte) 0, "Also #b" + chr.getName() + "#kYou were a lot stronger than I thought.", "00 00", (byte) 0));
             chr.setKeyValue("chapter4", "m0=2;m1=2;m2=2;m3=2;m4=2");
             chr.setKeyValue("cross", "24");
             chr.send(MainPacketCreator.updateInfoQuest(0x673, chr.getKeyValue("chapter4"))); 
@@ -2098,7 +2098,7 @@ public class MapleMap {
                 public void run() {
                     for (MapleMapObject mmo : getMapObjectsInRect(mist.getBox(), Collections.singletonList(MapleMapObjectType.PLAYER))) {
                         MapleCharacter chr = (MapleCharacter) mmo;
-                        //캡슐 존재여부 체크
+                        //Check capsule presence
                         for (final MapleMapObject mistoo : chr.getMap().getMapObjectsInRange(chr.getPosition(), Double.POSITIVE_INFINITY, Arrays.asList(MapleMapObjectType.MIST))) {
                             final MapleMist check = (MapleMist) mistoo;
                             if (mist.getOwner() == check.getOwner() && mist.isTimeCapsule()) {

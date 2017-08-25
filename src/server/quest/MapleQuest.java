@@ -50,7 +50,7 @@ public class MapleQuest {
     public static void cacheMapleQuest() {
         synchronized(questReady) {
             if (!questReady) {
-                System.out.println("[알림] 퀘스트 데이터 캐싱을 시작합니다.");
+                System.out.println("[Alert] Start Quest Data Caching.");
                long t = System.currentTimeMillis();
                 for (MapleData d : actions.getChildren()) {
                     MapleQuest ret = new MapleQuest();
@@ -58,7 +58,7 @@ public class MapleQuest {
                         quests.put(Integer.parseInt(d.getName()), ret);
                     }
                 }
-                 System.out.println("[알림] 퀘스트 데이터 캐싱이 완료되었습니다. 데이터 : " + quests.size() +" 소요시간 : "+(System.currentTimeMillis() - t)+"ms");
+                 System.out.println("[Opmerking] Quest data caching is completed. data : " + quests.size() +" Time Required : "+(System.currentTimeMillis() - t)+"ms");
                 questReady = Boolean.TRUE;
             }
         }
