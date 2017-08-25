@@ -277,12 +277,12 @@ public class MobSkill {
             case 173:
                 disease = DiseaseStats.TORNADO;
                 break;
-            case 184: //반반 강제위치이동 - 자쿰
+            case 184: //semi-forced displacement
                 disease = DiseaseStats.TELEPORT;
                 this.setX(player.getPosition().x);
                 this.setY(player.getPosition().y);
                 break;
-            case 191: //반반 타임워프 - 자쿰
+            case 191: //half-time warp
                 Point posFrom = monster.getPosition();
                 Point mylt = new Point(lt.x + posFrom.x, lt.y + posFrom.y);
                 Point myrb = new Point(rb.x + posFrom.x, rb.y + posFrom.y);
@@ -290,7 +290,7 @@ public class MobSkill {
                 MapleMist clock = new MapleMist(box, monster, this);
                 clock.setClockType(Randomizer.rand(1, 2));
                 monster.getMap().spawnClockMist(clock);
-                monster.getMap().broadcastMessage(UIPacket.showInfo("시간의 틈새에 '균열'이 발생하였습니다."));
+                monster.getMap().broadcastMessage(UIPacket.showInfo("There was a 'crack' in the gap of time."));
                 break;
             case 192: // dd
                 Point posFrom3 = monster.getPosition();
@@ -347,7 +347,7 @@ public class MobSkill {
                 }
             // Make Syon
             case 223: // dd
-                if (skillLevel == 5) { // 안아픈 운석 랜덤
+                if (skillLevel == 5) { // random meteor
                     int min_x = monster.getMap().getViewLeft();
                     int min_y = monster.getMap().getViewBottom();
                     int max_x = monster.getMap().getViewRight();

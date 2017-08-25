@@ -478,7 +478,7 @@ public class MapleMonster extends AbstractLoadedMapleLife {
 				if (map.getChannel() == channel) {
 					double randomB = Math.random() * getStats().getLevel() + 1; // channel
 					int finale = (int) randomB;
-					killer.send(UIPacket.detailShowInfo("[Bonus]: +" + finale + " Maple Points", false));
+					killer.send(UIPacket.detailShowInfo("[Bonus]: +" + finale + " Nexon Cash", false));
 					killer.modifyCSPoints(2, finale, false);
 					break;
 				}
@@ -918,7 +918,7 @@ public class MapleMonster extends AbstractLoadedMapleLife {
 			status.setPoisonSchedule(
 					BuffTimer.register(new PoisonTask(poisonDamage, from, status, cancelTask, false), 1000, 1000),
 					poisonDamage);
-		} else if ((poison) && (getHp() <= 1)) { // 모험가 개편 이후, HP 1 이하 몹은 얼도록
+		} else if ((poison) && (getHp() <= 1)) { // if mob hp is 1 or lower the mob will freeze instead of being poisoned
 													// 설정.
 			status.setValue(MonsterStatus.FREEZE, 1);
 		} else if (venom) {
@@ -941,7 +941,7 @@ public class MapleMonster extends AbstractLoadedMapleLife {
 			MonsterStatusEffect eff = new MonsterStatusEffect(p, status.getSkill(), status.getMobSkill(),
 					status.isMonsterSkill());
 			eff.setOwnerId(from.getId());
-			if ((poison && getHp() > 1) || venom) { // 모험가 개편 이후, HP 1 이하 몹은 얼도록
+			if ((poison && getHp() > 1) || venom) { // if the mob has higher hp than 1 the poison will tick
 													// 설정.
 				stati.put(MonsterStatus.POISON, eff);
 				map.broadcastMessage(MobPacket.applyPoison(getObjectId(), eff.getOwnerId(), status.getSkill().getId(),
@@ -1185,7 +1185,7 @@ public class MapleMonster extends AbstractLoadedMapleLife {
 						idrop = new Item(d.itemId, (byte) 0,
 								(short) (d.Maximum != 1 ? Randomizer.nextInt(d.Maximum - d.Minimum) + d.Minimum : 1),
 								(byte) 0);
-						idrop.setGMLog(chr.getName() + "가 스틸로 인한 아이템 훔치기로 얻은 아이템");
+						idrop.setGMLog(chr.getName() + "Item obtained by stealing");
 					}
 					stolen = d.itemId;
 					map.spawnMobDrop(idrop, map.calcDropPos(getPosition(), getPosition()), this, chr, (byte) 0,
@@ -1268,18 +1268,18 @@ public class MapleMonster extends AbstractLoadedMapleLife {
 		@Override
 		public void run() {
 			long damage = poisonDamage;
-			if (!shadowWeb && hp <= 1) { // 포이즌 미스트 개편, HP가 1 미만인 몹은 얼도록 설정.
+			if (!shadowWeb && hp <= 1) { // Poison Mist Reorganization, HP is set to free mobs less than 1 hp.
 				applyStatus(chr, new MonsterStatusEffect(Collections.singletonMap(MonsterStatus.FREEZE, 1),
 						SkillFactory.getSkill(2111003), null, false), false, (long) 8 * 1000, false);
 			}
-			if (damage >= hp) { // 데미지가 몹의 HP 보다 클 경우.
+			if (damage >= hp) { // Damage is greater than the HP of the mob.
 				damage = (long) (hp - 1);
 				if (!shadowWeb) {
 					cancelTask.run();
 					status.cancelTask();
 				}
 			}
-			if (hp > 1 && damage > 0) { // 몹의 HP가 1보다 클 때까지만 데미지.
+			if (hp > 1 && damage > 0) { // Damage only until mob HP is greater than 1.
 				damage(chr, damage, false);
 				if (shadowWeb) {
 					map.broadcastMessage(MobPacket.damageMonster(getObjectId(), damage), getPosition());

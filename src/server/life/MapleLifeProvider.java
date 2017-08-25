@@ -211,9 +211,9 @@ public class MapleLifeProvider {
 					hpdisplaytype = 1;
 				} else if (mid >= 9300184 && mid <= 9300215) { // Mulung TC mobs
 					hpdisplaytype = 2;
-				} else if (!stats.isBoss() || // 보스 아님
-						(mid >= 9800000 && mid <= 9800124) || // 몬스터파크
-						(mid >= 9302044 && mid <= 9302048)) { // 아스완
+				} else if (!stats.isBoss() || // not a boss
+						(mid >= 9800000 && mid <= 9800124) || // Monster Park
+						(mid >= 9302044 && mid <= 9302048)) { // Azwan
 					hpdisplaytype = 3;
 				}
 			}
