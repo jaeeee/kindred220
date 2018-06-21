@@ -9,7 +9,7 @@ public class KindredConstants {
 	 * properties file.
 	 */
 
-	public static boolean USING_SETTINGS = true; // using Settings.properties file
+	public static boolean USING_SETTINGS = false; // using Settings.properties file
 
 	public static int EXP_RATE = 5;
 

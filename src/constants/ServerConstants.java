@@ -33,7 +33,6 @@ public class ServerConstants {
     public static int cashShopPort;
     
     public static boolean isLocal = false;
-        
     public static int defaultExpRate;
     public static int defaultMesoRate;
     public static int defaultDropRate;

@@ -331,7 +331,7 @@ public class MapleMonster extends AbstractLoadedMapleLife {
 					// ((MapleCharacter) map.getAllPlayer())
 					// .send(UIPacket.detailShowInfo("HP: " + hp + " /" +
 					// this.getMobMaxHp(), false));
-					System.out.println(hp + "/" + this.getMobMaxHp());
+//					System.out.println(hp + "/" + this.getMobMaxHp());
 					break;
 				case 1:
 					map.broadcastMessage(MobPacket.damageFriendlyMob(this, damage), this.getPosition());
